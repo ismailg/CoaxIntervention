@@ -30,7 +30,10 @@ keywords:
 
 
 abstract: | 
-  abstract to be added. 
+  Social trust is an important building block of strong social bonds, and its absence is a risk factor for social     dysfunction. As such, interventions to foster and strengthen trust-based cooperation are highly desirable. Using the repeated Trust Game paradigm, we assess the effectiveness of a cognitive intervention aimed at repairing the potential breakdown of cooperation from a pre-programmed, one-off defection by the opponent. Over two games, participants are given the role of the trustee and face what they believe are two different players. In between games, they either receive a cognitive intervention  or not. In reality, participants face the same computerised agent in both instances, which is programmed to play according to an HMM fitted to real players data. We saw the emergence of cooperative behavior in these games, consistent with what is expected when humans interact. This substanstiates the use of these AI agents as credible human opponents whilst affording a high degree of experimental control. The intervention led to more cooperative behavior both pre and post defection by the opponent. HMM modelling of participants actions shows participants in the intervention group had a lower probability of transitioning to non cooperative states. Posterior latent state analysis also showed a  higher proportion of players best described by more cooperative latent states in the intervention condition compared to the control condition.
+  
+  
+ 
   
 
 bibliography: "bib/cogIntervention.bib"
@@ -98,7 +101,7 @@ In devising potential interventions to repair trust, we can derive inspiration f
 
 In this study, we assess the effectiveness of a cognitive intervention aimed at repairing the potential breakdown of cooperation from a pre-programmed, one-off low investment sent by the investor. The intervention focuses on explaining the potential harm from reciprocating non-cooperative actions and suggesting a non-impulsive course of action to coax the investor back into cooperation. It explicitly articulates the advantages of adopting a coaxing behavior in this setting, and as such, is directly relevant to the task at hand and is very clear about the desired behavior without being overly directive. The idea being that if participants show no response to this type of direct intervention in this setting, then other forms of intervention that may target general processes such as better emotional regulation or better mentalising are then even less likely to show a benefit. As such this intervention can be seen as a litmus test for the success of more "general" forms of cognitive interventions. Moreover, in the event of the intervention's failure, analysis of the resistance to an explicit intervention itself might be worthy of further investigation to understand the mechanism behind the lack of success. 
 
-In this experiment, participants are given the role of the trustee and are randomly assigned to either a control group or an intervention group. They play two instances of the repeated Trust Game facing what they believe are two different players. In between games, they either receive a cognitive intervention (intervention condition) or not (control condition, where participants are asked to solve anagrams). In reality, participants face the same computerised agent in both instances, which is programmed to play according to an HMM fitted to rela players data. We explore whether the intervention has an effect on the behaviour of the trustee and whether the learning is transferred to a new repeated Prisoner's Dilemma game when facing a seemingly new player. 
+In this experiment, participants are given the role of the trustee and are randomly assigned to either a control group or an intervention group. They play two instances of the repeated Trust Game facing what they believe are two different players. In between games, they either receive a cognitive intervention (intervention condition) or not (control condition, where participants are asked to solve anagrams). In reality, participants face the same computerised agent in both instances, which is programmed to play according to an HMM fitted to real players data. We explore whether the intervention has an effect on the behaviour of the trustee and whether the learning is transferred to a new repeated Prisoner's Dilemma game when facing a seemingly new player. 
 
 
 <!-- DATA WRANGLING  -->
@@ -135,7 +138,7 @@ After being randomly assigned to either a control or intervention condition, par
 After the three phases were completed, participants were asked to complete a series of questionnaires at the end of the experiment. These included: the PAI-BOR measuring Borderline traits [@morey_personality_1991], the DERS measuring Emotion Regulation ability [@gratz_multidimensional_2004] and the RFQ8 for mentalising abilities [@fonagy_development_2016]. Finally, participants were asked a series of questions around how they played each phase. First, participants were asked whether they thought they played differently in the second compared to the first phase of the RTG. Second, participants had to select whether they thought the opponents they faced were human or computer agents. Finally, we revealed to the participants that they faced the same computer agent throughout the RTG. We explained that any change in their perception of the opponent or any change in how the opponent played is due to their own change in behavior as the agent was simply reacting to their actions. Finally, we asked participants to reveal whether this experiment has taught them anything about how they should behave in social situations.
 
 
-```{r interventionSlide,fig.cap = "Screenshot of the main  slide in the intervention condition", fig.align='center', out.width="80%"}
+```{r interventionSlide,fig.cap = "Screenshot of the main  slide in the intervention condition", fig.align='center', out.width="80%"du}
 
 knitr::include_graphics("figures/intervention_text.png")
 
@@ -412,19 +415,21 @@ prepost_bycond <- pairs(emmeans::emmeans(mod_returns_pct, c("gameNum.f"), by = "
 
 ```
 
-```{r afexPLotPctRet, fig.cap="Marginal means and distributions of percentage trustee returns over all rounds, shown across participants by Game number and Condition",fig.align="center", fig.width=6, fig.height = 4}
-afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
+```{r, include=FALSE}
+pctRet_all <- afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
             mapping = c("linetype", "shape", "fill"),
             data_geom = geom_violin, 
             data_arg = list(width = 0.5),
             factor_levels = list(gameNum.f = c("Pre", "Post")), legend_title = "Condition") + 
   theme_bw() + 
   labs(y = "Percentage Return", x = "Game") + 
-  theme(legend.position = "bottom") +
+  ggtitle("All rounds percentage returns") + 
+  theme(plot.title = element_text(size = 10)) +
+  theme(legend.position = "bottom") 
             
 ```
 
-Estimated marginal means of percentage returns as well as the distribution of the returns for participants across all trials are presented in Figure \ref{fig:afexPLotPctRet}. If the intervention has an effect, then we should expect a higher increase in returns after the intervention compared to the control condition, which should be evident from an interaction between Condition (intervention vs control) and Game-number (pre- vs post-manipulation). Therefore, the variable of interest here is the interaction between Condition and Game-number. We do find an interaction effect due to an increase in the percentage returned in the intervention but not in the control group ($F(1,314.2) =  26.9, p < 0.001$). We also find a significant main effect for Condition ( $F(1,315.31) = 9.52, p = 0.002)$), which is due to participants returning higher percentage returns, in the post game, in the intervention group ($p < 0.001$), and lower returns in the control group ($p = 0.02$). We also find a main effect of Investment due to higher percentage returns being sent back for higher investments ( $F(1,9208) = 373.6, p < 0.001$), and an interaction effect of Investment by Condition ($F(1,9207) =45.38, p < 0.001$), with investments having less of a positive effect on the percentage returns in the intervention group compared to the control group. The latter effect indicates that the higher returns we see in the intervention group are unlikely to be purely driven by higher investments. Finally, we find a three way interaction between Game-number, Condition and Investment ($F(1,8988)= 24.6, p < 0.001$), showing that the differentiated effect of the investment on the proportion returned by condition is itself moderated by the Game-number.
+Estimated marginal means of percentage returns as well as the distribution of the returns for participants across all trials are presented in panel A of Figure \ref{fig:violinPanels}. If the intervention has an effect, then we should expect a higher increase in returns after the intervention compared to the control condition, which should be evident from an interaction between Condition (intervention vs control) and Game-number (pre- vs post-manipulation). Therefore, the variable of interest here is the interaction between Condition and Game-number. We do find an interaction effect due to an increase in the percentage returned in the intervention but not in the control group ($F(1,314.2) =  26.9, p < 0.001$). We also find a significant main effect for Condition ( $F(1,315.31) = 9.52, p = 0.002)$), which is due to participants returning higher percentage returns, in the post game, in the intervention group ($p < 0.001$), and lower returns in the control group ($p = 0.02$). We also find a main effect of Investment due to higher percentage returns being sent back for higher investments ( $F(1,9208) = 373.6, p < 0.001$), and an interaction effect of Investment by Condition ($F(1,9207) =45.38, p < 0.001$), with investments having less of a positive effect on the percentage returns in the intervention group compared to the control group. The latter effect indicates that the higher returns we see in the intervention group are unlikely to be purely driven by higher investments. Finally, we find a three way interaction between Game-number, Condition and Investment ($F(1,8988)= 24.6, p < 0.001$), showing that the differentiated effect of the investment on the proportion returned by condition is itself moderated by the Game-number.
 
 
 ```{r, include=FALSE, cache=TRUE}
@@ -442,22 +447,24 @@ anova(mod_invs)
  
 ```
 
-```{r afexPlotInv, fig.cap="Marginal means and distributions of investments over all rounds for HMM agents playing the role of the investor, by Game number and Condition.",fig.align="center", fig.width=6, fig.height = 4}
+```{r, include=FALSE}
 
-afex_plot(mod_invs, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
+inv_all <- afex_plot(mod_invs, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
             mapping = c("linetype", "shape", "fill"),
             data_geom = geom_violin,
             data_arg = list(width = 0.5),
             factor_levels = list(gameNum.f = c("Pre", "Post")), 
             legend_title = "Condition") + 
   theme_bw() + 
+  ggtitle("All rounds investments") +
   labs(y = "HMM Investment", x = "Game") + 
+  theme(plot.title = element_text(size = 10)) +
   theme(legend.position = "bottom")
           
 
 ```
 
-Since the artificial agent taking the role of the investor adapts its behavior to the actions of the participants, we can analyse whether the HMM agent exhibits a differentiated behavior between games and conditions.  We use a linear-mixed effects model, with fixed effects for Condition (intervention or control), Game-number (pre or post intervention), as well as interaction between Condition and Game-number, and participant-wise random intercepts and random slopes for Game-number. We find a main effect for both Condition ($F(1,317) = 8.7, p = 0.003$) and Game-number($F(1,317) = 8.3, p = 0.004$). As can be seen in Figure \ref{fig:afexPlotInv}, investment was higher in the intervention compared to the control condition across games ($p=0.003$). Across conditions, investment was also higher in the second game compared to the first ($p=0.003$). 
+Since the artificial agent taking the role of the investor adapts its behavior to the actions of the participants, we can analyse whether the HMM agent exhibits a differentiated behavior between games and conditions.  We use a linear-mixed effects model, with fixed effects for Condition (intervention or control), Game-number (pre or post intervention), as well as interaction between Condition and Game-number, and participant-wise random intercepts and random slopes for Game-number. We find a main effect for both Condition ($F(1,317) = 8.7, p = 0.003$) and Game-number($F(1,317) = 8.3, p = 0.004$). As can be seen in panel D of Figure \ref{fig:violinPanels}, investment was higher in the intervention compared to the control condition across games ($p=0.003$). Across conditions, investment was also higher in the second game compared to the first ($p=0.003$). 
 
 In summary, participants in the control group sent back **lower** returns in the second game (`r apa_print(prepost_bycond)$full_result$control`) despite the HMM investor sending, on average higher absolute investments. Those in the intervention group returned **higher** percentage returns in the second game (`r apa_print(prepost_bycond)$full_result$intervention`), with the investor also sending higher investments. We can rule out that these higher returns in the intervention group compared to the control group were purely driven by higher investments. If that was the case, then we would expect the presence of the Investment variable in our model of returns to lead to a non-significant interaction between Game-number and Condition. Since we find the interaction effect whilst controlling for Investment, this suggests this effect is not purely explained by the change in investments.
 
@@ -476,10 +483,10 @@ summary(mod_returns_pre)
 pairs_pre_int <- pairs(emmeans::emmeans(mod_returns_pre, c("gameNum.f"), by = "condition.f", pbkrtest.limit = 9400, reverse=TRUE))
 
 ```
-Since we observed higher returns pre-defection trials, we can also explore whether there was differentiated behavior if we restrict our analysis to the rounds prior to the pre-programmed one-off investment (rounds 1 to 11 pre-manipulation and 1 to 12 post-manipulation). We fit the same linear mixed effects model to percentage returns as the one for the full data. Estimated marginal means of percentage returns as well as the distribution of the returns for participants across all trials are presented in Figure \ref{fig:preCoaxPlot}. We do find an interaction effect between Condition and Game number ($F(1,317.99) =  17.1, p < 0.001$). This was due to an increase in the percentage returned pre low-investment trial in the intervention condition (`r apa_print(pairs_pre_int)$full_result$intervention`) but not in the control group (`r apa_print(pairs_pre_int)$full_result$control`). This indicates that the differentiated behavior we saw, where participants were sending back higher returns in the intervention condition but not in the control condition, was not simply due to their reaction post the low-investment trial. The higher returns were consistent with the message of the intervention, but have also happened, on average across participants, before the participants experienced the event similar to the one described in the intervention. 
+Since we observed higher returns pre-defection trials, we can also explore whether there was differentiated behavior if we restrict our analysis to the rounds prior to the pre-programmed one-off investment (rounds 1 to 11 pre-manipulation and 1 to 12 post-manipulation). We fit the same linear mixed effects model to percentage returns as the one for the full data. Estimated marginal means of percentage returns as well as the distribution of the returns for participants across all trials are presented in panel B of Figure \ref{fig:violinPanels}. We do find an interaction effect between Condition and Game number ($F(1,317.99) =  17.1, p < 0.001$). This was due to an increase in the percentage returned pre low-investment trial in the intervention condition (`r apa_print(pairs_pre_int)$full_result$intervention`) but not in the control group (`r apa_print(pairs_pre_int)$full_result$control`). This indicates that the differentiated behavior we saw, where participants were sending back higher returns in the intervention condition but not in the control condition, was not simply due to their reaction post the low-investment trial. The higher returns were consistent with the message of the intervention, but have also happened, on average across participants, before the participants experienced the event similar to the one described in the intervention. 
 
-```{r preCoaxPlot, fig.cap="Marginal means and distributions of percentage trustee returns across all participants for pre-defection trials only, by Game number and Condition.",fig.align="center", fig.width=6, fig.height = 4}
-afex_plot(mod_returns_pre, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
+```{r, include=F}
+pctRet_pre <- afex_plot(mod_returns_pre, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
             mapping = c("linetype", "shape", "fill"),
             data_geom = geom_violin,
             data_arg = list(width = 0.5),
@@ -487,6 +494,8 @@ afex_plot(mod_returns_pre, x = "gameNum.f", trace = "condition.f", dodge = 0.8, 
             legend_title = "Condition") + 
   theme_bw() + 
   labs(y = "Percentage Return", x = "Game") + 
+  ggtitle("Pre defection trials percentage returns")+
+  theme(plot.title = element_text(size = 10)) +
   theme(legend.position = "bottom")
 ```
 
@@ -526,8 +535,8 @@ postcoax_interaction
 pairs(emmeans::emmeans(mod_postcoax_trust, c("gameNum.f"), by = "condition.f"))
 ```
 
-```{r postCoaxPlot, fig.cap="Marginal means and distributions of percentage trustee returns across all participants for post-defection trials only, by Game number and Condition.",fig.align="center", fig.width=6, fig.height = 4}
-afex_plot(mod_postcoax_trust, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
+```{r, include=FALSE}
+pctRet_post <- afex_plot(mod_postcoax_trust, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
             mapping = c("linetype", "shape", "fill"),
             data_geom = geom_violin,
             data_arg = list(width = 0.5),
@@ -535,11 +544,19 @@ afex_plot(mod_postcoax_trust, x = "gameNum.f", trace = "condition.f", dodge = 0.
             legend_title = "Condition") + 
   theme_bw() + 
   labs(y = "Percentage Return", x = "Game") + 
+  ggtitle("Post defection trials percentage returns")+
+  theme(plot.title = element_text(size = 10)) +
   theme(legend.position = "bottom")
 ```
 
 
-Figure \ref{fig:postCoaxPlot} shows the marginal means of trustee returns and their distribution by Game-number and Condition. We found a main effect of Condition with returns on the intervention group higher than returns in the control group (`r apa_print(pairs(postcoax_bycond))$full_result$intervention_control`). We also found a main effect of Game-number, with returns higher for the pre-manipulation game compared to the post-manipulation game  (`r apa_print(pairs(postcoax_bygame))$full_result$pre_post`).
+```{r violinPanels, fig.cap="Panel A: Marginal means and distributions of percentage trustee returns over all rounds, shown across participants by Game number and Condition. Panel B: Marginal means and distributions of percentage trustee returns across all participants for pre-defection trials only, by Game number and Condition. Panel C: Marginal means and distributions of percentage trustee returns across all participants for post-defection trials only, by Game number and Condition. Panel D:Marginal means and distributions of investments over all rounds for HMM agents playing the role of the investor, by Game number and Condition", fig.align="center", fig.width=6, fig.height = 6}
+
+ggpubr::ggarrange(pctRet_all, pctRet_pre, pctRet_post, inv_all, nrow=2, ncol=2, labels = c("A", "B", "C", "D"), common.legend = TRUE, legend = "bottom")
+```
+
+
+Panel C of Figure \ref{fig:violinPanels} shows the marginal means of trustee returns and their distribution by Game-number and Condition. We found a main effect of Condition with returns on the intervention group higher than returns in the control group (`r apa_print(pairs(postcoax_bycond))$full_result$intervention_control`). We also found a main effect of Game-number, with returns higher for the pre-manipulation game compared to the post-manipulation game  (`r apa_print(pairs(postcoax_bygame))$full_result$pre_post`).
 In addition, there was a significant interaction between Game-number and Condition. We found a significant decrease in returns between games in the control condition (`r papaja::apa_print(pairs(postcoax_interaction, by = "condition.f", reverse=FALSE))$full_result$control_pre_post`), but no such difference in the intervention condition (`r papaja::apa_print(pairs(postcoax_interaction, by = "condition.f", reverse=FALSE))$full_result$intervention_pre_post`).
 
 

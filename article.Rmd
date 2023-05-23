@@ -1,29 +1,26 @@
 ---
-title: Repairing cooperation through a cognitive intervention in the repeated Trust Game
-subtitle: 
-titlerunning: 
-authorrunning: 
-# thanks: The authors have no conflicts of interest to declare that are relevant to the content of this article. This work was supported by the UK Engineering and Physical Sciences Research Council under grant EP/S515255/1. 
+title: "Repairing cooperation through a cognitive intervention in the repeated Trust Game"
+author:
+  - Ismail Guennouni
+  - Maarten Speekenbrink
+  - Quentin Huys
+  - Samuel Dupret
 
-authors:
-- name: Ismail Guennouni
-  address: Department of Experimental Psychology, University College London, 26 Bedford Way, London WC1H 0AP, United Kingdom
-  email: i.guennouni.17@ucl.ac.uk
-
-- name: Maarten Speekenbrink
-  address: Department of Experimental Psychology, University College London, 26 Bedford Way, London WC1H 0AP, United Kingdom
-  email: m.speekenbrink@ucl.ac.uk
-
-- name: Quentin Huys
-  address: Max Planck Institute of Computational Psychiatry
-  email: q.huys@ucl.ac.uk
-
-- name: Samuel Dupret
-  address: HLI
-  email: sam.dupret@ucl.ac.uk
-
-
-
+# - name: Ismail Guennouni
+#   address: Department of Experimental Psychology, University College London, 26 Bedford Way, London WC1H 0AP, United Kingdom
+#   email: i.guennouni.17@ucl.ac.uk
+# 
+# - name: Maarten Speekenbrink
+#   address: Department of Experimental Psychology, University College London, 26 Bedford Way, London WC1H 0AP, United Kingdom
+#   email: m.speekenbrink@ucl.ac.uk
+# 
+# - name: Quentin Huys
+#   address: Max Planck Institute of Computational Psychiatry
+#   email: q.huys@ucl.ac.uk
+# 
+# - name: Samuel Dupret
+#   address: HLI
+#   email: sam.dupret@ucl.ac.uk
 keywords:
 - Economic Games 
 - Hidden Markov Models
@@ -34,16 +31,14 @@ keywords:
 abstract: | 
   Social trust is an important building block of strong social bonds, and its absence is a risk factor for social dysfunction. As such, interventions to foster and strengthen trust-based cooperation are highly desirable. Using the repeated Trust Game paradigm, we assess the effectiveness of a cognitive intervention aimed at repairing the potential breakdown of cooperation from a pre-programmed, one-off defection by the opponent. Over two games, participants are given the role of the trustee and face what they believe are two different players. In between games, they either receive a brief cognitive intervention or not. The intervention led to more cooperative behavior both pre and post defection by the opponent. HMM modelling of participants actions shows participants in the intervention group had a lower probability of transitioning to non cooperative states. Posterior latent state analysis also showed a  higher proportion of players best described by more cooperative latent states in the intervention condition compared to the control condition.
   
-  
- 
-  
-
 bibliography: "bib/cogIntervention.bib"
 biblio-style: spphys
 output:
   bookdown::pdf_document2:
    toc: false
 ---
+
+
 
 ```{r setupCoax, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE) 

@@ -1,7 +1,7 @@
+tinylabels
 papaja
 kableExtra
 knitr
-citr
 bookdown
 tidyverse
 ggplot2
@@ -12,6 +12,7 @@ purrr
 dplyr
 stringr
 forcats
+lubridate
 Matrix
 lme4
 afex
@@ -30,4 +31,3 @@ depmixS4
 flextable
 gridExtra
 ggsignif
-tinylabels

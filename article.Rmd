@@ -323,19 +323,55 @@ Average investments and returns prior to the defection round (Figure \ref{fig:ga
 
 # Alternative chart with pre vs post percentage returns in one panel as suggested by QH.
 
-ggplot(avg_ret_df ,aes(x=as.factor(roundNum),group=gameNum.f, color = gameNum.f)) +
-  stat_summary(fun = "mean", geom = "line", aes(y=ret_pct)) +
-  stat_summary(fun.data = "mean_se", geom = "errorbar", alpha =0.3, width = 0.2, aes(y=ret_pct) )+
+ggplot(avg_ret_df, aes(x=as.factor(roundNum), y=ret_pct, group=gameNum.f, color = gameNum.f)) +
+  stat_summary(fun = mean, geom = "line") +
+  stat_summary(fun.data = mean_se, geom = "ribbon", aes(ymin=..ymin.., ymax=..ymax..), 
+               alpha = 0.3, fill = "grey", linetype = 0) +
   labs(x = "Round",
        y = "Percentage Return",
        color = "Game") +
-  # ylab("Percentage Return") +
-  # xlab("Round") +
   theme_bw() +
   theme(legend.position = "bottom") +
-  facet_wrap(~condition.f)
+  facet_wrap(~condition.f) +
+  scale_color_manual(values = c("darkblue", "green"))
+
+
 
 ```
+
+<!-- Plotting individual differences   -->
+```{r, include =F}
+ret_post_int <- avg_ret_df %>% filter(roundNum == 13 , gameNum.f == "post") 
+
+# plot(jitter(ret_post_int$returns), main="Jitter Plot", ylab="Returns", pch=19, col="blue")
+# plot(ecdf(ret_post_int$returns), main="ECDF", xlab="Returns", ylab="Cumulative Probability")
+# 
+# ggplot(ret_post_int , aes(x = "", y = returns)) +
+#   geom_violin(fill="lightblue") +
+#   geom_boxplot(width=0.1, fill="white") +
+#   theme_minimal() +
+#   labs(x = NULL, y = "Returns", title = "Violin plot")
+
+
+library(ggplot2)
+ggplot(ret_post_int, aes(x = "", y = ret_pct)) +
+  geom_violin(fill="lightblue") +
+  geom_jitter(width = 0.2, height = 0.02, size = 1, col = "black") +
+  geom_hline(yintercept = 0.33, color = "red", linetype = "dashed") +
+  theme_bw() +
+  facet_wrap(~condition.f) +
+  labs(x = NULL, y = "% Return", title = "")
+
+
+
+```
+
+
+
+
+
+
+
 
 ```{r, include=FALSE, cache=TRUE}
 
@@ -1489,7 +1525,7 @@ plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
   trans_prob <- data.frame(
     from = rep(1:ns, each=100*ns),
     to = rep(1:ns, each=100),
-    investment = seq(0,20,length=100),
+    investment = seq(0,8,length=100),
     prob_pre = 0,
     prob_ctrl = 0,
     prob_coax =0
@@ -1540,7 +1576,7 @@ plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
 }
 
 
-# plot_state_transitions(tr_fdmod_5,numCovIn=2, numCovTr=6) 
+plot_state_transitions(tr_fdmod_5,numCovIn=2, numCovTr=6) 
 
 ```
 
@@ -1558,13 +1594,23 @@ ctrl_pre_plot <- ggplot(trans_prob,aes(x=investment,y=prob_ctrl, colour = as.fac
   theme_bw()
 
 
-coax_pre_plot <- ggplot(trans_prob,aes(x=investment,y=prob_coax, colour = as.factor(to))) + 
-  geom_line() + 
-  geom_line(aes(y=prob_pre),linetype="dotted") +
+# coax_pre_plot <- ggplot(trans_prob,aes(x=investment,y=prob_coax, colour = as.factor(to))) + 
+#   geom_line() + 
+#   geom_line(aes(y=prob_pre),linetype="dotted") +
+#   facet_wrap(~from) + 
+#   ylim(c(0,1)) + 
+#   ggtitle("Transition function pre- and post-intervention manipulation") + 
+#   labs(x = "Investment", y = "Transition probability", color='State Transitioned to') + 
+#   theme_bw()
+
+coax_pre_plot <- ggplot(trans_prob,aes(x=investment)) + 
+  geom_line(aes(y=prob_coax, colour = as.factor(to), linetype="Post-intervention")) + 
+  geom_line(aes(y=prob_pre, colour = as.factor(to), linetype="Pre-intervention")) +
   facet_wrap(~from) + 
   ylim(c(0,1)) + 
   ggtitle("Transition function pre- and post-intervention manipulation") + 
-  labs(x = "Investment", y = "Transition probability", color='State Transitioned to') + 
+  labs(x = "Investment", y = "Transition probability", color='State Transitioned to', linetype = "Line Type") + 
+  scale_linetype_manual(values = c("Post-intervention" = "solid", "Pre-intervention" = "dotted")) +
   theme_bw()
 
 

@@ -85,4 +85,7 @@ $$P(S_{t+1} = s' | S_t=s , X_t = x)= \frac{\exp(\beta_{0,s,s'} + \beta_{1,s,s'} 
 where $\text{inv}$ is a variable representing the investment received, $x$ is a dummy variable to characterise the group that the participant belongs to. We define four contrast codes for these dummy variables: pre-post (comparing pre and post games), post-coax (compares the post-intervention group to all others), post-control (compares the post-control group to all others) and full-contrast (a three level dummy variable: post-intervention compared to post-control and  all pre games).  
 
 
+# Distribution of returns for each latent state for HMM model of participant's returns
+
+
 # References 

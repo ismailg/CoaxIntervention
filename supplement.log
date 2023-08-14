@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.23)  11 AUG 2023 14:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.23)  14 AUG 2023 11:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -417,12 +417,12 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<figures/trust_game.png, id=36, 1066.98625pt x 631.35875pt>
+<figures/trust_game.png, id=40, 1066.98625pt x 631.35875pt>
 File: figures/trust_game.png Graphic file (type png)
 <use figures/trust_game.png>
 Package pdftex.def Info: figures/trust_game.png  used on input line 118.
 (pdftex.def)             Requested size: 469.75218pt x 277.96248pt.
-<figures/emotion_grid.png, id=38, 912.40875pt x 832.10875pt>
+<figures/emotion_grid.png, id=42, 912.40875pt x 832.10875pt>
 File: figures/emotion_grid.png Graphic file (type png)
 <use figures/emotion_grid.png>
 Package pdftex.def Info: figures/emotion_grid.png  used on input line 131.
@@ -430,17 +430,17 @@ Package pdftex.def Info: figures/emotion_grid.png  used on input line 131.
 [1
 
 {/Users/mbp17/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <./figures/trust_game.png>] [2 <./figures/emotion_grid.png>]
-<figures/screenshot_RPD_payoffs.png, id=61, 613.29124pt x 350.30875pt>
+<figures/screenshot_RPD_payoffs.png, id=63, 613.29124pt x 350.30875pt>
 File: figures/screenshot_RPD_payoffs.png Graphic file (type png)
 <use figures/screenshot_RPD_payoffs.png>
 Package pdftex.def Info: figures/screenshot_RPD_payoffs.png  used on input line 176.
 (pdftex.def)             Requested size: 469.75583pt x 268.32207pt.
-[3 <./figures/screenshot_RPD_payoffs.png>]
-<figures/intervention_text.png, id=70, 862.22125pt x 479.7925pt>
+<figures/intervention_text.png, id=65, 862.22125pt x 479.7925pt>
 File: figures/intervention_text.png Graphic file (type png)
 <use figures/intervention_text.png>
 Package pdftex.def Info: figures/intervention_text.png  used on input line 210.
 (pdftex.def)             Requested size: 375.79997pt x 209.11801pt.
+[3] [4 <./figures/screenshot_RPD_payoffs.png> <./figures/intervention_text.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 242.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -450,23 +450,23 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 LaTeX Warning: Command \textellipsis invalid in math mode on input line 242.
 
-[4{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} <./figures/intervention_text.png>] [5{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [6] (./supplement.aux)
+[5{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [6] (./supplement.aux)
 Package rerunfilecheck Info: File `supplement.out' has not changed.
-(rerunfilecheck)             Checksum: 17C5AF9FABA212D38B5B1D5DB5EB572A;1761.
+(rerunfilecheck)             Checksum: 72CC78E78B3704210AF14F5BEAD9C03B;2261.
  ) 
 Here is how much of TeX's memory you used:
- 11008 strings out of 478057
- 171733 string characters out of 5839593
+ 11012 strings out of 478057
+ 171923 string characters out of 5839593
  1863851 words of memory out of 5000000
- 30918 multiletter control sequences out of 15000+600000
+ 30920 multiletter control sequences out of 15000+600000
  565576 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,6n,76p,749b,462s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on supplement.pdf (6 pages, 1209432 bytes).
+ 75i,6n,76p,749b,447s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on supplement.pdf (6 pages, 1188624 bytes).
 PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 140 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 186 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

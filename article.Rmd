@@ -1,26 +1,8 @@
 ---
 title: "Repairing cooperation through a cognitive intervention in the repeated Trust Game"
 author:
-  - Ismail Guennouni
-  - Quentin Huys
-  - Samuel Dupret
-  - Maarten Speekenbrink
-
-# - name: Ismail Guennouni
-#   address: Department of Experimental Psychology, University College London, 26 Bedford Way, London WC1H 0AP, United Kingdom
-#   email: i.guennouni.17@ucl.ac.uk
-# 
-# - name: Maarten Speekenbrink
-#   address: Department of Experimental Psychology, University College London, 26 Bedford Way, London WC1H 0AP, United Kingdom
-#   email: m.speekenbrink@ucl.ac.uk
-# 
-# - name: Quentin Huys
-#   address: Max Planck Institute of Computational Psychiatry
-#   email: q.huys@ucl.ac.uk
-# 
-# - name: Samuel Dupret
-#   address: HLI
-#   email: sam.dupret@ucl.ac.uk
+  "Ismail Guennouni^1^, Quentin Huys^2^, Samuel Dupret^1^, Maarten Speekenbrink^1^"
+  
 keywords:
 - Economic Games 
 - Hidden Markov Models
@@ -28,7 +10,7 @@ keywords:
 - Cognitive Intervention 
 
 
-abstract: | 
+abstract: |
   Social trust is an important building block of strong social bonds, and its absence is a risk factor for social dysfunction. As such, interventions to foster and strengthen trust-based cooperation are highly desirable. Using the repeated Trust Game paradigm, we assess the effectiveness of a cognitive intervention aimed at repairing the potential breakdown of cooperation from a pre-programmed, one-off defection by the opponent. Over two games, participants are given the role of the trustee and face what they believe are two different players. In between games, they either receive a brief cognitive intervention or not. The intervention led to more cooperative behavior both pre and post defection by the opponent. HMM modelling of participants actions shows participants in the intervention group had a lower probability of transitioning to non cooperative states. Posterior latent state analysis also showed a  higher proportion of players best described by more cooperative latent states in the intervention condition compared to the control condition.
   
 bibliography: "bib/cogIntervention.bib"
@@ -37,8 +19,11 @@ output:
   bookdown::pdf_document2:
    toc: false
 ---
+\small  
+^1^ *Department of Experimental Psychology, Division of Psychology and Language Sciences, UCL*.  
+^2^ *Division of Psychiatry and Max Planck Centre for Computational Psychiatry and Ageing Research, Queen Square Institute of Neurology, UCL.*
 
-
+---
 
 ```{r setupCoax, include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE) 
@@ -105,7 +90,7 @@ d_finished <- readRDS("data/d_finished.RDS")
 
 ## Participants and Design
 
-A total of 318 participants were recruited on the Prolific Academic platform (prolific.co). The mean age of participants was `r round(mean(as.numeric(d_finished$exitSurvey.age), na.rm=TRUE),1)` years. Participants were paid a fixed fee of £5 plus a bonus payment dependent on their performance.<!--MS: state average bonus--> The experiment had a 2 (Condition: Intervention or Control) by 3 (Game: Trust-Game Pre Intervention, Trust-Game Post Intervention, Prisoner's Dilemma Post Intervention) design, with repeated measures on the second factor. Participants were randomly assigned to one of the two levels of the first factor.
+A total of 318 participants were recruited on the Prolific Academic platform (prolific.co). The mean age of participants was `r round(mean(as.numeric(d_finished$exitSurvey.age), na.rm=TRUE),1)` years. Participants were paid a fixed fee of £5 plus a bonus payment dependent on their performance that averaged £0.71. The experiment had a 2 (Condition: Intervention or Control) by 3 (Game: Trust-Game Pre Intervention, Trust-Game Post Intervention, Prisoner's Dilemma Post Intervention) design, with repeated measures on the second factor. Participants were randomly assigned to one of the two levels of the first factor.
 
 ## Tasks and Measures
 
@@ -222,11 +207,11 @@ ggpubr::ggarrange(plotinvHMM , plotInvTran, nrow=2, ncol=1, labels = c("A", "B")
 
 ```
 
-The strategy of the computerised investor was modelled on behaviour of human investors in a 10-round RTG <!-- reference to data -->.  Using this data, we estimated a hidden Markov model (HMM) on investors' behaviour with three latent states, reflecting "low-trust", "medium-trust", or "high-trust". Each latent state was associated with a distribution over all possible investor actions (from 0 to 20 investment) that reflected the amount of trust (Figure \ref{fig:HMMPanels}.A). Over rounds, the investor can move between states, and the probability of these transitions was modelled as a function of the net return in the previous round (see Figure \ref{fig:HMMPanels}.B).
+The strategy of the computerised investor was modelled on behaviour of human investors in a 10-round RTG [@king-casas_rupture_2008].  Using this data, we estimated a hidden Markov model (HMM) on investors' behaviour with three latent states, reflecting "low-trust", "medium-trust", or "high-trust". Each latent state was associated with a distribution over all possible investor actions (from 0 to 20 investment) that reflected the amount of trust (Figure \ref{fig:HMMPanels}.A). Over rounds, the investor can move between states, and the probability of these transitions was modelled as a function of the net return in the previous round (see Figure \ref{fig:HMMPanels}.B).
 
 In order to probe efforts to repair trust, the computerised agent was programmed to provide a low investment on round 12 pre-intervention and 13 post-intervention. On all other rounds, the agent's actions were derived from the HMM (disregarding the participant's response on pre-programmed low investment rounds).
 
-### Repeated Prisoner's Dillema
+### Repeated Prisoner's Dilemma
 
 Participants played 7 rounds of a repeated Prisoner's Dilemma. In each round, participants could choose between: a cooperative action with a reward of 5 if the player also cooperated and a reward of 1 if not, or a non-cooperative action that would yield a 7 points if the other person chooses the cooperative action and 2 points if not. The Nash equilibrium for a single-round version is to choose the non-cooperative action.
 
@@ -605,7 +590,7 @@ print(p)
 
 
 
-```{r, include=FALSE}
+```{r, include=FALSE, cache=TRUE}
 
 mod_emo_x <- mixed( emo_scaled_x ~ gameNum.f*scale(investment) + (1 + gameNum.f| id), data=datCoax, method="KR")
 summary(mod_emo_x)
@@ -639,8 +624,6 @@ Participants in the intervention condition rated their emotion on valence (negat
 
 
 ## Evaluation of the investor
-
-
 
 ```{r, include=FALSE}
 
@@ -749,7 +732,7 @@ summary(ipd_mod_r5)
 
 ```
 
-We next asked whether the intervention had any discernible effect on participants' behaviour in a different, repeated Prisoner's Dilemma game. Predicting the probability of a cooperative action with a logistic mixed-effects regression model, with Condition and Phase (before or after defection trial) as fixed effects and a random intercept for participants, showed a decline in cooperation after defection by the other player, `r papaja::apa_print(ipd_mod)$full_result$phase`, but no evidence for a different cooperation rate in the intervention condition compared to the control condition, `r papaja::apa_print(ipd_mod)$full_result$condition_f`, or a different response to defection between the conditions, `r papaja::apa_print(ipd_mod)$full_result$condition_f_phase`. As such, there is no evidence that the intervention affected behaviour in this game. <!-- We also found no difference in cooperation rates post defection trial between conditions.-->
+We next asked whether the intervention had any discernible effect on participants' behaviour in a different, repeated Prisoner's Dilemma game. Predicting the probability of a cooperative action with a logistic mixed-effects regression model, with Condition and Phase (before or after defection trial) as fixed effects and a random intercept for participants, showed a decline in cooperation after defection by the other player, `r papaja::apa_print(ipd_mod)$full_result$phase`, but no evidence for a different cooperation rate in the intervention condition compared to the control condition, `r papaja::apa_print(ipd_mod)$full_result$condition_f`, or a different response to defection between the conditions, `r papaja::apa_print(ipd_mod)$full_result$condition_f_phase`. As such, there is no evidence that the intervention affected behaviour in this game. 
 
 
 ```{r, include=FALSE}
@@ -1650,8 +1633,6 @@ postHMM
 
 
 
-
-
 ```{r, include= F}
 
 props_df_5 <- avg_ret_df %>% 
@@ -1759,7 +1740,7 @@ In this experiment, human participants took the role of the trustee in a repeate
 
 The aim of the cognitive intervention was to articulate the potential unwanted effects of acting on impulse after a transgressive action from the investor in the form of a one-off low investment. After the intervention, participants sent back higher returns compared to before the intervention, and did not decrease their returns after a transgressive action like participants in the control condition did. The overall higher returns after the intervention occurred despite participants' emotional reactions to the investments remaining largely the same as before the intervention. This indicates the intervention achieved its goal of encouraging participants to respond in a non-impulsive and considered manner, overriding an emotional urge to retaliate. 
 
-That participants generally send higher returns to the investor after the intervention is unlikely due to a  general learning effect unrelated to the intervention, as participants in the control condition did not increase their returns. Also, as participants in the intervention and control condition faced the same HMM investor, the higher post-intervention returns are not solely due to a difference in investor behaviour. As the investor reacts to participants' returns, those who return more will generally see higher investments. But this is driven by the magnitude of their returns, not by a change in the strategy of the investor. Finally, as participants rated the first and second HMM agent similarly on attributes such as cooperativeness and trust, the increased returns are unlikely to be the result of a more favourable evaluation of the investor. Rather, we find it most likely that the increased returns are due to participants inferring from the intervention that pro-social and trustworthy behaviour may generally motivate the investor to send high investments, which can provide more beneficial outcomes to them in the long run.
+That participants generally send higher returns to the investor after the intervention is unlikely due to a  general learning effect unrelated to the intervention, as participants in the control condition did not increase their returns. Also, as participants in the intervention and control condition faced the same HMM investor, the higher post-intervention returns are not solely due to a difference in investor behaviour. As the investor reacts to participants' returns, those who return more will generally see higher investments. But this is driven by the magnitude of their returns, not by a change in the strategy of the investor. Finally, as there were no differences between conditions in how participants rated the first and second HMM agent on attributes such as cooperativeness and trust, the increased returns are unlikely to be the result of a more favourable evaluation of the investor. Rather, we find it most likely that the increased returns are due to participants inferring from the intervention that pro-social and trustworthy behaviour may generally motivate the investor to send high investments, which can provide more beneficial outcomes to them in the long run.
 
 The effect of the intervention was not transferred to the Repeated Prisoner's Dilemma (RPD) game. There was no difference between the intervention and control condition in the rate of cooperation, whether before or after a preprogrammed defection by the artificial agent. As the prisoner's dilemma is a popular economic game, it is possible that participants had a strong prior commitment towards the strategy they would adopt, which was not overridden by the intervention. The RPD also involves much coarser actions (cooperate vs defect) than the finer-grained returns in the RTG. This would make it more difficult to observe more subtle effects of the intervention. As such, the RPD might not be the best choice for any knowledge transfer. In any case, we can not rule out that the effects of the brief cognitive intervention, which explicitly focused on the RTG, are confined to the RTG. Future research will need to assess whether transfer to other games is possible. <!-- For those that took on the intervention message and showed coaxing behavior in the second trust game, the fact that the investor still defected in the final rounds might have reinforced the idea that not reciprocating negative behavior is a losing strategy after all.-->
 

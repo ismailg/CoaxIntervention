@@ -1,7 +1,7 @@
 ---
-title: "Supplement"
+title: "Supplementary Information"
 # author: "Ismail Guennouni"
-date: "2023-04-28"
+#date: "2023-04-28"
 output: pdf_document
 
 bibliography: "bib/cogIntervention.bib"
@@ -58,7 +58,7 @@ knitr::include_graphics("figures/intervention_text.png")
 
 # Self report questionnaires 
 
-Failure to repair a breakdown in trust in the repeated trust game has been associated with trustees with BPD traits [@king-casas_rupture_2008]. Theories of social dysfunction in BPD have focused on dysfunction in the patients' mentalising ability [@allen_handbook_2006-1] as well as difficulties in emotional regulation [@rudge_mechanisms_2020]. The questionnaires we included in the experiment tried to assess borderline traits (PAI-BOR), emotional regulation capabilities (DERS) and mentalising ability (RFQ8). As such, we test for any association between scores in these questionnaires and the effect of the intervention.To analyse responses,  we fit a linear mixed effect model to the percentage return of trustees with fixed effects for Condition (intervention or control), Game-number (pre or post manipulation), Investment, and questionnaire score as well as all interactions between the fixed effects. We assume participant-wise random intercepts. We Z-transform the questionnaire scores and Investment as centering would be beneficial to interpreting the main effects more easily.
+Failure to repair a breakdown in trust in the repeated trust game has been associated with trustees with BPD traits [@king-casas_rupture_2008]. Theories of social dysfunction in BPD have focused on dysfunction in the patients' mentalising ability [@allen_handbook_2006-1] as well as difficulties in emotional regulation [@rudge_mechanisms_2020]. The questionnaires we included in the experiment tried to assess borderline traits (PAI-BOR; @morey_personality_1991), emotional regulation capabilities (DERS; @gratz_multidimensional_2004) and mentalising ability (RFQ8; @fonagy_development_2016). As such, we test for any association between scores in these questionnaires and the effect of the intervention.To analyse responses,  we fit a linear mixed effect model to the percentage return of trustees with fixed effects for Condition (intervention or control), Game-number (pre or post manipulation), Investment, and questionnaire score as well as all interactions between the fixed effects. We assume participant-wise random intercepts. We Z-transform the questionnaire scores and Investment as centering would be beneficial to interpreting the main effects more easily.
 <!-- ## Statistical analysis of Behavior -->
 
 

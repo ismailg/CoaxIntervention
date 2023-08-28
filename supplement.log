@@ -1,14 +1,15 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.23)  14 AUG 2023 11:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.8.14)  28 AUG 2023 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **supplement.tex
 (./supplement.tex
-LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2023-05-15> (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-08-11>
+(/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
 \c@section=\count186
@@ -22,14 +23,14 @@ File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2022/04/08 v2.17n AMS math features
+Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip50
 For additional information on amsmath, use the `?' option.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks16
+\@emptytoks=\toks17
 \ex@=\dimen141
 )) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
@@ -67,21 +68,21 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \dotsspace@=\muskip16
 \c@parentequation=\count266
 \dspbrk@lvl=\count267
-\tag@help=\toks17
+\tag@help=\toks18
 \row@=\count268
 \column@=\count269
 \maxfields@=\count270
-\andhelp@=\toks18
+\andhelp@=\toks19
 \eqnshift@=\dimen144
 \alignsep@=\dimen145
 \tagshift@=\dimen146
 \tagwidth@=\dimen147
 \totwidth@=\dimen148
 \lineht@=\dimen149
-\@envbody=\toks19
+\@envbody=\toks20
 \multlinegap=\skip51
 \multlinetaggap=\skip52
-\mathdisplay@stack=\toks20
+\mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
@@ -99,8 +100,8 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks21
-\inpenc@posthook=\toks22
+\inpenc@prehook=\toks22
+\inpenc@posthook=\toks23
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
@@ -159,7 +160,7 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 Package: geometry 2020/01/02 v5.9 Page Geometry
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks23
+\KV@toks@=\toks24
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
@@ -174,7 +175,7 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen155
 \Gm@layouthoffset=\dimen156
 \Gm@layoutvoffset=\dimen157
-\Gm@dimlist=\toks24
+\Gm@dimlist=\toks25
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
@@ -205,7 +206,7 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count276
 \calc@Cskip=\skip58
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2023-04-22 v7.00x Hypertext links for LaTeX
+Package: hyperref 2023-07-08 v7.01b Hypertext links for LaTeX
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -229,7 +230,7 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
+Package: nameref 2023-08-07 v2.53 Cross-referencing by name of section
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
@@ -246,7 +247,7 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \Hy@linkcounter=\count279
 \Hy@pagecounter=\count280
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2023-04-22 v7.00x Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2023-07-08 v7.01b Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -254,24 +255,24 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count281
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2023-04-22 v7.00x Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2023-07-08 v7.01b Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4065.
-Package hyperref Info: Hyper figures OFF on input line 4182.
-Package hyperref Info: Link nesting OFF on input line 4187.
-Package hyperref Info: Hyper index ON on input line 4190.
-Package hyperref Info: Plain pages OFF on input line 4197.
-Package hyperref Info: Backreferencing OFF on input line 4202.
+Package hyperref Info: Option `unicode' set `true' on input line 4050.
+Package hyperref Info: Hyper figures OFF on input line 4167.
+Package hyperref Info: Link nesting OFF on input line 4172.
+Package hyperref Info: Hyper index ON on input line 4175.
+Package hyperref Info: Plain pages OFF on input line 4182.
+Package hyperref Info: Backreferencing OFF on input line 4187.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4449.
+Package hyperref Info: Bookmarks ON on input line 4434.
 \c@Hy@tempcnt=\count282
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4787.
+LaTeX Info: Redefining \url on input line 4772.
 \XeTeXLinkMargin=\dimen163
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -281,13 +282,13 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count283
 \Field@Width=\dimen164
 \Fld@charsize=\dimen165
-Package hyperref Info: Hyper figures OFF on input line 6066.
-Package hyperref Info: Link nesting OFF on input line 6071.
-Package hyperref Info: Hyper index ON on input line 6074.
-Package hyperref Info: backreferencing OFF on input line 6081.
-Package hyperref Info: Link coloring OFF on input line 6086.
-Package hyperref Info: Link coloring with OCG OFF on input line 6091.
-Package hyperref Info: PDF/A mode OFF on input line 6096.
+Package hyperref Info: Hyper figures OFF on input line 6051.
+Package hyperref Info: Link nesting OFF on input line 6056.
+Package hyperref Info: Hyper index ON on input line 6059.
+Package hyperref Info: backreferencing OFF on input line 6066.
+Package hyperref Info: Link coloring OFF on input line 6071.
+Package hyperref Info: Link coloring with OCG OFF on input line 6076.
+Package hyperref Info: PDF/A mode OFF on input line 6081.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -298,7 +299,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2023-04-22 v7.00x Hyperref driver for pdfTeX
+File: hpdftex.def 2023-07-08 v7.01b Hyperref driver for pdfTeX
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -450,23 +451,33 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 LaTeX Warning: Command \textellipsis invalid in math mode on input line 242.
 
-[5{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [6] (./supplement.aux)
+[5{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+<figures/trusteeHMMPlot.png, id=95, 719.68875pt x 432.61626pt>
+File: figures/trusteeHMMPlot.png Graphic file (type png)
+<use figures/trusteeHMMPlot.png>
+Package pdftex.def Info: figures/trusteeHMMPlot.png  used on input line 317.
+(pdftex.def)             Requested size: 469.76883pt x 282.38545pt.
+[6 <./figures/trusteeHMMPlot.png>] [7] (./supplement.aux)
+ ***********
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-08-11>
+ ***********
 Package rerunfilecheck Info: File `supplement.out' has not changed.
 (rerunfilecheck)             Checksum: 72CC78E78B3704210AF14F5BEAD9C03B;2261.
  ) 
 Here is how much of TeX's memory you used:
- 11012 strings out of 478057
- 171923 string characters out of 5839593
- 1863851 words of memory out of 5000000
- 30920 multiletter control sequences out of 15000+600000
- 565576 words of font info for 73 fonts, out of 8000000 for 9000
+ 10859 strings out of 477149
+ 166291 string characters out of 5812375
+ 1929254 words of memory out of 5000000
+ 31690 multiletter control sequences out of 15000+600000
+ 611358 words of font info for 77 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,6n,76p,749b,447s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,749b,462s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on supplement.pdf (6 pages, 1188624 bytes).
+Output written on supplement.pdf (7 pages, 1229178 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -82,7 +82,11 @@ In this study, we assess the effectiveness of a cognitive intervention aimed at 
 
 
 ```{r dataLoad, include=FALSE }
-d_finished <- readRDS("data/d_finished.RDS")
+# d_finished <- readRDS("data/d_finished.RDS")
+# d_finished$id <- NULL
+# saveRDS(d_finished, file="data/d_anonym.RDS")
+
+d_finished <- readRDS("data/d_anonym.RDS")
 ```
 
 
@@ -261,14 +265,14 @@ To model participants' returns in the RTG across games and conditions, we fit va
 # Filter only trust rounds and create % returns and investments 
 
 avg_ret_df <- d_finished %>%
-  dplyr::select(id, condition.f,roundType,investment,returns,roundNum,gameNum.f,BPD_trait,PBOR_score,DERS_score,RFQ_c,RFQ_u) %>% 
+  dplyr::select(playerId, condition.f,roundType,investment,returns,roundNum,gameNum.f,BPD_trait,PBOR_score,DERS_score,RFQ_c,RFQ_u) %>% 
   mutate( condition.f = fct_recode(condition.f, "intervention" = "coaxing"))%>%
   filter(roundType=="trust",!is.na(roundNum)) %>% 
   mutate(roundNum = as.numeric(as.character(roundNum))) %>%
   mutate(inv_scaled = scale(investment)) %>% 
   mutate(inv_pct = investment/20, ret_pct = returns/(3*investment), ret_pct_0 = ifelse(investment==0,0,returns/(3*investment)))  %>% 
   # Creating Quartiles of % returns by participant over BOTH TRUST GAMES
-  group_by(id) %>% 
+  group_by(playerId) %>% 
   mutate(mean_pct_ret = mean(ret_pct), mean_abs_ret = mean(returns), mean_inv = mean(investment)) %>%
   ungroup() %>% 
   mutate(Quart_pct_ret = ntile(mean_pct_ret,4),
@@ -354,7 +358,7 @@ ggplot(ret_post_int, aes(x = "", y = ret_pct)) +
 
 ```{r, include=FALSE, cache=TRUE}
 
-mod_returns_pct <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| id), avg_ret_df, REML= TRUE, method="KR")
+mod_returns_pct <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| playerId), avg_ret_df, REML= TRUE, method="KR")
 anova(mod_returns_pct)
 summary(mod_returns_pct)
 
@@ -379,15 +383,13 @@ pctRet_all <- afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "conditi
 ```
 
 
-<!-- MS: double check statistics; I get different df when using KR in mixed -->
-
 Average investments and returns prior to the "defection round" (Figure \ref{fig:gamesPlot}) were within the range of reported investments (40-60% of endowment) and returns (35-50% of total yield) in the literature [@charness_investment_2008; @fiedler_social_2011]. 
 Mixed-effects analysis on the returns shows a significant main effect of Condition (intervention vs. control), `r papaja::apa_print(mod_returns_pct)$full_result$condition_f`<!--$F(1,315.31) = 9.52$, $p = .002$-->, with higher percentage returns in the intervention compared to the control condition. Importantly, we also find an interaction between Condition and Game (RTG pre- vs. post-intervention), `r papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_condition_f`<!--$F(1,314.2) = 26.9$, $p < .001$-->. Post-hoc tests show an increase in the percentage returned in the intervention condition, pre - post, `r papaja::apa_print(prepost_bycond)$full_result$Intervention_Pre_post`, but a decrease in the control condition, `r papaja::apa_print(prepost_bycond)$full_result$Control_Pre_post` (see Figure \ref{fig:violinPanels}.A). This indicates the intervention was effective in increasing cooperative behaviour. There was also a significant main effect of Investment, `r papaja::apa_print(mod_returns_pct)$full_result$inv_scaled`<!--$F(1,9208) = 373.6$, $p < 0.001$-->, such that higher investments were associated with higher percentage returns. An Investment by Condition interaction, `r papaja::apa_print(mod_returns_pct)$full_result$condition_f_inv_scaled`<!--$F(1,9207) = 45.38$, $p < .001$-->, indicates the positive effect of investment on percentage returns was greater in the control than intervention condition. <!-- This suggests that the higher returns we see in the intervention group are not simply due to higher investments.--> There was also an Investment by Game interaction, `r papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_inv_scaled`. Finally, we find a three way interaction between Game, Condition and Investment, `r papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_condition_f_inv_scaled`<!--($F(1,8988)= 24.6, p < 0.001$),-->, showing that the differentiated effect of the investment on the proportion returned by condition is itself moderated by the Game (pre- vs post intervention).
 
 
 
 ```{r, include=FALSE, cache=TRUE}
-mod_invs <- mixed( investment ~ gameNum.f*condition.f  + (1 + gameNum.f| id), avg_ret_df, method="KR")
+mod_invs <- mixed( investment ~ gameNum.f*condition.f  + (1 + gameNum.f| playerId), avg_ret_df, method="KR")
 summary(mod_invs)
 anova(mod_invs)
 
@@ -427,7 +429,7 @@ We next analysed HMM agent investments with a linear-mixed effects model with fi
 # ALL ROUNDS BEFORE DEFECTION TRIAL
 pre_int_data <- avg_ret_df %>% filter(roundType=="trust",!is.na(gameNum.f),(roundNum < 12 & gameNum.f =="pre")| (roundNum < 13 & gameNum.f =="post"))
 
-mod_returns_pre <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| id), pre_int_data, REML= TRUE, method="KR")
+mod_returns_pre <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| playerId), pre_int_data, REML= TRUE, method="KR")
 anova(mod_returns_pre)
 summary(mod_returns_pre)
 
@@ -471,7 +473,7 @@ post_coax_data %>% group_by(gameNum.f, condition.f) %>% summarise(avg_inv = mean
 
 ```{r, include=FALSE, cache=TRUE}
 
-mod_postcoax_trust <- mixed(ret_pct ~ gameNum.f*condition.f*inv_scaled  + ( 1 + gameNum.f|id), post_coax_data)
+mod_postcoax_trust <- mixed(ret_pct ~ gameNum.f*condition.f*inv_scaled  + ( 1 + gameNum.f|playerId), post_coax_data)
 anova(mod_postcoax_trust)
 
 
@@ -516,7 +518,7 @@ Taken together, we find that participants in the control condition sent lower pe
 # Get Emotions on x axis per round (valence)
 emo.x <- d_finished %>% 
   mutate( condition.f = fct_recode(condition.f, "intervention" = "coaxing")) %>% 
-  dplyr::select(id,roundType,condition.f,contains("emotionGrid")) %>% 
+  dplyr::select(playerId,roundType,condition.f,contains("emotionGrid")) %>% 
   dplyr::filter(roundType=="trust") %>% dplyr::select (-contains(".y") ) %>% pivot_longer(cols=contains(".x"), names_to = c("gameNumber","roundNum"), names_pattern ="return_trust_emotionGrid_(.*)_(.*)[.]x", values_to = "emo_coord_x") %>%
   distinct()  
 
@@ -524,13 +526,13 @@ emo.x <- d_finished %>%
 #Get emotions on y axis (arousal)
 emo.y <- d_finished %>%
   mutate( condition.f = fct_recode(condition.f, "intervention" = "coaxing")) %>%
-  dplyr::select(id,roundType,condition.f,contains("emotionGrid")) %>% 
+  dplyr::select(playerId,roundType,condition.f,contains("emotionGrid")) %>% 
   dplyr::filter(roundType=="trust") %>% dplyr::select(-contains(".x") ) %>% pivot_longer(cols=contains(".y"), names_to = c("gameNumber","roundNum"), names_pattern ="return_trust_emotionGrid_(.*)_(.*)[.]y", values_to = "emo_coord_y") %>%
   distinct()  
 
 
 # put emotions in one dataframe
-full_emo <- full_join(emo.x,emo.y, by=c("id", "gameNumber","roundNum","roundType", "condition.f"))  %>% 
+full_emo <- full_join(emo.x,emo.y, by=c("playerId", "gameNumber","roundNum","roundType", "condition.f"))  %>% 
   mutate(roundNum=as.numeric(as.character(roundNum))) %>% 
   mutate(gameNum.f = factor(gameNumber,labels = c("pre","post"),levels=c("1","2"))) %>% 
   dplyr::select(-c("roundType","gameNumber")) %>% 
@@ -539,7 +541,7 @@ full_emo <- full_join(emo.x,emo.y, by=c("id", "gameNumber","roundNum","roundType
   
 
 #merge with returns dataframe
-full_dat <- full_join(avg_ret_df, full_emo, by = c("id","condition.f","gameNum.f","roundNum" )) %>% filter(complete.cases(.))
+full_dat <- full_join(avg_ret_df, full_emo, by = c("playerId","condition.f","gameNum.f","roundNum" )) %>% filter(complete.cases(.))
 #nrow(full_dat)
 
 datCoax <- full_dat %>% filter(condition.f=="intervention")
@@ -574,7 +576,7 @@ p <- ggplot(datCoax[datCoax$gameNum.f == 'pre', ], aes(x=roundNum)) +
   stat_summary(data = datCoax[datCoax$gameNum.f == 'post', ], fun = "mean", geom = "line", group =1, aes(x=roundNum, y=inv_scaled, color = "Investment", linetype = "b_Post")) +
   labs(x = "Round", y="Series Z-score") +
   geom_hline(yintercept = 0, linetype="dotted", color = "grey", linewidth=1.5) +
-  scale_color_manual(name = " ", values = colors, labels = c("Emotion arousal", "Investment", "Emotion valence")) +
+  scale_color_manual(name = "", values = colors, labels = c("Arousal", "Investment", "Emotion valence")) +
   scale_linetype_manual(values = c("a_Pre" = "dotted", "b_Post" = "solid"), labels = c("Pre", "Post")) +
   scale_x_continuous(breaks = 1:max(datCoax$roundNum)) +
   facet_wrap(~roundGroup, scales = "free_x") +
@@ -592,7 +594,7 @@ print(p)
 
 ```{r, include=FALSE, cache=TRUE}
 
-mod_emo_x <- mixed( emo_scaled_x ~ gameNum.f*scale(investment) + (1 + gameNum.f| id), data=datCoax, method="KR")
+mod_emo_x <- mixed( emo_scaled_x ~ gameNum.f*scale(investment) + (1 + gameNum.f| playerId), data=datCoax, method="KR")
 summary(mod_emo_x)
 anova(mod_emo_x)
 
@@ -600,7 +602,7 @@ modVal <- emmeans::emmeans(mod_emo_x, ~gameNum.f)
 pairs(modVal)
 
 
-mod_emo_y <- mixed( emo_scaled_y ~ gameNum.f*scale(investment) + (1 + gameNum.f| id), datCoax )
+mod_emo_y <- mixed( emo_scaled_y ~ gameNum.f*scale(investment) + (1 + gameNum.f| playerId), datCoax )
 summary(mod_emo_y)
 anova(mod_emo_y)
 
@@ -628,21 +630,21 @@ Participants in the intervention condition rated their emotion on valence (negat
 ```{r, include=FALSE}
 
 # Pivot longer ratings on each attribute 
-df_coop <- d_finished %>% dplyr::select(id,condition.f,contains("cooperative")) %>%  
+df_coop <- d_finished %>% dplyr::select(playerId,condition.f,contains("cooperative")) %>%  
   pivot_longer(cols=contains("cooperative"), names_to = c("gameNumber"), names_pattern ="rating_cooperative_(.*)", values_to = "rating_coop") %>% distinct()
 
-df_selfish <- d_finished %>% dplyr::select(id,condition.f,contains("selfish")) %>% 
+df_selfish <- d_finished %>% dplyr::select(playerId,condition.f,contains("selfish")) %>% 
   pivot_longer(cols=contains("selfish"), names_to = c("gameNumber"), names_pattern ="rating_selfish_(.*)", values_to = "rating_selfish") %>% distinct
 
-df_trustworthy <- d_finished %>% dplyr::select(id,condition.f,contains("trustworthy")) %>% 
+df_trustworthy <- d_finished %>% dplyr::select(playerId,condition.f,contains("trustworthy")) %>% 
   pivot_longer(cols=contains("trustworthy"), names_to = c("gameNumber"), names_pattern ="rating_trustworthy_(.*)", values_to = "rating_trustworthy") %>% distinct() 
 
-df_friendly  <-  d_finished %>% dplyr::select(id,condition.f,contains("friendly")) %>% 
+df_friendly  <-  d_finished %>% dplyr::select(playerId,condition.f,contains("friendly")) %>% 
   pivot_longer(cols=contains("friendly"), names_to = c("gameNumber"), names_pattern ="rating_friendly_(.*)", values_to = "rating_friendly") %>%  distinct()  
 
 #merge all data frames together
 datRatings <- list(df_coop, df_selfish,df_trustworthy, df_friendly) %>% 
-              reduce(full_join, by=c('id','gameNumber','condition.f') ) %>% 
+              reduce(full_join, by=c('playerId','gameNumber','condition.f') ) %>% 
               mutate(gameNum.f = factor(gameNumber,labels = c("pre","post"),levels=c("1","2")))
 
 # Group means for each rating 
@@ -657,24 +659,24 @@ mu <- datRatings %>% group_by(gameNum.f, condition.f) %>% summarise(mean_coop = 
 
 
 # Cooperative
-coop_mod <- mixed(rating_coop ~ gameNum.f*condition.f + (1 | id), datRatings)
+coop_mod <- mixed(rating_coop ~ gameNum.f*condition.f + (1 | playerId), datRatings)
 summary(coop_mod)
 
 pairs(emmeans::emmeans(coop_mod, c("gameNum.f"), by = "condition.f"))
 
 #Selfish
-self_mod <- mixed(rating_selfish ~ gameNum.f*condition.f + (1 | id), datRatings)
+self_mod <- mixed(rating_selfish ~ gameNum.f*condition.f + (1 | playerId), datRatings)
 summary(self_mod)
 pairs(emmeans::emmeans(self_mod, c("gameNum.f"), by = "condition.f"))
 
 #Trustworthy 
-trust_mod <- mixed(rating_trustworthy ~ gameNum.f*condition.f + (1 | id), datRatings)
+trust_mod <- mixed(rating_trustworthy ~ gameNum.f*condition.f + (1 | playerId), datRatings)
 summary(trust_mod)
 pairs(emmeans::emmeans(trust_mod, c("gameNum.f"), by = "condition.f"))
 
 
 #Friendly
-friend_mod <- mixed(rating_friendly ~ gameNum.f*condition.f + (1 | id), datRatings)
+friend_mod <- mixed(rating_friendly ~ gameNum.f*condition.f + (1 | playerId), datRatings)
 summary(friend_mod)
 pairs(emmeans::emmeans(friend_mod, c("gameNum.f"), by = "condition.f"))
 
@@ -701,7 +703,7 @@ When asked during debrief whether they thought the investors they faced were Hum
 
 PD_data <- d_finished %>%
   mutate( condition.f = fct_recode(condition.f, "intervention" = "coaxing")) %>%
-  dplyr::select(id, condition.f,roundType,roundNum, PDoption,PDchoice, AiChoicePD,gameNum.f, PBOR_score) %>% 
+  dplyr::select(playerId, condition.f,roundType,roundNum, PDoption,PDchoice, AiChoicePD,gameNum.f, PBOR_score) %>% 
                           filter(roundType == "PD",!is.na(roundNum)) %>% 
                           dplyr::mutate(coop = ifelse(PDchoice=="cooperate",1,0),phase = ifelse(roundNum <= 4, 0,1)) 
 
@@ -724,7 +726,7 @@ ggplot(PD_data,aes(x=roundNum,group = 1)) +
 
 ```{r, include=FALSE}
 
-ipd_mod <- mixed(coop ~ condition.f * phase + (1 |id), data= PD_data, method = "LRT", family= "binomial") 
+ipd_mod <- mixed(coop ~ condition.f * phase + (1 |playerId), data= PD_data, method = "LRT", family= "binomial") 
 summary(ipd_mod)
 
 ipd_mod_r5 <- glm(coop ~ condition.f, data= PD_data%>% filter(roundNum >= 5)) 
@@ -741,14 +743,14 @@ We next asked whether the intervention had any discernible effect on participant
 avg_ret_df <- avg_ret_df %>% mutate(PBOR_scaled = scale(PBOR_score), DERS_scaled = scale(DERS_score), RFQc_scaled = scale(RFQ_c))
 
 # these are repeated measures here, so not independent. need to used mixed effects model.
-mixed_PBOR_pct <- afex::mixed(ret_pct ~ PBOR_scaled*gameNum.f*condition.f + investment + (1 | id ), data= avg_ret_df)
+mixed_PBOR_pct <- afex::mixed(ret_pct ~ PBOR_scaled*gameNum.f*condition.f + investment + (1 | playerId ), data= avg_ret_df)
 summary(mixed_PBOR_pct)
 
 # At average value of PBOR score  
 emmeans(mixed_PBOR_pct, pairwise ~ PBOR_scaled * condition.f )
 
 ## Looking at difference between average returns across rounds
-#scoreDAT <- avg_ret_df %>% dplyr::select(id,diff_pctRet, PBOR_scaled, DERS_scaled, RFQ_c, condition.f) %>% unique()
+#scoreDAT <- avg_ret_df %>% dplyr::select(playerId,diff_pctRet, PBOR_scaled, DERS_scaled, RFQ_c, condition.f) %>% unique()
 
 
 ```
@@ -762,7 +764,7 @@ if (!requireNamespace("psych", quietly = TRUE)) {
 # Load the 'psych' package
 library(psych)
 
-questionnaires <- avg_ret_df %>% group_by(id) %>% dplyr::select(PBOR_score,DERS_score,RFQ_c) %>% unique() %>% ungroup()
+questionnaires <- avg_ret_df %>% group_by(playerId) %>% dplyr::select(PBOR_score,DERS_score,RFQ_c) %>% unique() %>% ungroup()
 # Perform EFA
 efa_result <- fa(questionnaires %>% dplyr::select(PBOR_score,DERS_score,RFQ_c), nfactors = 2, fm = "minres", rotate = "varimax")
 # Print the EFA result
@@ -791,11 +793,11 @@ turing  %>%
 
 
 # Removing player whose return was not properly recorded by data (NA in one of the rounds) so as to run depmixS4
-id_with_na <-  as.character(avg_ret_df[is.na(avg_ret_df$returns),"id"])
+id_with_na <-  as.character(avg_ret_df[is.na(avg_ret_df$returns),"playerId"])
 
 # Create return percentage bins Bins
 avg_ret_df <- avg_ret_df %>%
-  filter(id != id_with_na) %>% 
+  filter(playerId != id_with_na) %>% 
   mutate(game_id = rep(1:636, each=15)) %>%
   group_by(game_id) %>%
   mutate(next_investment = lead(investment, default=0),
@@ -1211,105 +1213,215 @@ for(i in n_state_min:n_state_max) {
 
 ```{r, include=FALSE}
 
+# load("data/fittedSimple.RData")
+# load("data/fittedCtrl.RData")
+# load("data/fittedCoax.RData")
+# load("data/fittedFullCtrst.RData")
+# load("data/fittedPrePost.RData")
+# load("data/newFull.RData")
+# 
+# has_converged <- function(object, numeric = TRUE){
+#   msg <- object@message
+#   if(numeric) as.integer(grepl("converged", msg)) else 0
+# }
+# 
+# 
+# sapply(fittedSimple[2:7],has_converged)
+# sapply(fittedCtrl[2:7],has_converged)
+# sapply(fittedCoax[2:7],has_converged)
+# sapply(fittedFullCtrst[2:7],has_converged)
+# sapply(fittedPrePost[2:7],has_converged)
+# sapply(newFull[2:7],has_converged)
+
+```
+
+```{r, include=F}
+
+# Fitting "Ctrl" models with initial parameters from the fitted "Simple" model. 
+
+
+# newCtrl <- fittedCtrl
+# for (ns in n_state_min : n_state_max){
+# 
+#   fmod <- fittedSimple[[ns]]
+#   origin_pars <- getpars(fmod)
+#   numCovIn <- 2 
+#   numCovTr <- 2
+# 
+#   # create a new vector which has the right number of pars for the initial state probabilities
+#   new_pars <- c(origin_pars[1:(ns*numCovIn)])
+#   # Build a new vector for transition probabilities, leaving space for new contrasts. "from" is state we are transitioning from
+#   for(from in 1:ns) {
+#   mat <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
+#   #print(mat)
+#   new_mat <- mat[,c(1:2,2,2)]
+#   new_pars <- c(new_pars,as.numeric(new_mat))
+#   }
+#   #Concatenate the new vectors with the old vector of  "response parameters" 
+#   new_pars <- c(new_pars,origin_pars[(ns*numCovIn + 1 + (ns - 1)*numCovTr*ns + numCovTr*ns):length(origin_pars)])
+# 
+#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it. 
+#   newCtrl[[ns]] <- setpars(newCtrl[[ns]],new_pars)
+#   newCtrl[[ns]] <- fit(newCtrl[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
+# }
+# 
+# save(newCtrl, file="data/newCtrl.RData")
+
+```
+
+
+
+```{r, include=F}
+
+# Fitting "Coax" models with initial parameters from the fitted "Simple" model. 
+
+# newCoax <- fittedCoax
+# for (ns in n_state_min : n_state_max){
+# 
+#   fmod <- fittedSimple[[ns]]
+#   origin_pars <- getpars(fmod)
+#   numCovIn <- 2 
+#   numCovTr <- 2
+# 
+#   # create a new vector which has the right number of pars for the initial state probabilities
+#   new_pars <- c(origin_pars[1:(ns*numCovIn)])
+#   # Build a new vector for transition probabilities, leaving space for new contrasts. "from" is state we are transitioning from
+#   for(from in 1:ns) {
+#   mat <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
+#   #print(mat)
+#   new_mat <- mat[,c(1:2,2,2)]
+#   new_pars <- c(new_pars,as.numeric(new_mat))
+#   }
+#   #Concatenate the new vectors with the old vector of  "response parameters" 
+#   new_pars <- c(new_pars,origin_pars[(ns*numCovIn + 1 + (ns - 1)*numCovTr*ns + numCovTr*ns):length(origin_pars)])
+# 
+#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it. 
+#   newCoax[[ns]] <- setpars(newCoax[[ns]],new_pars)
+#   newCoax[[ns]] <- fit(newCoax[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
+# }
+# 
+# save(newCoax, file="data/newCoax.RData")
+
+```
+
+```{r, include=F}
+
+# Fitting "Prepost" models with initial parameters from the fitted "Simple" model. 
+
+# newPrePost <- fittedPrePost
+# for (ns in n_state_min : n_state_max){
+# 
+#   fmod <- fittedSimple[[ns]]
+#   origin_pars <- getpars(fmod)
+#   numCovIn <- 2 
+#   numCovTr <- 2
+# 
+#   # create a new vector which has the right number of pars for the initial state probabilities
+#   new_pars <- c(origin_pars[1:(ns*numCovIn)])
+#   # Build a new vector for transition probabilities, leaving space for new contrasts. "from" is state we are transitioning from
+#   for(from in 1:ns) {
+#   mat <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
+#   #print(mat)
+#   new_mat <- mat[,c(1:2,2,2)]
+#   new_pars <- c(new_pars,as.numeric(new_mat))
+#   }
+#   #Concatenate the new vectors with the old vector of  "response parameters" 
+#   new_pars <- c(new_pars,origin_pars[(ns*numCovIn + 1 + (ns - 1)*numCovTr*ns + numCovTr*ns):length(origin_pars)])
+# 
+#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it. 
+#   newPrePost[[ns]] <- setpars(newPrePost[[ns]],new_pars)
+#   newPrePost[[ns]] <- fit(newPrePost[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
+# }
+# 
+# save(newPrePost, file="data/newPrePost.RData")
+
+```
+
+```{r, include=FALSE}
+
+# For initialising newFULL, take the model with the highest likelihood in each num states:
+
+```
+
+
+
+```{r, include=FALSE}
+
 load("data/fittedSimple.RData")
 load("data/fittedCtrl.RData")
 load("data/fittedCoax.RData")
 load("data/fittedFullCtrst.RData")
 load("data/fittedPrePost.RData")
+
+load("data/newCtrl.RData")
+load("data/newCoax.RData")
+load("data/newPrePost.RData")
 load("data/newFull.RData")
-
-has_converged <- function(object, numeric = TRUE){
-  msg <- object@message
-  if(numeric) as.integer(grepl("converged", msg)) else 0
-}
-
-
-sapply(fittedSimple[2:7],has_converged)
-sapply(fittedCtrl[2:7],has_converged)
-sapply(fittedCoax[2:7],has_converged)
-sapply(fittedFullCtrst[2:7],has_converged)
-sapply(fittedPrePost[2:7],has_converged)
-sapply(newFull[2:7],has_converged)
 
 ```
 
-```{r}
+```{r, include=F}
 
-# THE CODE BELOW WAS NOT USED; ALL CONVERGED. PUT IT HERE IN CASE IT IS NEEDED LATER ON.
-# library(depmixS4)
-# fit_until_convergence <- function(fitted_model, max_iterations=2) {
-#   cat(fitted_model@nstates)
-#   iterations <- 0
-#   converged <- has_converged(fitted_model)
-#   
-#   while (!converged && iterations < max_iterations) {
-#     # Use parameters from the fitted model as initial parameters
-#     initial_params <- getpars(fitted_model)
-#     new_model <- setpars(fitted_model, initial_params)
-#     
-#     # Refit the model
-#     fitted_model <- fit(new_model)
-#     converged <- has_converged(fitted_model)
-#     iterations <- iterations + 1
-#   }
-#   
-#   if (converged) {
-#     cat("NS = ", fitted_model@nstates,"Convergence has been reached.\n")
-#     flush.console()
-#     return(fitted_model)
-#   } else {
-#     cat("Maximum iterations reached. Convergence has not been reached.\n")
-#     flush.console()
-#     return(fitted_model)
-#   }
-# }
-# 
-# 
-# run_parallel_fitting <- function(mods_vec,num_cores = 5) {
-#   # Set up the parallel backend
-#   my.cluster <- parallel::makeCluster(num_cores, type = "PSOCK")
-#   doParallel::registerDoParallel(cl = my.cluster)
-#   
-#   # Export the fit_until_convergence function to the workers
-#   parallel::clusterExport(my.cluster, "fit_until_convergence")
-#   parallel::clusterExport(my.cluster, "has_converged")
-# 
-#   # Run the loop in parallel using foreach
-#   converged_mods_vec <- foreach(mod = mods_vec, .packages = c("depmixS4"), .combine = "c") %dopar% {
-#     cat(mod@nstates)
-#     fit_until_convergence(mod)
-#   }
-# 
-#   # Stop the parallel backend
-#   parallel::stopCluster(my.cluster)
-#   return(converged_mods_vec)
-# }
-# 
+bestCtrl <- NULL
+# Loop through each index and select the model with the higher log-likelihood
+for(i in n_state_min : n_state_max) {
+  if(logLik(fittedCtrl[[i]]) > logLik(newCtrl[[i]])) {
+    bestCtrl[[i]] <- fittedCtrl[[i]]
+  } else {
+    bestCtrl[[i]] <- newCtrl[[i]]
+  }
+}
+
+
+bestCoax <- NULL
+# Loop through each index and select the model with the higher log-likelihood
+for(i in n_state_min : n_state_max) {
+  if(logLik(fittedCoax[[i]]) > logLik(newCoax[[i]])) {
+    bestCoax[[i]] <- fittedCoax[[i]]
+  } else {
+    bestCoax[[i]] <- newCoax[[i]]
+  }
+}
+
+
+bestPrePost <- NULL
+# Loop through each index and select the model with the higher log-likelihood
+for(i in n_state_min : n_state_max) {
+  if(logLik(fittedPrePost[[i]]) > logLik(newPrePost[[i]])) {
+    bestPrePost[[i]] <- fittedPrePost[[i]]
+  } else {
+    bestPrePost[[i]] <- newPrePost[[i]]
+  }
+}
+
 ```
 
 
 ```{r, include=FALSE}
-# # The full contrast model convergence was not attained. Here we use parameters of fitted PrePost model as initial values of the FullContrast model to speed up fitting and aim for faster convergence.
+
+# # Here we use parameters of fitted PrePost model as initial values of the FullContrast model to check whether we can approach true maximal likelihood. 
 
 # newFull <- fittedFullCtrst
 # for (ns in n_state_min :n_state_max){
 # 
-#   fmod <- fittedPrePost[[ns]]
+#   # Use the higher likelihood prepost model parameters as starting values to fit the newFull model.
+#   fmod <- bestPrePost[[ns]]
 #   origin_pars <- getpars(fmod)
 #   numCovTr <- 4
 #   numCovIn <- 2
-#   
-#   # create a new vector which has the right number of pars for the full contrast model. 
+# 
+#   # create a new vector which has the right number of pars for the full contrast model.
 #   new_pars <- c(origin_pars[1:(ns*2)])
-#   # from is state we are transitioning from 
+#   # from is state we are transitioning from
 #   for(from in 1:ns) {
 #   mat <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
+#   print(mat)
 #   new_mat <- mat[,c(1:2,3,3,4,4)]
 #   new_pars <- c(new_pars,as.numeric(new_mat))
 #   }
-#   
+# 
 #   new_pars <- c(new_pars,origin_pars[(ns*numCovIn + 1 + (ns - 1)*numCovTr*ns + numCovTr*ns):length(origin_pars)])
-#   
+# 
 #   newFull[[ns]] <- setpars(newFull[[ns]],new_pars)
 #   newFull[[ns]] <- fit(newFull[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
 # }
@@ -1318,45 +1430,60 @@ sapply(newFull[2:7],has_converged)
  
 ```
 
-```{r, include=FALSE}
+```{r}
 
-load("data/fittedSimple.RData")
-load("data/fittedCtrl.RData")
-load("data/fittedCoax.RData")
-load("data/fittedFullCtrst.RData")
-load("data/fittedPrePost.RData")
-load("data/newFull.RData")
-
-BICs_simple <- BICs_Ctrl <- BICs_Coax <- BICs_FullCtrst <- BICs_PrePost <-  BICs_newFull <- list()
-for(i in n_state_min:n_state_max) {
-  BICs_simple[[i]] <- BIC(fittedSimple[[i]]) 
-  BICs_Ctrl[[i]] <- BIC(fittedCtrl[[i]])
-  BICs_Coax[[i]] <- BIC(fittedCoax[[i]]) 
-  BICs_FullCtrst[[i]] <- BIC(fittedFullCtrst[[i]]) 
-  BICs_PrePost[[i]] <- BIC(fittedPrePost[[i]]) 
-  BICs_newFull[[i]] <- BIC(newFull[[i]]) 
-  
+bestFull <- NULL
+# Loop through each index and select the model with the higher log-likelihood
+for(i in n_state_min : n_state_max) {
+  if(logLik(fittedFullCtrst[[i]]) > logLik(newFull[[i]])) {
+    bestFull[[i]] <- fittedFullCtrst[[i]]
+  } else {
+    bestFull[[i]] <- newFull[[i]]
+  }
 }
 
-print("SIMPLE HMM models")
-BICs_simple
+```
 
-print("HMM with contrast on post Control vs others")
-BICs_Ctrl
 
-print("HMM with contrast on post Coax vs others")
-BICs_Coax
+```{r, include=F}
 
-print("HMM with Pre vs Post Contrast")
-BICs_PrePost
 
-print("HMM with contrast levels Pre, Post Control and Post Coaxing")
-BICs_FullCtrst
+BICs_simple <- BICs_Ctrl <- BICs_Coax <-  BICs_PrePost <-  BICs_Full <- list()
 
-print("HMM with contrast levels Pre, Post Control and Post Coaxing, new fitting")
-BICs_newFull
+for(i in n_state_min:n_state_max) {
+  BICs_simple[[i]] <- BIC(fittedSimple[[i]])
+  BICs_Ctrl[[i]] <- BIC(bestCtrl[[i]])
+  BICs_Coax[[i]] <- BIC(bestCoax[[i]])
+  BICs_PrePost[[i]] <- BIC(bestPrePost[[i]])
+  BICs_Full[[i]] <- BIC(bestFull[[i]])
 
-df_bics <- cbind(2:7,as.numeric(BICs_simple[2:7]), as.numeric(BICs_Ctrl[2:7]),as.numeric(BICs_Coax[2:7]), as.numeric(BICs_PrePost[2:7]), as.numeric(BICs_newFull[2:7]))
+}
+
+# print("SIMPLE HMM models")
+# BICs_simple
+# 
+# print("HMM with contrast on post Control vs others")
+# BICs_Ctrl
+# 
+# print("HMM with contrast on post Coax vs others")
+# BICs_Coax
+# 
+# print("HMM with Pre vs Post Contrast")
+# BICs_PrePost
+# 
+# print("HMM with contrast levels Pre, Post Control and Post Coaxing")
+# BICs_FullCtrst
+# 
+# print("HMM with contrast levels Pre, Post Control and Post Coaxing, new fitting")
+# BICs_newFull
+
+
+
+df_liks <- cbind(2:7,sapply(fittedSimple[2:7], logLik), sapply(bestCtrl[2:7], logLik), sapply(bestCoax[2:7], logLik), sapply(bestPrePost[2:7], logLik), sapply(bestFull[2:7], logLik))
+df_liks
+
+
+df_bics <- cbind(2:7,as.numeric(BICs_simple[2:7]), as.numeric(BICs_Ctrl[2:7]),as.numeric(BICs_Coax[2:7]), as.numeric(BICs_PrePost[2:7]), as.numeric(BICs_Full[2:7]))
 df_bics
 
 
@@ -1365,6 +1492,32 @@ df_bics
 ```{r, include=FALSE}
 library(knitr)
 library(kableExtra)
+
+# Function to make cell with lowest value bold 
+bold_min <- function(x) {
+  min_val = min(x)
+  sapply(x, function(val) {
+    if (val == min_val) {
+      cell_spec(format(val, digits=4, nsmall=0, big.mark=","), "latex", bold = TRUE)
+    } else {
+      format(val, digits=4, nsmall=0, big.mark=",")
+    }
+  })
+}
+
+# Function to make cell with highest value bold 
+bold_max <- function(x) {
+  max_val = max(x)
+  sapply(x, function(val) {
+    if (val == max_val) {
+      cell_spec(format(val, digits=4, nsmall=0, big.mark=","), "latex", bold = TRUE)
+    } else {
+      format(val, digits=4, nsmall=0, big.mark=",")
+    }
+  })
+}
+
+
 
 # Create a data frame for the models
 models <- data.frame(
@@ -1382,13 +1535,34 @@ models %>%
 
 ```
 
-```{r table-BICs-coax, include =FALSE, warning = FALSE, echo=FALSE, ft.align="center", tab.id='table-BICs-coax', label='table-BICs-coax'}
+```{r table-BICs-coax, include =FALSE, warning = FALSE, echo=FALSE, ft.align="center", tab.playerId='table-BICs-coax', label='table-BICs-coax'}
 
-data.frame(df_bics) %>% 
-  `colnames<-` (c("Number of states","HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost","HMM-full")) %>%
-  mutate_if(is.numeric, format, digits=4,nsmall = 0, big.mark = ",") %>% 
-  knitr::kable(.,booktabs = TRUE,
-  caption = 'Table of BICs for each of the estimated HMM models for assumed number of latent states between 2 and 7') %>% kable_styling(latex_options="scale_down")
+# data.frame(df_bics) %>% 
+#   `colnames<-` (c("Number of states","HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost","HMM-full")) %>%
+#   mutate_if(is.numeric, format, digits=4,nsmall = 0, big.mark = ",") %>% 
+#   knitr::kable(.,booktabs = TRUE,
+#   caption = 'Table of BICs for each of the estimated HMM models for assumed number of latent states between 2 and 7') %>% kable_styling(latex_options="scale_down")
+
+# Ensure df_bics is a data frame
+df_bics <- as.data.frame(df_bics)
+
+df_bics %>%
+  `colnames<-` (c("Number of states", "HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost", "HMM-full")) %>%
+  mutate_at(vars(-`Number of states`), bold_min) %>%
+  knitr::kable(., escape = FALSE, booktabs = TRUE,
+               caption = 'Table of BICs for each of the estimated HMM models for assumed number of latent states between 2 and 7') %>%
+  kable_styling(latex_options="scale_down")
+
+
+df_liks <- as.data.frame(df_liks)
+
+df_liks %>%
+  `colnames<-` (c("Number of states", "HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost", "HMM-full")) %>%
+  mutate_at(vars(-`Number of states`), bold_max) %>%
+  knitr::kable(., escape = FALSE, booktabs = TRUE,
+               caption = 'Table of likelihoods for each of the estimated HMM models for assumed number of latent states between 2 and 7') %>%
+  kable_styling(latex_options="scale_down")
+
 ```
 
 We used hidden Markov models (HMMs) to further assess differences between the intervention and control condition in participants' reactions to the investor. As in the models for the investor, these HMMs assume behaviour is governed by latent states, with participants' switches between states now dependent on the investments made. We also allowed for differences between games and conditions in how investments govern state transitions. More in particular, we fitted five main models which all regressed state transition probabilities onto investments, as well as on additional contrast-coded predictors for condition and/or game number. In the most complex model (HMM-full), the transition probabilities were allowed to differ between all four combinations of game number and condition. The HMM-coax model allowed differences between post-intervention and the other three conditions (pre-intervention, pre-control, post-control) assuming these latter were the same. Similarly, the HMM-ctrl model allowed differences between post-control and the other three conditions. The HMM-prepost model allowed differences between the first and second RGT. Finally, the HMM-inv model did not allow transition probabilities to differ between conditions or game numbers, modelling them only as a function of investment. As the number of hidden states was unknown, for each model we estimated versions with 2 to 7 states, and used the BIC to select the best fitting model. Generally, best fitting models had between 5 to 7 hidden states.
@@ -1399,40 +1573,40 @@ We used hidden Markov models (HMMs) to further assess differences between the in
 summary(fittedSimple[[5]])
 
 logLik(fittedSimple[[5]])
-logLik(fittedCtrl[[5]])
-logLik(fittedCoax[[5]])
-logLik(fittedPrePost[[5]])
+logLik(bestCtrl[[5]])
+logLik(bestCoax[[5]])
+logLik(bestPrePost[[5]])
 # logLik(fittedFullCtrst[[5]])
-logLik(newFull[[5]])
+logLik(bestFull[[5]])
 
 # Nested model comparison for 5 states, with and without intervention contrast. llratio test shows no effect, meaning interaction term addition does not change goodness of fit of model. 
-llratio(newFull[[5]], fittedSimple[[5]])
+llratio(bestFull[[5]], fittedSimple[[5]])
 
-llratio(fittedCtrl[[5]],fittedSimple[[5]])
-llratio(fittedCoax[[5]],fittedSimple[[5]])
-llratio(fittedPrePost[[5]],fittedSimple[[5]])
+llratio(bestCtrl[[5]],fittedSimple[[5]])
+llratio(bestCoax[[5]],fittedSimple[[5]])
+llratio(bestPrePost[[5]],fittedSimple[[5]])
 
-llratio(newFull[[5]],fittedCtrl[[5]])
-llratio(newFull[[5]],fittedCoax[[5]])
-llratio(newFull[[5]],fittedPrePost[[5]])
+llratio(bestFull[[5]],bestCtrl[[5]])
+llratio(bestFull[[5]],bestCoax[[5]])
+llratio(bestFull[[5]],bestPrePost[[5]])
 
-llratio(newFull[[6]],fittedCtrl[[6]])
-llratio(newFull[[6]],fittedCoax[[6]])
-llratio(newFull[[6]],fittedPrePost[[6]])
+# llratio(bestFull[[6]],bestCtrl[[6]])
+# llratio(bestFull[[6]],bestCoax[[6]])
+# llratio(bestFull[[6]],bestPrePost[[6]])
 ```
 
 <!-- MS: There seems to be an issue with the likelihoods of the models. For example, for 6 states models, the likelihood of the Ctrl and Coax model are higher than for the Full model, but this is theoretically not possible as additional parameters can only increase the likelihood! -->
 
-Focussing on models with 5 latent states (which is the optimal number for the HMM-full model), likelihood ratio tests showed that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(fittedCtrl[[5]])) - (-2*as.numeric(logLik(newFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(fittedCoax[[5]])) - (-2*as.numeric(logLik(newFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(fittedPrePost[[5]])) - (-2*as.numeric(logLik(newFull[[5]]))) , 2)`$, $p < .001$). This is consistent with state transitions differing both due to game number and condition as can be seen in Figure \ref{fig:plotTransitionsDiscGaus}.
+Focusing on models with 5 latent states (which is the optimal number for the HMM-full model), likelihood ratio tests showed that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCtrl[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCoax[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestPrePost[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). This is consistent with state transitions differing both due to game number and condition as can be seen in Figure \ref{fig:plotTransitionsDiscGaus}.
 
-<!-- We start by comparing HMM-full with HMM-inv. We find that HMM-full fits the data better than HMM-inv ($\chi^2(84) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(newFull[[5]]))) , 2)`$, $p < .001$). Likewise HMM-ctrl fits better than HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(fittedCtrl[[5]]))) , 2)`$, $p < .001$). The same is true for HMM-coax compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(fittedCoax[[5]]))) , 2)`$, $p < .001$) and HMM-prepost compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(fittedPrePost[[5]]))) , 2)`$, $p < .001$). HMM-inv being the worst fitting model compared to the others indicates the existence of differentiated behavior pre vs post manipulation and/or between the control and intervention groups.  -->
+<!-- We start by comparing HMM-full with HMM-inv. We find that HMM-full fits the data better than HMM-inv ($\chi^2(84) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). Likewise HMM-ctrl fits better than HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestCtrl[[5]]))) , 2)`$, $p < .001$). The same is true for HMM-coax compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestCoax[[5]]))) , 2)`$, $p < .001$) and HMM-prepost compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestPrePost[[5]]))) , 2)`$, $p < .001$). HMM-inv being the worst fitting model compared to the others indicates the existence of differentiated behavior pre vs post manipulation and/or between the control and intervention groups.  -->
 
-<!-- Using likelihood ratio tests, we find that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(fittedCtrl[[5]])) - (-2*as.numeric(logLik(newFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(fittedCoax[[5]])) - (-2*as.numeric(logLik(newFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(fittedPrePost[[5]])) - (-2*as.numeric(logLik(newFull[[5]]))) , 2)`$, $p < .001$). This is consistent with a differentiated behavior of the trustees between all three groups: the post-intervention group, the post-control group and the pre-manipulation group. -->
+<!-- Using likelihood ratio tests, we find that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCtrl[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCoax[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestPrePost[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). This is consistent with a differentiated behavior of the trustees between all three groups: the post-intervention group, the post-control group and the pre-manipulation group. -->
 
 <!--    ORDER THE STATES    -->
 
 ```{r, include=FALSE}
-tr_fdmod_5 <- order_mod_gauss(newFull[[5]])
+tr_fdmod_5 <- order_mod_gauss(bestFull[[5]])
 ```
 
 ```{r, include=FALSE}
@@ -1458,15 +1632,6 @@ response_best_mod <- as.data.frame(cbind(returns,state1,state2,state3,state4,sta
 
 
 
-<!-- Using the best fitting model according to likelihood ratio tests (HMM-full), Figure \ref{fig:trusteeHMMPlot} shows the distribution of the participants' returns conditional on the latent state they are in. The states are ordered based on the mean of the Gaussian distribution fitted to the response (percentage return). State 1 represents the state in which the returns have have the lowest underlying mean, and state 5 is the state in which the returns have the highest underlying mean. The higher the state number the more pro-social the policy adopted. More specifically, state 1 can be thought of as a non-cooperative state in which returns are low and close to 0, meaning that the trustee is keeping most of the tripled investment. State 2 is a state where the average return is around the investment sent and can be interpreted as a cautious state in which the return on trust is small. States 3, 4 and 5 are increasingly cooperative states. For instance, in state 5, the average return is close to two thirds of the tripled investment, meaning the trustee is keeping an amount similar to the investment that was sent and returning to the investor double the investment. -->
-
-<!-- Figure \ref{fig:plotTransitionsDiscGaus} shows the transition between states as a function of the investment received for each group (pre-manipulation, post-control and post-intervention) using results from the best fitting model: HMM-full. The best fitting HMM model has multiple states and a high number of parameters. We can nonetheless focus on particular states linked to the breakdown and repair of cooperation. For instance, focusing on the transition functions to state 1 (the lowest return state with returns close to 0) from higher return states, we can compare the  post-control group to the post-intervention group. The red line representing the probability of transitioning to the low-return state 1 when the investment is close to 0 is lower in the intervention group compared to the control group when the trustee is in a relatively pro-social state (states 3 to 5). This is pointing towards more "forgiving" behavior where participants in the intervention group were less likely to transition to this anti-social state compared to the control group.  -->
-
-<!-- MS: I think Figure 6 can be moved to the supplement and perhaps Figure 6.A too. -->
-
-<!-- Using the HMM-full model, we can retrieve participants' return distributions based on their latent states (Figures \ref{fig:postStatesBestMod}.A) and transition probabilities between these states (Figure \ref{fig:plotTransitionsDiscGaus}). The states are ranked by mean return, with State 1 having the lowest mean return and State 5 the highest. A higher state number indicates a more pro-social policy. We focused on states related to cooperation's breakdown and repair. We compared the transition probabilities between states when the investment is low for post-control and post-intervention groups. Figure \ref{fig:plotTransitionsDiscGaus} suggests that the intervention group is more forgiving of low investments, as they are less likely to shift to an anti-social state when faced with defection compared to the control group. -->
-
-
 ```{r, include=FALSE}
 
 plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
@@ -1477,7 +1642,7 @@ plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
   trans_prob <- data.frame(
     from = rep(1:ns, each=100*ns),
     to = rep(1:ns, each=100),
-    investment = seq(0,8,length=100),
+    investment = seq(0,20,length=100),
     prob_pre = 0,
     prob_ctrl = 0,
     prob_coax =0
@@ -1515,15 +1680,6 @@ plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
   saveRDS(trans_prob, "data/trans_prob.RDS")
   
   return(trans_prob)
-  
-  #  p_pre <- ggplot(trans_prob,aes(x=investment,y=prob_pre, colour = as.factor(to))) + geom_line() + facet_wrap(~from) + ylim(c(0,1)) + ggtitle("Transition function pre manipulation") + labs(x = "Investment", y = "Transition probability", color='State Transitioned to') + theme_bw()
-  # 
-  # p_ctrl <- ggplot(trans_prob,aes(x=investment,y=prob_ctrl, colour = as.factor(to))) + geom_line() + facet_wrap(~from) + ylim(c(0,1)) + ggtitle("Transition function post control") + labs(x = "Investment", y = "Transition probability", color='State Transitioned to') + theme_bw()
-  # 
-  # p_coax <- ggplot(trans_prob,aes(x=investment,y=prob_coax, colour = as.factor(to))) + geom_line() + facet_wrap(~from) + ylim(c(0,1)) + ggtitle("Transition function post intervention") + labs(x = "Investment", y = "Transition probability", color='State Transitioned to') + theme_bw()
-  # 
-  # grid.arrange(p_pre, p_ctrl,p_coax, nrow=3, ncol=1)
-
 
 }
 
@@ -1546,23 +1702,14 @@ ctrl_pre_plot <- ggplot(trans_prob,aes(x=investment,y=prob_ctrl, colour = as.fac
   theme_bw()
 
 
-# coax_pre_plot <- ggplot(trans_prob,aes(x=investment,y=prob_coax, colour = as.factor(to))) + 
-#   geom_line() + 
-#   geom_line(aes(y=prob_pre),linetype="dotted") +
-#   facet_wrap(~from) + 
-#   ylim(c(0,1)) + 
-#   ggtitle("Transition function pre- and post-intervention manipulation") + 
-#   labs(x = "Investment", y = "Transition probability", color='State Transitioned to') + 
-#   theme_bw()
-
 coax_pre_plot <- ggplot(trans_prob,aes(x=investment)) + 
-  geom_line(aes(y=prob_coax, colour = as.factor(to), linetype="Post-intervention")) + 
-  geom_line(aes(y=prob_pre, colour = as.factor(to), linetype="Pre-intervention")) +
+  geom_line(aes(y=prob_coax, colour = as.factor(to), linetype="Post-manipulation")) + 
+  geom_line(aes(y=prob_pre, colour = as.factor(to), linetype="Pre-manipulation")) +
   facet_wrap(~from) + 
   ylim(c(0,1)) + 
   ggtitle("Transition function pre- and post-intervention manipulation") + 
   labs(x = "Investment", y = "Transition probability", color='State Transitioned to', linetype = "Line Type") + 
-  scale_linetype_manual(values = c("Post-intervention" = "solid", "Pre-intervention" = "dotted")) +
+  scale_linetype_manual(values = c("Post-manipulation" = "solid", "Pre-manipulation" = "dotted")) +
   theme_bw()
 
 
@@ -1573,11 +1720,9 @@ coax_pre_plot <- ggplot(trans_prob,aes(x=investment)) +
 
 grid.arrange(ctrl_pre_plot , coax_pre_plot , nrow=2, ncol=1)
 
-# plot_state_transitions(tr_fdmod_5,numCovIn=2, numCovTr=6) 
 
 ```
 
-<!-- To explore the differences in transition probabilities between the control and coaxing conditions, we can choose an investment and compare the probabilities of transitioning between States. For instance, in case the trustee is low in trustworthiness (State 1), and the investor sends an average amount, we can compare the likelihood of the trustee transitioning away from the low trustworthiness state. Assuming an investment of 10 (half the endowment), The trustee remains in State 1 with around $85\%$ probability in the control condition, but only $67\%$ probability after the coaxing intervention. Likewise, assuming the trustee is in State 4, and receiving a low investment of 2, there is a much lower probability ($0.2\%$) of transitioning to low trustworthiness state in the coaxing condition compared to the control condition ($21\%$). -->
 
 ```{r, include = FALSE}
 set.seed(20221010)
@@ -1696,7 +1841,7 @@ The posteriors also suggest that a non-negligible proportion of participants in 
 # for (i in 1:n_bootstraps) {
 #   # create a bootstrap resample of the data
 #   #bootstrap_data <- data[sample(nrow(data), replace=TRUE), ]
-#   bootstrap_data <- avg_ret_df %>% filter(id %in% sample(id,replace=TRUE))
+#   bootstrap_data <- avg_ret_df %>% filter(playerId %in% sample(playerId,replace=TRUE))
 #   
 #   rModels <- rep(list(list(vtdgaus(y=bootstrap_data$ret_pct_0,yield=3*bootstrap_data$investment))),each=ns)
 #   
@@ -1745,16 +1890,13 @@ That participants generally send higher returns to the investor after the interv
 The effect of the intervention was not transferred to the Repeated Prisoner's Dilemma (RPD) game. There was no difference between the intervention and control condition in the rate of cooperation, whether before or after a preprogrammed defection by the artificial agent. As the prisoner's dilemma is a popular economic game, it is possible that participants had a strong prior commitment towards the strategy they would adopt, which was not overridden by the intervention. The RPD also involves much coarser actions (cooperate vs defect) than the finer-grained returns in the RTG. This would make it more difficult to observe more subtle effects of the intervention. As such, the RPD might not be the best choice for any knowledge transfer. In any case, we can not rule out that the effects of the brief cognitive intervention, which explicitly focused on the RTG, are confined to the RTG. Future research will need to assess whether transfer to other games is possible. <!-- For those that took on the intervention message and showed coaxing behavior in the second trust game, the fact that the investor still defected in the final rounds might have reinforced the idea that not reciprocating negative behavior is a losing strategy after all.-->
 
 Analysing participants' behaviour with hidden Markov models, we found clear individual differences in how returns changed between the pre- and post-intervention RTG, which can be seen as a proxy for the effectiveness of the intervention. Some participants may not have been convinced that coaxing via high returns was a good way to establish cooperation and decided to reduce their returns in the second trust game. Their impulse to “punish” the other player for a transgression may have been too strong to be overridden by the intervention. This was also evident from the participants' replies to a question about whether they would change their behaviour, just after receiving the intervention. Other participants responded to the intervention and increased their returns. <!-- This raises important questions for the measurement of intervention effectiveness.--> Heterogeneity in response to treatment is common in psychiatry and related fields. Such heterogeneity may reflect the complex nature of mental health problems, which may be best viewed as complex systems involving interactions between neuro-computational processes and socio-environmental contexts evolving over time [@fried_moving_2017]. This view was used to justify computational psychiatry's difficulty in establishing differential and reliable predictors of likely treatment response [@hitchcock_computational_2022]. Here, we found heterogeneity in reaction to a relatively explicit intervention by a sample of participants from the general population. This suggests that the issue of variable treatment responses may result from the interaction of two sources of variability: the phenotyping of the disorder as well as the phenomenological aspects of the intervention itself. As such, a rigorous exploration of the determinants of inter-individual differences to an intervention in the general patient population is required.
-<!-- In our case, judging by the inter-individual heterogeneity in responses, some people may not have been convinced that coaxing via high returns was a good way to re-establish cooperation after a transgression. Their impulse to “punish” the other player for their transgression may have been too strong to be overridden by the intervention. This was also evident from the participants' replies to a question about whether they would change their behaviour, just after seeing the intervention manipulation. An important avenue is to explore the role of emotion in decision making in such situations. We could aim to measure emotional reactions more accurately and explore whether specific emotions mediate the relationship between the investment received and the decision of what proportion to return. Measuring the emotions using the two axes of valence and arousal could be improved: Results indicate that these concepts may not have been well understood by participants since we would not expect to see low arousal after the pre-programmed defection of the investor.-->
+
 Overall, we are encouraged that our brief cognitive intervention, consisting of reading a short text detailing a non-impulsive reaction to low investments, can lead to clearly differentiated behaviour. In future studies, we aim to explore the effects of improved cognitive interventions to enhance cooperative behaviour. We may enhance engagement by making the intervention more interactive and visually appealing, rather than the "dry" textual format used in the experiment. It would also be of interest to test such interventions with who suffer from an inability or unwillingness to repair relationships after an accidental breakdown of trust, such as people with Borderline Personality Disorder. The relative ease by which online interventions can be assigned, and the opportunity for people to test the effect of their behaviour with artificial, but human-like agents, may pave the way for efficient, low-cost, effective treatment programmes which may help a wide-variety of people overcome detrimental actions in social situations.
 
-<!--
-Second, we selected trustees from the general population, which might not suffer from the inability or unwillingness to repair relationships due to accidental breakdown of trust that characterises some mental health disorders such as BPD. As such, it would be interesting to contrast these results with findings from experiments involving trustees that are selected from patient populations known to suffer from difficulties in maintaining or repairing cooperative interactions. Third, as we explained above, the choice of the task to measure transfer of intervention learning could be made better by involving less popular paradigms. The high popularity of the Prisoner's Dilemma and the strategy of playing tit-for-tat may have resulted in a strong prior on which strategy to adopt in this game irrespective of the intervention. We believed that asking people about how they felt in the control condition might have affected how they behaved and might constitute an intervention in itself. However, being able to compare the differential impact of the intervention on the emotional interpretation of the opponent action between an intervention and control conditions could lead to insights on the mechanism through which the intervention affects the emotional reaction to the opponent's actions.
--->
+
 
 # Conclusion
 
-<!-- MS: Don't think we need a conclusion? -->
 
 We explored the effect of a brief cognitive intervention on the behaviour of human trustees facing adaptive artificial investors designed to replicate the behaviour of human investors in the repeated trust game. Each state defines different levels of a cooperative response with the agent able to transition between these states based on the behavior of the human opponent. Feedback from participants indicated that these agents were sometimes perceived as humans. Their strategy led to emergent cooperative behaviour when playing the repeated trust game with human players. The intervention, promoting a less impulsive reaction to transgressive actions, led to coaxing behavior and less negative reciprocity when the investor sent a very low investment. It also led to more trustworthy behavior prior to the pre-programmed defection trial and to coaxing behavior after defection. Whilst this intervention effect varied between participants and generally was not transferred to a new game, an HMM analysis of participant's play post intervention showed differentiated patterns of transitions between latent states, indicating a change in the effect of the opponent action on the probability of transitioning between latent mental states.
 

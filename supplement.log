@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.8.14)  28 AUG 2023 11:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.8.14)  28 AUG 2023 14:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -455,7 +455,7 @@ LaTeX Warning: Command \textellipsis invalid in math mode on input line 242.
 <figures/trusteeHMMPlot.png, id=95, 719.68875pt x 432.61626pt>
 File: figures/trusteeHMMPlot.png Graphic file (type png)
 <use figures/trusteeHMMPlot.png>
-Package pdftex.def Info: figures/trusteeHMMPlot.png  used on input line 317.
+Package pdftex.def Info: figures/trusteeHMMPlot.png  used on input line 325.
 (pdftex.def)             Requested size: 469.76883pt x 282.38545pt.
 [6 <./figures/trusteeHMMPlot.png>] [7] (./supplement.aux)
  ***********
@@ -472,9 +472,9 @@ Here is how much of TeX's memory you used:
  31690 multiletter control sequences out of 15000+600000
  611358 words of font info for 77 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,6n,79p,749b,462s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,749b,460s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on supplement.pdf (7 pages, 1229178 bytes).
+Output written on supplement.pdf (7 pages, 1229485 bytes).
 PDF statistics:
  195 PDF objects out of 1000 (max. 8388607)
  151 compressed objects within 2 object streams

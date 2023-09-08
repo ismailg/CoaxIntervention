@@ -367,6 +367,13 @@ prepost_bycond <- pairs(emmeans::emmeans(mod_returns_pct, c("gameNum.f"), by = "
 
 cond_effect <- pairs(emmeans::emmeans(mod_returns_pct, c("condition.f"), by="gameNum.f"))
 ```
+```{r, include=F}
+
+library(sjstats)
+effectsize::eta_squared(mod_returns_pct)
+
+```
+
 
 ```{r, include=FALSE}
 pctRet_all <- afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",

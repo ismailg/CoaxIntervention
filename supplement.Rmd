@@ -87,7 +87,7 @@ where $\text{inv}$ is a variable representing the investment received, $x$ is a 
 
 # Distribution of returns for each latent state for HMM model of participant’s returns
 
-Focusing on HMM models with 5 latent states (which is the optimal number for the HMM-full model) we estimated the investors' policy in each of the five latent states assuming a discretised Gaussian response function as highlighted in the previous section. Each latent state was associated with a distribution over trustee actions. The latent states were ordered by the mean of the estimated Gaussian, such as higher numbered latent states reflect higher "trustworthiness". 
+Focusing on the HMM-full models with 5 latent states (please see main manuscript for a definition) we estimated the investors' policy in each state assuming a discretised Gaussian response function as highlighted in the previous section. Each latent state was associated with a distribution over trustee actions. The latent states were ordered by the mean of the estimated Gaussian, such as higher numbered latent states reflect higher mean percentage return.
 
 
 ```{r trusteeHMMPlot,fig.cap = "Distribution of participants' percentage return for each of the latent states in the 5 state HMM-full model. The latent states are ordered by the mean of the Gaussian that best fits the policy in that state, so higher numbered states are more pro-social", fig.align='center'}

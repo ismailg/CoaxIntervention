@@ -1,7 +1,7 @@
 ---
-title: "Repairing cooperation through a cognitive intervention in the repeated Trust Game"
+title: "(Re)building cooperation: Effects of a cognitive intervention on cooperative behavior in games"
 author:
-  "Ismail Guennouni^1^, Quentin Huys^2^, Samuel Dupret^1^, Maarten Speekenbrink^1^"
+  "Ismail Guennouni^1^, Quentin JM Huys^2^, Samuel Dupret^1^, Maarten Speekenbrink^1^"
   
 keywords:
 - Economic Games 
@@ -11,7 +11,7 @@ keywords:
 
 
 abstract: |
-  Social trust is an important building block of strong social bonds, and its absence is a risk factor for social dysfunction. As such, interventions to foster and strengthen trust-based cooperation are highly desirable. Using the repeated Trust Game paradigm, we assess the effectiveness of a cognitive intervention aimed at repairing the potential breakdown of cooperation from a pre-programmed, one-off defection by the opponent. Over two games, participants are given the role of the trustee and face what they believe are two different players. In between games, they either receive a brief cognitive intervention or not. The intervention led to more cooperative behavior both pre and post defection by the opponent. HMM modelling of participants actions shows participants in the intervention group had a lower probability of transitioning to non cooperative states. Posterior latent state analysis also showed a  higher proportion of players best described by more cooperative latent states in the intervention condition compared to the control condition.
+  Social trust is an important building block of strong social bonds, and its absence is a risk factor for social dysfunction. As such, interventions to foster and strengthen trust-based cooperation are highly desirable. Using the Repeated Trust Game paradigm, we assess the effectiveness of a cognitive intervention derived from Dialectical Behavior Therapy. The intervention's goal was to repair the potential breakdown of cooperation from a pre-programmed, one-off defection by the opponent. Over two games, participants are given the role of the trustee and face what they believe are two different players. In between games, they either receive a brief cognitive intervention or not. Post-intervention, participants showed more cooperative behavior both before and after defection by the opponent. Analysing participants' actions with a hidden Markov model shows that participants in the intervention group had a lower probability of transitioning to non cooperative states, and a higher proportion of cooperative states, than participants in the control group. This is consistent with participants inferring from the intervention that pro-social and trustworthy behavior may generally provide more beneficial outcomes to them in the long run.
   
 bibliography: "bib/cogIntervention.bib"
 biblio-style: spphys
@@ -60,26 +60,25 @@ options(tinytex.verbose = TRUE)
 
 # Introduction
 
-Determining the other's goals, intentions, and decision-making process is fundamental to successful social interaction. This inference is however fraught with uncertainty, as we cannot directly observe these features, and may need extensive prior knowledge of the person. Absent a history of interaction, one may decide to trust the other's goals and intentions are aligned with one's own. The challenge of trust is that it is by construction a risky endeavour. If we deem a person trustworthy, we might take the risk of investing in the relationship, hoping for a collaborative outcome. If this trust is misplaced, it can come at a high cost. Not trusting others is also risky since opportunities for cooperation may be foregone.
+Determining the other's goals, intentions, and decision-making process is fundamental to successful social interaction. This inference is however fraught with uncertainty, as we cannot directly observe these aspects, and may need extensive prior knowledge of the person to infer them. Absent a history of interaction, one may decide to trust the other's goals and intentions are aligned with one's own. The challenge of trust is that it is by construction a risky endeavour. If we deem a person trustworthy, we might take the risk of investing in the relationship, hoping for a collaborative outcome. If this trust is misplaced, it can come at a high cost. Not trusting others is also risky since opportunities for beneficial cooperation may be foregone.
 
 <!-- and any substitution for trust, such as excessive suspicion, over-reliance on self and other maladaptive strategies are likely to add burden and costs to a person. -->
 
-Evidence from the literature emphasises the importance of social trust in determining why some people fare better than others physically and mentally [@giordano_trust_2016 ; @meng_multilevel_2014]. It affects the health status of individuals by reinforcing social support networks, maintaining community norms and facilitating collective action. Research into the determinants of psychopathology has linked trust-based constructs to the emergence of mental health disorders. @fonagy_role_2014 identified epistemic trust, or the belief in the authenticity and personal relevance of interpersonally transmitted knowledge, as an important function of early attachment relationships. It allows the individual receiving social information to let go of their natural self-protective vigilance, which can become a pathological hypervigilance frequently observed after traumatic experiences and a key factor for the emergence of multiple mental health disorders [@fonagy_mentalizing_2017].
+Evidence from the literature emphasises the importance of social trust in determining why some people fare better than others physically and mentally [@giordano_trust_2016; @meng_multilevel_2014]. It affects the health status of individuals by reinforcing social support networks, maintaining community norms and facilitating collective action. Research into the determinants of psychopathology has linked trust-based constructs to the emergence of mental health disorders. @fonagy_role_2014 identified epistemic trust, or the belief in the authenticity and personal relevance of interpersonally transmitted knowledge, as an important function of early attachment relationships. It allows the individual receiving social information to let go of their natural self-protective vigilance, which can become a pathological hypervigilance frequently observed after traumatic experiences and a key factor for the emergence of multiple mental health disorders [@fonagy_mentalizing_2017].
 
-<!-- A well-established paradigm in the study of the emergence and maintenance of trust is the repeated trust game [@joyce_trust_1995]. In this game, one player takes the role of the "investor" and is provided with a fixed endowment at the start of each trial. They get to decide how much of their endowment to invest with the other player taking the role of the "trustee". The amount that is sent is tripled and the trustee gets to decide, in return, how much of the tripled amount to send back to the investor. If the investor sends a non-zero amount, they express trust in the other player for that round, as the amount they will receive back is uncertain. Assuming the trustee sends back more than the initial investment, they signal trustworthiness to the investor and both players make gains. This scenario would constitute a cooperative exchange and would be mutually beneficial. However, cooperation in this setting is prone to be broken through intentional or simply misinterpreted actions that can convey lack of trust or trustworthiness such as low investments and returns [@bendor_when_1991]. In order to repair a damaged cooperative equilibrium, players need to infer that their behaviour has violated social norms and offer amends through generous actions at potentially a high cost to them. @king-casas_rupture_2008 links the breakdown of cooperation in trustees with Borderline Personality Disorder to the absence or reduction of activation in brain regions associated with the perception of norm violations.  -->
+<!-- A well-established paradigm in the study of the emergence and maintenance of trust is the repeated trust game [@joyce_trust_1995]. In this game, one player takes the role of the "investor" and is provided with a fixed endowment at the start of each trial. They get to decide how much of their endowment to invest with the other player taking the role of the "trustee". The amount that is sent is tripled and the trustee gets to decide, in return, how much of the tripled amount to send back to the investor. If the investor sends a non-zero amount, they express trust in the other player for that round, as the amount they will receive back is uncertain. Assuming the trustee sends back more than the initial investment, they signal trustworthiness to the investor and both players make gains. This scenario would constitute a cooperative exchange and would be mutually beneficial. However, cooperation in this setting is prone to be broken through intentional or simply misinterpreted actions that can convey lack of trust or trustworthiness such as low investments and returns [@bendor_when_1991]. In order to repair a damaged cooperative equilibrium, players need to infer that their behavior has violated social norms and offer amends through generous actions at potentially a high cost to them. @king-casas_rupture_2008 links the breakdown of cooperation in trustees with Borderline Personality Disorder to the absence or reduction of activation in brain regions associated with the perception of norm violations.  -->
 
-Since a lack of epistemic trust is a risk factor for social dysfunction [@fonagy_mentalizing_2017], and given the importance of trust for building and maintaining strong social bonds, interventions to foster and strengthen trust-based cooperation would be highly beneficial to society. Such interventions would allow people to more easily repair broken relationships, and continue harvesting the benefits of cooperation even in the presence of accidental or intentional social norm violations.
+Since a lack of epistemic trust is a risk factor for social dysfunction [@fonagy_mentalizing_2017], and given the importance of trust for building and maintaining strong social bonds, interventions to foster and strengthen trust-based cooperation would be highly beneficial to society. Such interventions would allow people to more easily repair broken relationships and continue harvesting the benefits of cooperation even in the presence of accidental or intentional social norm violations.
 
-<!-- Mechanism design, pioneered by @vickrey_counterspeculation_1961, is a field that studies incentive alignment and looks for ways to promote social welfare or revenue maximization, despite self-interest of the individual actors. In the context of social dilemmas, key mechanisms were explored with good effect to foster and maintain the cooperative outcome. @axelrod_evolutionary_1986 studied the emergence and stability of behavioral norms to regulate non-cooperative actions in social settings. He identifies a behavioral norm as a dominant behavioural strategy which is often punished by others when not adhered to. A meta-norm is the propensity to incur a cost in order to enforce a norm. @axelrod_evolutionary_1986 showed that when playing a social dilemma game, individuals have a strong incentive to enforce punishment of defectors lest they are in turn punished by others. This led to a decline of defection. Thus, meta-norms can be seen as a mechanism to promote and sustain cooperation in a population. In the context of the trust game, @charness_investment_2008 explored the effect a third party monitor can have on the amounts sent and received. This third-party's payoff is unaffected by the decisions made by the investor and trustee. However, the study allowed the third party to punish overly selfish trustees or reward Investors making a loss on the interaction. They found that the actions of both players were materially more cooperative in the presence of this third party. @fiedler_effect_2017 found that the introduction of a third party that monitors the investments and returns of the players led to more cooperative behavior, even when the third party had no ability to reward or punish the players.  -->
+<!-- Mechanism design, pioneered by @vickrey_counterspeculation_1961, is a field that studies incentive alignment and looks for ways to promote social welfare or revenue maximization, despite self-interest of the individual actors. In the context of social dilemmas, key mechanisms were explored with good effect to foster and maintain the cooperative outcome. @axelrod_evolutionary_1986 studied the emergence and stability of behavioral norms to regulate non-cooperative actions in social settings. He identifies a behavioral norm as a dominant behavioral strategy which is often punished by others when not adhered to. A meta-norm is the propensity to incur a cost in order to enforce a norm. @axelrod_evolutionary_1986 showed that when playing a social dilemma game, individuals have a strong incentive to enforce punishment of defectors lest they are in turn punished by others. This led to a decline of defection. Thus, meta-norms can be seen as a mechanism to promote and sustain cooperation in a population. In the context of the trust game, @charness_investment_2008 explored the effect a third party monitor can have on the amounts sent and received. This third-party's payoff is unaffected by the decisions made by the investor and trustee. However, the study allowed the third party to punish overly selfish trustees or reward Investors making a loss on the interaction. They found that the actions of both players were materially more cooperative in the presence of this third party. @fiedler_effect_2017 found that the introduction of a third party that monitors the investments and returns of the players led to more cooperative behavior, even when the third party had no ability to reward or punish the players.  -->
 
-A well-established paradigm in the study of trust is the repeated trust game [@joyce_trust_1995]. In this game, the "investor" decides how much of an endowment to send to the other player (the "trustee"). The amount that is sent is tripled and the trustee decides, in return, how much of the tripled amount to send back to the investor. To encourage the emergence and maintenance of trust in this setting, some studies focused on modifying the game mechanism, for example by introducing a third-party who monitors the actions of the other players [@charness_investment_2008; @fiedler_effect_2017]. Others chose to intervene directly on the participants. For example, @drazkowski_gratitude_2017 found that trust was increased when participants were asked to think about and write down five things that they were grateful for. @burnham_friend-or-foe_2000 found that trust was also increased when participants were primed with the concepts of friend and foe. 
+A well-established paradigm in the study of trust is the Repeated Trust Game (RTG) [@joyce_trust_1995]. In this game, the "investor" decides how much of an endowment to send to the other player (the "trustee"). The amount that is sent is tripled and the trustee decides, in return, how much of the tripled amount to send back to the investor. To encourage the emergence and maintenance of trust in this setting, some studies focused on modifying the game mechanism, for example by introducing a third-party who monitors the actions of the other players [@charness_investment_2008; @fiedler_effect_2017]. Others chose to intervene directly on the participants. For example, @drazkowski_gratitude_2017 found that trust (as measured by the amount invested) was increased when participants were asked to think about and write down five things that they were grateful for. @burnham_friend-or-foe_2000 found that trust was also increased when participants were primed with the concepts of friend and foe. 
 
-Whilst these interventions show that it is possible to improve cooperative outcomes at the start of the game, they do not address how to repair a breakdown of trust that might occur due to intentional or accidental non-cooperative actions by the players. Cooperative play in the repeated trust game can easily break down when there is a transgressive behavior, such as a nil or very low investment by the investor or a return of the trustee below the investment sent [@bendor_when_1991]. Such ruptures of cooperation appear frequently when the trustee suffers from social disorders such as Borderline Personality Disorder [BPD; @lieb_borderline_2004]. In theses situations, BPD trustees fail to engage in trust repairing behaviours such as coaxing the investor by signalling trustworthiness via sending high returns. This failure may be linked to the misperception that their low returns in the game are not violating social norms [@king-casas_rupture_2008].
+Whilst these interventions show that it is possible to improve cooperative outcomes at the start of the game, they do not address how to repair a breakdown of trust that might occur due to intentional or accidental non-cooperative actions by the players. Cooperative play in the Repeated Trust Game can easily break down when there is a transgressive behavior, such as a nil or very low investment by the investor or a return of the trustee below the investment sent [@bendor_when_1991]. Such ruptures of cooperation appear frequently when the trustee suffers from social disorders such as Borderline Personality Disorder or BPD [@lieb_borderline_2004]. In these situations, BPD trustees fail to engage in trust-repairing behaviors such as coaxing the investor by signalling trustworthiness via sending high returns. This failure may be linked to BPD patients not realising that low returns in the game violate social norms [@king-casas_rupture_2008].
 
-In devising potential interventions to repair trust, we can derive inspiration from the cognitive interventions championed by successful psychological therapies that aim to improve aspects of social dysfunction in BPD patients. Whilst there is no proven pharmacological therapy for BPD, psychotherapies such as Mentalisation Based Therapy [@allen_handbook_2006-1] and Dialectical Behavior Therapy [@linehan_cognitive-behavioral_1993] have been shown to improve various dysfunctional behaviors in BPD patients, including those related to social interaction [@gunderson_borderline_2018]. However, response to these treatments is highly variable, and determining which interventions are effective for particular patients is challenging [@rudge_mechanisms_2020; @arch_longitudinal_2012]. One promising approach is the study of how specific components of psychotherapeutic treatment affect quantitative markers of behaviour such as those inferred through computational models [@huys_computational_2016; @reiter_neuro-cognitive_2021]. Combining the use of specific cognitive probes inspired by therapeutic interventions and computational models of behaviour may allow us to uncover the cognitive mechanisms targeted by common forms of psychotherapy. In turn, this may provide the basis for choosing effective psychotherapeutic interventions for given individuals.
+In devising potential interventions to repair trust, we can derive inspiration from the cognitive interventions championed by successful psychological therapies that aim to improve aspects of social dysfunction in BPD patients. Whilst there is no proven pharmacological therapy for BPD, psychotherapies such as Mentalisation Based Therapy [@allen_handbook_2006-1] and Dialectical Behavior Therapy [@linehan_cognitive-behavioral_1993] have been shown to improve social skills in BPD patients [@gunderson_borderline_2018]. However, response to these treatments is highly variable, and determining which interventions are effective for particular patients is challenging [@rudge_mechanisms_2020; @arch_longitudinal_2012]. One promising approach is the study of how specific components of psychotherapeutic treatment affect quantitative markers of behavior such as those inferred through computational models [@huys_computational_2016; @reiter_neuro-cognitive_2021; @dercon2022core]. Combining the use of specific cognitive probes inspired by therapeutic interventions and computational models of behavior may allow us to uncover the cognitive mechanisms targeted by common forms of psychotherapy. In turn, this may provide the basis for choosing effective psychotherapeutic interventions for given individuals.
 
-In this study, we assess the effectiveness of a cognitive intervention aimed at repairing the potential breakdown of cooperation from a one-off low investment sent by an computerised investor. The intervention focuses on explaining the potential harm from reciprocating non-cooperative actions and suggesting a non-impulsive course of action to coax the investor back into cooperation. Participants are given the role of the trustee and are randomly assigned to either a control or intervention group. They play two instances of the repeated trust game with two different investors. After the first instance of the game, they either receive a cognitive intervention (intervention condition) or perform an unrelated task solving anagrams (control condition). In reality, participants face the same computerised agent in both instances, which is programmed to play according to a hidden Markov model fitted to real players' data. We explore whether the intervention has an effect on the behaviour of the human trustee and whether this effect transfers to a different game (repeated Prisoner's Dilemma) and facing a seemingly new player.
-
+In this study, we assess the effectiveness of a cognitive intervention aimed at repairing the potential breakdown of cooperation from a one-off low investment sent by a computerised investor. The intervention focuses on explaining the potential harm from reciprocating non-cooperative actions and suggesting a non-impulsive course of action to coax the investor back into cooperation. Participants are given the role of the trustee and are randomly assigned to either a control or intervention group. They play two instances of the Repeated Trust Game with two different investors. After the first instance of the game, they either receive a cognitive intervention (intervention condition) or perform an unrelated task solving anagrams (control condition). In reality, participants face the same computerised agent in both instances, which is programmed to play according to a hidden Markov model fitted to real players' data. To foreshadow our results, we find that the intervention led to higher returns by the participants and countered a tendency to send back lower returns after a defection by the investor, but find no evidence of transfer to a different game (Repeated Prisoner’s Dilemma).
 
 ```{r dataLoad, include=FALSE }
 # d_finished <- readRDS("data/d_finished.RDS")
@@ -87,20 +86,32 @@ In this study, we assess the effectiveness of a cognitive intervention aimed at 
 # saveRDS(d_finished, file="data/d_anonym.RDS")
 
 d_finished <- readRDS("data/d_anonym.RDS")
+
+sd(as.numeric(d_finished$exitSurvey.age), na.rm=TRUE)
 ```
 
 
 # Method
 
-## Participants and Design
+## Participants 
 
-A total of 318 participants were recruited on the Prolific Academic platform (prolific.co). The mean age of participants was `r round(mean(as.numeric(d_finished$exitSurvey.age), na.rm=TRUE),1)` years. Participants were paid a fixed fee of £5 plus a bonus payment dependent on their performance that averaged £0.71. The experiment had a 2 (Condition: Intervention or Control) by 3 (Game: Trust-Game Pre Intervention, Trust-Game Post Intervention, Prisoner's Dilemma Post Intervention) design, with repeated measures on the second factor. Participants were randomly assigned to one of the two levels of the first factor.
+A total of 318 participants were recruited on the Prolific Academic platform (prolific.co). The mean age of participants was `r round(mean(as.numeric(d_finished$exitSurvey.age), na.rm=TRUE),1)` years, with a `r round(sd(as.numeric(d_finished$exitSurvey.age), na.rm=TRUE),1)` years standard deviation. Participants were paid a fixed fee of £5 plus a bonus payment dependent on their performance that averaged £0.71.
+
+## Design and Procedure
+
+The experiment had a 2 (Condition: Intervention or Control) by 3 (Game: Trust-Game Pre Intervention, Trust-Game Post Intervention, Prisoner's Dilemma Post Intervention) design, with repeated measures on the second factor. Participants were randomly assigned to one of the two levels of the first factor. The games were designed and implemented online using Empirica [@almaatouq2021empirica].
+
+```{r timeline, fig.cap = "Experiment overview. After playing 15 rounds of the RTG as the trustee, participants were randomized to either be part of the control or intervention condition. They then played the second set of 15 rounds of RTG (again as the trustee) to examine intervention effects, and 7 rounds of a repeated Prisoner’s Dilemma to examine generalization of intervention effects. Finally, participants answered questionnaires and were debriefed.", fig.align='center', out.width="100%", out.height= "120%"}
+
+knitr::include_graphics("figures/timeline.png")
+
+```
 
 ## Tasks and Measures
 
 ### Repeated Trust Game
 
-Participants played a 15-round repeated trust game [@joyce_trust_1995] in the trustee role against a computer-programmed investor. On each round the investor was endowed with 20 units and decided how much of that endowment to invest. This investment is tripled and the trustee then decides how to split this amount between them and the investor. If the trustee returns more than one third of the amount, the investor makes a gain. The Nash equilibrium for a single-round version is for the investor to send nothing. In the repeated version, rewards for both players are maximised if they build trust and share the benefits of the the investment multiplied by three. An investor who has been rewarded for taking the risk of sending an investment is more likely to invest more on future rounds. An investor obtaining a low return on their investment may choose to reduce future investment and thereby reduce both players’ gains.
+Participants played a 15-round Repeated Trust Game [@joyce_trust_1995] in the trustee role against a computer-programmed investor. On each round the investor is endowed with 20 units and decides how much of that endowment to invest. This investment is tripled and the trustee then decides how to split this tripled amount between them and the investor. If the trustee returns more than one third of the amount, the investor makes a gain. The Nash equilibrium for a single-round version is for the investor to send nothing. In the repeated version, rewards for both players are maximised if they build trust and share the benefits of higher investments. An investor who has been rewarded for taking the risk of sending an investment will likely invest more in future rounds. An investor obtaining a low return on their investment may choose to reduce future investment and thereby reduce both players’ gains.
 
 ```{r, include=FALSE}
 Anti_social <-  c(0.1025436430408, 0.1221931236853, 0.1345215238995,
@@ -140,7 +151,7 @@ plotinvHMM <- ggplot(response_probs,
            fill = Investor_state)) +
   geom_bar(stat = "identity",
            position = "dodge") + 
-  labs(fill='Latent investor state') + 
+  labs(fill='Latent investor state', x = "Investment", y= "Probability") + 
   theme_bw() + 
   theme(legend.position = "bottom")
   
@@ -190,10 +201,23 @@ plot_HMM_transitions <- function(ns, pars_mat) {
     mutate(across(to, factor, levels=c("low-trust","medium-trust","high-trust")))
                                     
   
-  ggplot(df,aes(x=ret,y=probs, colour = as.factor(to))) + geom_line() + facet_wrap(~from) + ylim(c(0,1)) +  labs(x = "Investor's Net Return", y = "Transition probability", color='State Transitioned to') + 
-    theme_bw() + theme(legend.position = "bottom")
-
-
+    # Create a separate data frame with the background colors
+  bg_colors <- data.frame(
+    from = factor(c("low-trust", "medium-trust", "high-trust"), levels=c("low-trust","medium-trust","high-trust"))
+  )
+  
+  # plotting code...
+  ggplot() +
+    geom_rect(data = bg_colors, aes(xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, fill = from), alpha = 0.1) +
+    geom_line(data = df, aes(x = ret, y = probs, colour = as.factor(to))) +
+    facet_wrap(~from, labeller = labeller(from = function(x) paste("From", x, "state on trial t"))) +
+    ylim(c(0,1)) +
+    scale_fill_manual(values = c("low-trust" = "red", "medium-trust" = "green", "high-trust" = "blue")) +
+    labs(x = "Investor's net return on trial t", y = "Transition probability to \nState on trial t+1", color = 'State transitioned to') +
+    theme_bw() +
+    theme(legend.position = "bottom", 
+          axis.title.y = element_text(size = 8, angle = 90, vjust = 1.5))
+  
 }
 
 ```
@@ -205,35 +229,28 @@ plotInvTran <- plot_HMM_transitions(3, pars_inv)
 ```
 
 
-```{r HMMPanels, fig.cap="A: Distribution of investments by the artificial investor agent conditional on its latent state as estimated by a three state hidden Markov model fitted to human dyadic play dataset. B: Transition function for the HMM investor conditional on its current state and the net return from the previous round of play.", fig.align="center"}
+```{r HMMPanels, fig.cap=" We construct the artificial investor agent by fitting a three-state hidden Markov model to data of human investors engaged in the 10 round Repeated Trust Game against human trustees. From the fitted HMM, we get the distribution of investments by the artificial investor agent conditional on its latent state as shown in Panel A. The fitted HMM also yields the transition probability of the agent to a state on trial t+1 as a function of the net return (difference between the investment sent and the amount received in return) on trial t as shown in Panel B. Each plot in Panel B represents a different starting latent state on trial t, and each line represents the probability of transitioning to a particular state in trial t+1. The policy in each state in Panel A and the way the agent transitions between states as defined in Panel B characterises the artificial agent's behavior in the Repeated Trust Game.", fig.align="center"}
 
 ggpubr::ggarrange(plotinvHMM , plotInvTran, nrow=2, ncol=1, labels = c("A", "B"), common.legend = TRUE, legend = "bottom")
 
 ```
 
-The strategy of the computerised investor was modelled on behaviour of human investors in a 10-round RTG [@king-casas_rupture_2008].  Using this data, we estimated a hidden Markov model (HMM) on investors' behaviour with three latent states, reflecting "low-trust", "medium-trust", or "high-trust". Each latent state was associated with a distribution over all possible investor actions (from 0 to 20 investment) that reflected the amount of trust (Figure \ref{fig:HMMPanels}.A). Over rounds, the investor can move between states, and the probability of these transitions was modelled as a function of the net return in the previous round (see Figure \ref{fig:HMMPanels}.B).
-
-In order to probe efforts to repair trust, the computerised agent was programmed to provide a low investment on round 12 pre-intervention and 13 post-intervention. On all other rounds, the agent's actions were derived from the HMM (disregarding the participant's response on pre-programmed low investment rounds).
+The strategy of the computerised investor was modelled on behavior of human investors in the Repeated Trust Game (RTG)  over 10-rounds with the same (human) opponent. Full detail on the datasets used in the supplement. Using this data, we estimated a hidden Markov model (HMM) on investors' behavior with three latent states, reflecting "low-trust", "medium-trust", or "high-trust". Each latent state was associated with a distribution over the possible investor actions from 0 to 20 (Figure \ref{fig:HMMPanels}.A). Over rounds, the investor can move between states, and the probability of these transitions was modelled as a function of the net return ( i.e return - investment) in the previous round (see Figure \ref{fig:HMMPanels}.B). In order to probe efforts to repair trust, the computerised agent was programmed to provide a low investment on round 12 pre-intervention and round 13 post-intervention. On all other rounds, the agent's actions were derived from the HMM (disregarding the participant's response on pre-programmed low investment rounds).
 
 ### Repeated Prisoner's Dilemma
 
-Participants played 7 rounds of a repeated Prisoner's Dilemma. In each round, participants could choose between: a cooperative action with a reward of 5 if the player also cooperated and a reward of 1 if not, or a non-cooperative action that would yield a 7 points if the other person chooses the cooperative action and 2 points if not. The Nash equilibrium for a single-round version is to choose the non-cooperative action.
+To ascertain whether any effect of the intervention might transfer to a different game, participants played 7 rounds of a Repeated Prisoner’s Dilemma (RPD). In each round, participants could choose between: a cooperative action with a reward of 5 if the player also cooperated and a reward of 1 if not, or a non-cooperative action that would yield 7 points if the other person chooses the cooperative action and 2 points if not. The Nash equilibrium for a single-round version is to choose the non-cooperative action.
 
-The computerised agent was programmed to act according to a tit-for-tat strategy [@axelrod_evolution_1981], starting with a cooperative action and then mirroring what the other player chose in the preceding round. On round 4, the agent was pre-programmed to choose the defect action, regardless of the participant's preceding action. 
+The computerised agent was programmed to act according to a tit-for-tat strategy [@axelrod_evolution_1981], starting with a cooperative action and then mirroring what the other player chose in the preceding round. On round 4, the computerised agent was pre-programmed to choose the defect action, regardless of the participant's preceding action. 
 
 ## Intervention
 
-The intervention was built on interventions from DBT skills training, asking patients to reflect on the consequences of actions taken in emotional states [@linehan_dbt_2015]. Specifically, participants were presented with a low investment and asked to indicate their response. They were then invited to consider what their ultimate aim in the game was and whether this response was most likely to achieve their aim. The intervention is detailed in the supplementary information.
+The intervention was built on interventions from Dialectical Behavior Therapy (DBT) skills training, asking patients to reflect on the consequences of actions taken in emotional states [@linehan_dbt_2015]. Specifically, participants were presented with a hypothetical situation in which they receive a low investment and asked to indicate how they would respond. They were then presented with an educational slide inviting them to consider that the ultimate aim in the game was to maximise their total reward and reflect on whether punishing the investor for the low investment was most likely to achieve that aim. Participants were told that punishment can create a negative feedback loop where the other player might trust them even less. An alternative action was suggested, whereby players would respond kindly to such a transgression in the hope of gaining trust from the investor.
+Participants were then asked whether the information just received would change their behavior in such a hypothetical situation and to justify their answer. Full details on the intervention are provided in the supplementary information.
 
 In the control condition, participants were asked to solve five anagrams ("listen", "triangle", "deductions", "players", "care"). They provided their answers in a free-form text box. The time given to solve the anagrams was the same as that given to respond to questions in the intervention manipulation.
 
 ## Procedure
-
-```{r timeline, fig.cap = "Experiment overview. After playing 15 rounds of a repeated trust game (RTG) as trustee, participants were randomized to either receive the control or active intervention. They then played the second set of 15 rounds of RTG (again as trustee) to examine intervention effects, and 7 rounds of a repeated Prisoner’s Dilemma to examine generalization of intervention effects. Finally, participants answered questionnaires and were debriefed.", fig.align='center', out.width="80%"}
-
-knitr::include_graphics("figures/timeline.png")
-
-```
 
 
 <!-- Figure \ref{fig:timeline} shows the timeline of the experiment. After reviewing an information sheet about the experiment, participants were informed that there would be three phases to go through, with them facing a different opponent in each phase. They would face the same player throughout the first phase, consisting of the "Investment Game" with several rounds. This was the moniker used for the repeated trust game, and a total of 15 rounds were played. Participants were then randomly assigned to either a control or intervention condition. -->
@@ -250,15 +267,52 @@ knitr::include_graphics("figures/timeline.png")
 
 <!-- Finally, participants were asked a series of questions around how they played each phase. First, they were asked whether they thought they played differently in the second compared to the first phase of the RTG. Second, participants had to select whether they thought the opponents they faced were human or computer agents. Finally, we revealed to the participants that they faced the same computer agent throughout the RTG. We explained that any change in their perception of the opponent or any change in how the opponent played is due to their own change in behavior as the agent was simply reacting to their actions. Finally, we asked participants to reveal whether this experiment has taught them anything about how they should behave in social situations. -->
 
-At the start of the experiment (Figure \ref{fig:timeline}), participants provided informed consent and were instructed the study would consist of three phases in which they would face a different other player. Participants were told their goal was to maximise the number of points in all phases. They were not told the number of rounds of each phase. Phase one was a 15 round repeated Trust Game (RTG) in which participants took the role of trustee, facing the same investor over all 15 rounds. On each round, after being informed about the amount sent by the investor, participants were asked to provide feedback, with participants in the Intervention condition rating their feeling in terms of valence (from negative to positive) and arousal (from low to high), and participants in the Control condition rating the investment in terms of speed (from slow to fast) and magnitude (from low to high). These ratings were made by indicating a point on a two-dimensional grid. Participants then decided on how much of the tripled investment to return to the investor, before continuing to the next round. After completing 15 rounds of the RTG, participants rated how cooperative, selfish, trustworthy and friendly they perceived their interaction partner (all on a scale from 1 to 10). After phase one, participants in the intervention condition completed the intervention, and participants in the control condition solved anagrams. Subsequent phase two was similar to phase one, with participants being told they would face a new player. Phase three consisted of 7 rounds of the repeated prisoner's dilemma game (RPD), with participants informed they would face a third player. Participants then completed questionnaires related to mentalising abilities, emotion regulation, and BPD traits (see the supplement for details). They were then asked about the strategy in the games, as well as whether they thought the other players were human or computer agents. They were then debriefed and thanked for their participation. 
+At the start of the experiment (Figure \ref{fig:timeline}), participants provided informed consent and were instructed the study would consist of three phases in which they would face a different other player. Participants were told their goal was to maximise the number of points in all phases. They were not told the number of rounds of each phase. Phase one was a 15 round Repeated Trust Game (RTG) in which participants took the role of trustee, facing the same investor over all 15 rounds. On each round, after being informed about the amount sent by the investor, participants were asked to provide feedback, with participants in the Intervention condition rating their feeling in terms of valence (from negative to positive) and arousal (from low to high), and participants in the Control condition rating the investment in terms of speed (from slow to fast) and magnitude (from low to high). These ratings were made by indicating a point on a two-dimensional grid. Participants then decided on how much of the tripled investment to return to the investor, before continuing to the next round. After completing 15 rounds of the RTG, participants rated how cooperative, selfish, trustworthy and friendly they perceived their interaction partner (all on a scale from 1 to 10). After phase one, participants in the intervention condition completed the intervention, and participants in the control condition solved anagrams. Subsequent phase two was similar to phase one, with participants being told they would face a new player. Phase three consisted of 7 rounds of the Repeated Prisoner's Dilemma game (RPD), with participants informed they would face a third player. Participants then completed questionnaires related to mentalising abilities, emotion regulation, and BPD traits (see the supplement for details). They were then asked about the strategy in the games, as well as whether they thought the other players were human or computer agents. They were then debriefed and thanked for their participation. 
 
 ## Statistical analysis
 
-To explore whether participants behaved differently after the intervention compared to the control group over all rounds, we estimate a linear-mixed effects model as implemented in the R package "afex" [@singmann_afex_2022], with fixed effects for Condition (intervention or control), Game-number (pre- or post-intervention) and Investment, as well as interactions between Condition and both Investment and Game-number, and participant-wise random intercepts and random slopes for Game-number. More complex models with additional random effects provided could not be estimated reliably. For the $F$-tests, we used the Kenward-Roger approximation to the degrees of freedom, as implemented in the R package "afex". We Z-transform the Investment variable as centering is beneficial to interpreting the main effects more easily in the presence of interactions.
+<!-- To explore whether participants behaved differently in the RTG after the intervention compared to the control group, we estimate a linear-mixed effects model via the "afex" [@singmann_afex_2022] package for R [@R_package], of the percentage return (percentage of tripled investment returned to investor) as the dependent variable and with fixed effects for Condition (intervention vs. control), Game (RTG game pre vs. post-intervention) and Investment, as well as interactions between Condition and both Investment and Game, and participant-wise random intercepts and random slopes for Game. More complex models with additional random effects could not be estimated reliably, and as such the estimated model can be considered to include the optimal random effects structure [@matuschek2017balancing]. A similar process was used to establish the random effects structures of other linear mixed-effects models used throughout the statistical analyses. For the $F$-tests, we used the Kenward-Roger approximation to the degrees of freedom, as implemented in the R package "afex". We Z-transform the Investment variable as centering is beneficial to interpreting the main effects more easily in the presence of interactions. -->
 
-To model participants' returns in the RTG across games and conditions, we fit various hidden Markov models to participants' returns using the depmixS4 package [@visser_depmixs4_2021] for R. The transition between latent states is assumed to depend on the investment received and a dummy variable to characterise the group that the participant belongs to. Details on how the models are constructed can be found in the supplement. We fit models with different numbers of hidden states, and use the Bayesian Information Criterion [@schwarz_estimating_1978-1] to select the best model.
+To explore whether participants behaved differently in the RTG after the intervention compared to the control group, we model the percentage return (percentage of tripled investment returned to investor) using a linear mixed-effects model as described below:
 
-# Behavioural results
+
+
+\[
+\begin{split}
+R_{ij} = & \beta_0 + \beta_1 \text{ (Condition)}_i + \beta_2 \text{ (Game)}_i + \beta_3 \text{ (Investment)}_i + \\
+& \beta_4 \text{ (Condition × Game)}_i + \beta_5 \text{ (Condition × Investment)}_i + \beta_6 \text{ (Game × Investment)}_i +  \\ 
+& \beta_7 \text{ (Condition × Game × Investment)}_i +b_{0j} + b_{1j} \text{ (Game)}_i + \epsilon_{ij}
+\end{split}
+\]
+
+where:
+
+- \( R_{ij} \): percentage of tripled investment returned to investor for participant \( j \) in observation \( i \)
+- \( \beta_0 \): intercept
+- \( \beta_1 \): effect of Condition (intervention vs. control)
+- \( \beta_2 \): effect of Game (RTG game pre vs. post-intervention)
+- \( \beta_3 \): effect of Investment
+- \( \beta_4 \): interaction effect between Condition and Game
+- \( \beta_5 \): interaction effect between Condition and Investment
+- \( \beta_6 \): interaction effect between Game and Investment
+- \( \beta_7 \): three-way interaction effect between Condition, Game and Investment
+- \( b_{0j} \): participant-wise random intercept for participant \( j \)
+- \( b_{1j} \): participant-wise random slope for Game for participant \( j \)
+- \( \epsilon_{ij} \): error term for participant \( j \) in observation \( i \)
+
+
+
+
+The model was estimated using the `afex` package [@singmann_afex_2022] in R [@R_package]. More complex models with additional random effects could not be estimated reliably, and as such the estimated model can be considered to include the optimal random effects structure [@matuschek2017balancing]. A similar process was used to establish the random effects structures of other linear mixed-effects models used throughout the statistical analyses. For the $F$-tests, we used the Kenward-Roger approximation to the degrees of freedom, as implemented in the R package "afex". We Z-transform the Investment variable as centering is beneficial to interpreting the main effects more easily in the presence of interactions.
+
+
+
+
+<!-- To explore whether the HMM investors behaved differently in the RTG after the intervention compared to the control group, we estimate linear mixed effects model of investments sent by the computerised HMM agent with Condition and Game and their interaction as fixed effects -->
+
+To model participants' returns in the RTG across games and conditions, we fit various hidden Markov models [@visser2022hidden] to participants' returns using the depmixS4 package [@visser_depmixs4_2021] for R. The transition between latent states is assumed to depend on the investment received and a dummy variable to characterise the group that the participant belongs to. Details on how the models are constructed can be found in the supplement. We fit models with different numbers of hidden states, and use the Bayesian Information Criterion [@schwarz_estimating_1978-1] to select the best model.
+
+# Behavioral results
 
 
 ```{r dataClean, include=FALSE}
@@ -293,24 +347,8 @@ avg_pct <- avg_ret_df %>% filter(roundNum < 11 , gameNum.f == "pre") %>% summari
 
 
 
-```{r gamesPlot, echo=FALSE, fig.cap="Average and standard errors of the trustee's return as a percentage of the multiplied investment received for each round and for both conditions. The red line shows the returns pre-manipulation and the blue line post-manipulation.We note a different reaction to the pre-programmed one-off low investment between the two conditions: Whilst there is a dip in returns pre-manipulation for both conditions,  post manipulation we see higher returns in the intervention condition compared to the dip in returns seen in the control condition in the right panel",fig.align="center", fig.width=6, fig.height = 4}
+```{r gamesPlot, echo=FALSE, fig.cap="Averages and standard errors of the trustee's return as a percentage of the multiplied investment received by Condition, Phase, and game round. The blue line shows the returns pre-manipulation and the green line post-manipulation. We note a different reaction to the pre-programmed one-off low investment between the two conditions: Whilst there is a dip in returns pre-manipulation for both conditions,  post manipulation we see higher returns in the intervention condition compared to the dip in returns seen in the control condition in the right panel",fig.align="center", fig.width=6, fig.height = 4}
 
-# colors <- c("investment" = "blue", "returns" = "red")
-# 
-# ggplot(avg_ret_df,aes(x=as.factor(roundNum),group = 1)) +
-#   stat_summary(fun = "mean", geom = "line", aes(y=returns, color ="returns")) +
-#   stat_summary(fun.data = "mean_se", geom = "errorbar", alpha =0.3, width = 0.2, aes(y=returns) ) +
-#   stat_summary(fun = "mean", geom = "line", alpha =0.4,aes(y=investment, color = "investment")) +
-#   stat_summary(fun.data = "mean_se", geom = "errorbar", alpha =0.3, width = 0.2, aes(y=investment) ) +
-#   facet_wrap(~condition.f*gameNum.f) +
-#   labs(x = "Round",
-#        y = "Investment / Return",
-#        color = "Legend") +
-#   scale_color_manual(values = colors) +
-#   theme_bw() +
-#   theme(legend.position = "bottom") 
-
-# Alternative chart with pre vs post percentage returns in one panel as suggested by QH.
 
 ggplot(avg_ret_df, aes(x=as.factor(roundNum), y=ret_pct, group=gameNum.f, color = gameNum.f)) +
   stat_summary(fun = mean, geom = "line") +
@@ -367,6 +405,8 @@ prepost_bycond <- pairs(emmeans::emmeans(mod_returns_pct, c("gameNum.f"), by = "
 
 cond_effect <- pairs(emmeans::emmeans(mod_returns_pct, c("condition.f"), by="gameNum.f"))
 ```
+
+
 ```{r, include=F}
 
 library(sjstats)
@@ -391,7 +431,13 @@ pctRet_all <- afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "conditi
 
 
 Average investments and returns prior to the "defection round" (Figure \ref{fig:gamesPlot}) were within the range of reported investments (40-60% of endowment) and returns (35-50% of total yield) in the literature [@charness_investment_2008; @fiedler_social_2011]. 
-Mixed-effects analysis on the returns shows a significant main effect of Condition (intervention vs. control), `r papaja::apa_print(mod_returns_pct)$full_result$condition_f`<!--$F(1,315.31) = 9.52$, $p = .002$-->, with higher percentage returns in the intervention compared to the control condition. Importantly, we also find an interaction between Condition and Game (RTG pre- vs. post-intervention), `r papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_condition_f`<!--$F(1,314.2) = 26.9$, $p < .001$-->. Post-hoc tests show an increase in the percentage returned in the intervention condition, pre - post, `r papaja::apa_print(prepost_bycond)$full_result$Intervention_Pre_post`, but a decrease in the control condition, `r papaja::apa_print(prepost_bycond)$full_result$Control_Pre_post` (see Figure \ref{fig:violinPanels}.A). This indicates the intervention was effective in increasing cooperative behaviour. There was also a significant main effect of Investment, `r papaja::apa_print(mod_returns_pct)$full_result$inv_scaled`<!--$F(1,9208) = 373.6$, $p < 0.001$-->, such that higher investments were associated with higher percentage returns. An Investment by Condition interaction, `r papaja::apa_print(mod_returns_pct)$full_result$condition_f_inv_scaled`<!--$F(1,9207) = 45.38$, $p < .001$-->, indicates the positive effect of investment on percentage returns was greater in the control than intervention condition. <!-- This suggests that the higher returns we see in the intervention group are not simply due to higher investments.--> There was also an Investment by Game interaction, `r papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_inv_scaled`. Finally, we find a three way interaction between Game, Condition and Investment, `r papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_condition_f_inv_scaled`<!--($F(1,8988)= 24.6, p < 0.001$),-->, showing that the differentiated effect of the investment on the proportion returned by condition is itself moderated by the Game (pre- vs post intervention).
+Mixed-effects analysis on the percentage returns shows a significant main effect of Condition (intervention vs. control), `r papaja::apa_print(mod_returns_pct)$full_result$condition_f`<!--$F(1,315.31) = 9.52$, $p = .002$-->, with higher percentage returns in the intervention compared to the control condition. Importantly, we also find an interaction between Condition and Game (RTG pre- vs. post-intervention), `r papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_condition_f`<!--$F(1,314.2) = 26.9$, $p < .001$-->. Post-hoc tests show an increase in the percentage returned in the intervention condition, pre - post, `r papaja::apa_print(prepost_bycond)$full_result$Intervention_Pre_post`, but a decrease in the control condition, `r papaja::apa_print(prepost_bycond)$full_result$Control_Pre_post` (see Figure \ref{fig:violinPanels}.A). This indicates the intervention was effective in increasing cooperative behavior. There was also a significant main effect of Investment, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_returns_pct)$full_result$inv_scaled)`,
+such that higher investments were associated with higher percentage returns. An Investment by Condition interaction, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_returns_pct)$full_result$condition_f_inv_scaled)`, indicates the positive effect of investment on percentage returns was greater in the control than intervention condition. There was also an Investment by Game interaction, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_inv_scaled)`. 
+Finally, we find a three way interaction between Game, Condition and Investment, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_condition_f_inv_scaled)`, showing that the differentiated effect of the investment on the proportion returned by condition is itself moderated by the Game (pre- vs post intervention).
 
 
 
@@ -429,7 +475,7 @@ inv_all <- afex_plot(mod_invs, x = "gameNum.f", trace = "condition.f", dodge = 0
 
 ```
 
-We next analysed HMM agent investments with a linear-mixed effects model with fixed effects for Condition (intervention vs control), Game (pre vs post intervention), as well as interaction between Condition and Game, and participant-wise random intercepts and random slopes for Game. This shows a main effect of Condition, `r papaja::apa_print(mod_invs)$full_result$condition_f`<!--$F(1,317) = 8.7$, $p = .003$-->, and Game, `r papaja::apa_print(mod_invs)$full_result$gameNum_f`<!--$F(1,317) = 8.3$, $p = .004$-->. As can be seen in Figure \ref{fig:violinPanels}.B, investment was higher in the intervention compared to the control condition across games, and higher in the second game compared to first across conditions.
+To explore whether the HMM investors behaved differently in the RTG after the intervention compared to the control group, we estimate a linear mixed-effects model of investments sent by the computerised HMM agent with Condition and Game and their interaction as fixed effects, and a similar random effects structure to the returns model. This shows a main effect of Condition, `r papaja::apa_print(mod_invs)$full_result$condition_f`<!--$F(1,317) = 8.7$, $p = .003$-->, and Game, `r papaja::apa_print(mod_invs)$full_result$gameNum_f`<!--$F(1,317) = 8.3$, $p = .004$-->. As can be seen in Figure \ref{fig:violinPanels}.B, investment was higher in the intervention compared to the control condition across games, and higher in the second game compared to first across conditions.
 
 
 ```{r, include=FALSE, cache=TRUE}
@@ -440,12 +486,17 @@ mod_returns_pre <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameN
 anova(mod_returns_pre)
 summary(mod_returns_pre)
 
-
 pairs_pre_int <- pairs(emmeans::emmeans(mod_returns_pre, c("gameNum.f"), by = "condition.f", pbkrtest.limit = 9400, reverse=TRUE))
 
 ```
+```{r, include=F}
+saveRDS(summary(mod_returns_pre), "data/mod_returns_pre")
+```
 
-We next analysed returns separately for rounds prior to the pre-programmed transgression (rounds 1 to 11 pre-intervention and 1 to 12 post-intervention) and rounds after (rounds 12 to 15 pre-intervention and rounds 13 to 15 post-intervention). Applying the same mixed effects model as before to returns before the transgression largely replicates the results over all trials. Participants in the intervention condition increased their returns in the second game, `r papaja::apa_print(pairs_pre_int)$full_result$Intervention_Pre_post`. There was no evidence that participants in the control condition changed their returns in pre-transgression trials between the first and second RTG, `r papaja::apa_print(pairs_pre_int)$full_result$Control_Pre_post`. Full results are provided in the supplement.
+
+
+
+We next analysed returns separately for rounds prior to the pre-programmed defection (rounds 1 to 11 pre-intervention and 1 to 12 post-intervention) and rounds after (rounds 12 to 15 pre-intervention and rounds 13 to 15 post-intervention). Applying the same mixed-effects model as before to returns before the defection largely replicates the results over all trials. Participants in the intervention condition increased their returns in the second game, `r papaja::apa_print(pairs_pre_int)$full_result$Intervention_Pre_post`. There was no evidence that participants in the control condition changed their returns in pre-defection trials between the first and second RTG, `r papaja::apa_print(pairs_pre_int)$full_result$Control_Pre_post`. Full results are provided in the supplement.
 
 
 ```{r, include=F}
@@ -493,6 +544,10 @@ postcoax_interaction
 pairs(emmeans::emmeans(mod_postcoax_trust, c("gameNum.f"), by = "condition.f"))
 ```
 
+```{r, include=F}
+saveRDS(summary(mod_postcoax_trust), "data/mod_returns_post")
+```
+
 ```{r, include=FALSE}
 pctRet_post <- afex_plot(mod_postcoax_trust, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
             mapping = c("linetype", "shape", "fill"),
@@ -507,16 +562,16 @@ pctRet_post <- afex_plot(mod_postcoax_trust, x = "gameNum.f", trace = "condition
   theme(legend.position = "bottom")
 ```
 
-```{r violinPanels, fig.cap="A: Marginal means and distributions of percentage trustee returns over all rounds, shown across participants by Game number and Condition. B: Marginal means and distributions of investments over all rounds for HMM investors, by Game number and Condition. C: Marginal means and distributions of percentage trustee returns across all participants for pre-defection trials only, by Game number and Condition. D: Marginal means and distributions of percentage trustee returns across all participants for post-defection trials only, by Game number and Condition.", fig.align="center", fig.width=6, fig.height = 6}
+```{r violinPanels, fig.cap="Participants in the Intervention condition returned higher proportions of the multiplied investment received in the second game compared to the first game over all ronds (Panel A). This was also the case both before (Panel C) and after (Panel D) the pre-programmed defection by the HMM investor. Those in the control conditions returned similar amounts between games before the defection, and lower amounts in the second game after the defection by the investor. Investments by the HMM agent (Panel B) were higher in the second game compared to the first game across conditions. All panels show marginal means and distributions of either investments or percentage returns across participants by Game and Condition", fig.align="center", fig.width=6, fig.height = 6}
 
 ggpubr::ggarrange(pctRet_all, inv_all, pctRet_pre, pctRet_post, nrow=2, ncol=2, labels = c("A", "B", "C", "D"), common.legend = TRUE, legend = "bottom")
 ```
 
 
-Applying the same model to the returns after the transgression (see the supplement for full results), we again find a significant interaction between Condition and Game. Participants in the control condition decreased their post-transgression returns from the first to the second RTG, `r papaja::apa_print(pairs(postcoax_interaction, by = "condition.f", reverse=FALSE))$full_result$Control_Pre_post`. There was no significant change for participants in the intervention condition, `r papaja::apa_print(pairs(postcoax_interaction, by = "condition.f", reverse=FALSE))$full_result$Intervention_Pre_post`. When questionnaire scores for borderline traits, mentalising and emotion regulation abilities were added as explanatory variables, we found no interaction effect of these questionnaire scores with the Condition variable, nor a main effect of the questionnaire scores on participants returns in the RTG.
+Applying the same model to the returns after the defection (see the supplement for full results), we again find a significant interaction between Condition and Game. Participants in the control condition decreased their post-defection returns from the first to the second RTG, `r papaja::apa_print(pairs(postcoax_interaction, by = "condition.f", reverse=FALSE))$full_result$Control_Pre_post`. There was no significant change for participants in the intervention condition, `r papaja::apa_print(pairs(postcoax_interaction, by = "condition.f", reverse=FALSE))$full_result$Intervention_Pre_post`. 
+<!-- When questionnaire scores for borderline traits, mentalising and emotion regulation abilities were added as explanatory variables, we found no interaction effect of these questionnaire scores with the Condition variable, nor a main effect of the questionnaire scores on participants returns in the RTG. -->
 
-Taken together, we find that participants in the control condition sent lower percentage returns in the second game, despite the HMM investor sending on average higher investments in the second game. Those in the intervention group returned higher percentage returns in the second game, with the investor also sending higher investments. These higher returns in the intervention compared to the control condition were not purely driven by reciprocity towards higher investments, since we found a Condition by Game interaction whilst controlling for investment in the model, and a reduced effect of investment in the intervention condition. Whilst the intervention increased participants returns overall, it did not appear to increase participants' returns after the transgression by the other player. However, it may have countered the tendency to lower returns after the transgression in the second game compared to the first game, which was shown by participants in the control condition. 
-
+Taken together, we find that participants in the control condition sent lower percentage returns in the second game, despite the HMM investor sending on average higher investments in that game. Those in the intervention group returned higher percentage returns in the second game, with the investor also sending higher investments. These higher returns in the intervention compared to the control condition were not purely driven by reciprocity towards higher investments, since we found a Condition by Game interaction whilst controlling for investment in the model, and a reduced effect of investment in the intervention condition. The intervention did not increase participants' returns after the defection by the other player. Instead, it countered the tendency shown by participants in the control condition to lower returns after the defection in the second game compared to the first game.
 
 ## Emotion self-reports
 
@@ -556,7 +611,7 @@ datCtrl <- full_dat %>% filter(condition.f=="control")
 
 ```
 
-```{r emoPlotCoax, fig.cap="Self-reported emotion valence and arousal as well as investment z-scores for each round of the repeated Trust Game averaged across participants in the intervention condition only.",fig.align="center", fig.width=6, fig.height = 4}
+```{r emoPlotCoax, fig.cap="Self-reported emotion valence and arousal as well as investment z-scores for each round of the Repeated Trust Game averaged across participants in the intervention condition only. The participants' emotion self-reports for the investor's defection were similar before and after the intervention.",fig.align="center", fig.width=7, fig.height = 4}
 
 #################### two panels for before and after defection 
 library(ggplot2)
@@ -581,7 +636,7 @@ p <- ggplot(datCoax[datCoax$gameNum.f == 'pre', ], aes(x=roundNum)) +
   stat_summary(data = datCoax[datCoax$gameNum.f == 'post', ], fun = "mean", geom = "line", group =1, aes(x=roundNum, y=emo_scaled_x, color = "Valence", linetype = "b_Post")) + 
   stat_summary(data = datCoax[datCoax$gameNum.f == 'post', ], fun = "mean", geom = "line", group =1, aes(x=roundNum, y=emo_scaled_y, color = "Arousal", linetype = "b_Post")) + 
   stat_summary(data = datCoax[datCoax$gameNum.f == 'post', ], fun = "mean", geom = "line", group =1, aes(x=roundNum, y=inv_scaled, color = "Investment", linetype = "b_Post")) +
-  labs(x = "Round", y="Series Z-score") +
+  labs(x = "Round", y="Z-score") +
   geom_hline(yintercept = 0, linetype="dotted", color = "grey", linewidth=1.5) +
   scale_color_manual(name = "", values = colors, labels = c("Arousal", "Investment", "Emotion valence")) +
   scale_linetype_manual(values = c("a_Pre" = "dotted", "b_Post" = "solid"), labels = c("Pre", "Post")) +
@@ -628,7 +683,19 @@ cor(datCoax %>% dplyr::select(emo_scaled_x,emo_scaled_y,investment))
 cor.test(datCoax$emo_scaled_x, datCoax$emo_scaled_y)
 ```
 
-Participants in the intervention condition rated their emotion on valence (negative to positive) and arousal (low to high) after each investment. To assess the impact of the intervention on these emotional reactions, we used linear mixed-effects models (one for valence, and one for arousal) with fixed effects for Game (pre vs post intervention) and Investment, as well as interaction between Investment and Game, with participant-wide random intercepts and random slopes for Game. This showed that higher investments were associated with more positive emotions, `r papaja::apa_print(mod_emo_x)$full_result$scaleinvestment`, and higher arousal, `r papaja::apa_print(mod_emo_y)$full_result$scaleinvestment`. <!-- ($F(1,4664) = 2902, p < 0.001$), and higher arousal ($F(1,4668.4) = 1919, p < 0.001$)--> In addition, the positiveness of emotion declined between the two games, `r papaja::apa_print(mod_emo_x)$full_result$gameNum_f`, as did arousal, `r papaja::apa_print(mod_emo_y)$full_result$gameNum_f`. There was no indication that the effect of the investment on either aspect of emotion was affected by the intervention, as there was no interaction between Investment and Game on valence, `r papaja::apa_print(mod_emo_x)$full_result$gameNum_f_scaleinvestment`, or arousal, `r papaja::apa_print(mod_emo_y)$full_result$gameNum_f_scaleinvestment`. This indicates that participants in the intervention condition returned higher amounts post-intervention, despite their emotional reaction to investments remaining largely the same.
+To assess the impact of the intervention on the participant's emotional reactions, we used linear mixed-effects models (one for valence, and one for arousal) with fixed effects for Game (pre vs. post intervention) and Investment, as well as interaction between Investment and Game, with participant-wide random intercepts and random slopes for Game. This showed that higher investments were associated with more positive emotions, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_emo_x)$full_result$scaleinvestment)`, 
+and higher arousal, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_emo_y)$full_result$scaleinvestment)`. 
+In addition, the positiveness of emotion declined between the two games, 
+`r papaja::apa_print(mod_emo_x)$full_result$gameNum_f`
+, as did arousal, 
+`r papaja::apa_print(mod_emo_y)$full_result$gameNum_f`. 
+There was no indication that the effect of the investment on either aspect of emotion was affected by the intervention, as there was no interaction between Investment and Game on valence, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_emo_x)$full_result$gameNum_f_scaleinvestment)`
+, or arousal, 
+`r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_emo_y)$full_result$gameNum_f_scaleinvestment)`. 
+This indicates that participants in the intervention condition returned higher amounts post-intervention, despite their emotional reaction to investments remaining largely the same.
 
 
 
@@ -697,14 +764,13 @@ pairs(emmeans::emmeans(friend_mod, c("gameNum.f"), by = "condition.f"))
 ```
 
 
-Participants rated the HMM investor in the second game as less cooperative (`r apa_print(pairs(emmeans::emmeans(coop_mod, c("gameNum.f"))))$full_result`), less trustworthy (`r apa_print(pairs(emmeans::emmeans(trust_mod, c("gameNum.f"))))$full_result`), less friendly (`r apa_print(pairs(emmeans::emmeans(friend_mod, c("gameNum.f"))))$full_result`) and more selfish (`r apa_print(pairs(emmeans::emmeans(self_mod, c("gameNum.f"))))$full_result`), than the HMM investor in the first game. Participants in the intervention condition rated players higher than those in the control condition on cooperativeness (`r apa_print(pairs(emmeans::emmeans(trust_mod, c("condition.f"))))$full_result`) and lower on selfishness (`r apa_print(pairs(emmeans::emmeans(self_mod, c("condition.f"))))$full_result`). There was no evidence for an interaction effect between Condition and Game on any of the attributes.
+For the Investor evaluation, we estimate a mixed-effects model for participants ratings with Game and Condition as fixed effects and participant-wise random intercepts as random effects. Participants rated the HMM investor in the second game as less cooperative (`r apa_print(pairs(emmeans::emmeans(coop_mod, c("gameNum.f"))))$full_result`), less trustworthy (`r apa_print(pairs(emmeans::emmeans(trust_mod, c("gameNum.f"))))$full_result`), less friendly (`r apa_print(pairs(emmeans::emmeans(friend_mod, c("gameNum.f"))))$full_result`) and more selfish (`r apa_print(pairs(emmeans::emmeans(self_mod, c("gameNum.f"))))$full_result`), than the HMM investor in the first game. Participants in the intervention condition rated players higher than those in the control condition on cooperativeness (`r apa_print(pairs(emmeans::emmeans(trust_mod, c("condition.f"))))$full_result`) and lower on selfishness (`r apa_print(pairs(emmeans::emmeans(self_mod, c("condition.f"))))$full_result`). There was no evidence for an interaction effect between Condition and Game on any of the attributes.
 
-When asked during debrief whether they thought the investors they faced were Human or not, $40$% of participants thought they were either facing a human or were not sure of the nature of the opponent. Many answers reflected participants projecting human traits such as "spitefulness" or "greed" onto the artificial opponent's behaviour.
-
-
+When asked during debrief whether they thought the investors they faced were Human or not, $40$% of participants thought they were either facing a human or were not sure of the nature of the opponent. Many answers reflected participants projecting human traits such as "spitefulness" or "greed" onto the artificial opponent's behavior.
 
 
-## Transfer to the repeated Prisoner's Dilemma game
+
+## Transfer to the Repeated Prisoner's Dilemma game
 
 ```{r, include=FALSE}
 
@@ -718,7 +784,7 @@ PD_data <- d_finished %>%
 #PD_data %>% group_by(roundNum, condition.f) %>% summarise(coopRate = mean(coop))
 ```
 
-```{r PDCoop, include=FALSE, fig.cap="Mean and standard error of the rate at which the cooperative action was chosen by the participants for each round of the repeated Prisoner's Dilemma game. Round 4 is where we programmed the Tit-for-Tat agent to defect, which explains the lower cooperation rate we see in round 5 onwards",fig.align="center", fig.width=6, fig.height =3}
+```{r PDCoop, include=FALSE, fig.cap="Mean and standard error of the rate at which the cooperative action was chosen by the participants for each round of the Repeated Prisoner's Dilemma game. Round 4 is where we programmed the Tit-for-Tat agent to defect, which explains the lower cooperation rate we see in round 5 onwards",fig.align="center", fig.width=6, fig.height =3}
 # plot of cooperation rates per round
 ggplot(PD_data,aes(x=roundNum,group = 1)) + 
   stat_summary(fun = "mean", geom = "line", aes(y=coop), color ="red") + 
@@ -741,7 +807,7 @@ summary(ipd_mod_r5)
 
 ```
 
-We next asked whether the intervention had any discernible effect on participants' behaviour in a different, repeated Prisoner's Dilemma game. Predicting the probability of a cooperative action with a logistic mixed-effects regression model, with Condition and Phase (before or after defection trial) as fixed effects and a random intercept for participants, showed a decline in cooperation after defection by the other player, `r papaja::apa_print(ipd_mod)$full_result$phase`, but no evidence for a different cooperation rate in the intervention condition compared to the control condition, `r papaja::apa_print(ipd_mod)$full_result$condition_f`, or a different response to defection between the conditions, `r papaja::apa_print(ipd_mod)$full_result$condition_f_phase`. As such, there is no evidence that the intervention affected behaviour in this game. 
+We next asked whether the intervention had any discernible effect on participants' behavior in a different, Repeated Prisoner's Dilemma game. Predicting the probability of a cooperative action with a logistic mixed-effects regression model, with Condition and Phase (before or after defection trial) as fixed effects and a random intercept for participants, showed a decline in cooperation after defection by the other player, `r papaja::apa_print(ipd_mod)$full_result$phase`, but no evidence for an overall different cooperation rate in the intervention condition compared to the control condition, `r papaja::apa_print(ipd_mod)$full_result$condition_f`, or a different response to defection between the conditions, `r papaja::apa_print(ipd_mod)$full_result$condition_f_phase`. As such, there is no evidence that the intervention affected behavior in this game. 
 
 
 ```{r, include=FALSE}
@@ -1193,7 +1259,8 @@ for(i in n_state_min:n_state_max) {
 # save(fittedCtrl, file="fittedCtrl.RData")
 # ##############################
 # 
-# set.seed(20221028)
+# fittedCoax <- list()
+# set.seed(20230918)
 # for(i in n_state_min:n_state_max) {
 #   fittedCoax[[i]] <- multistart(coax_HMMs[[i]],nstart=20)
 # }
@@ -1220,12 +1287,13 @@ for(i in n_state_min:n_state_max) {
 
 ```{r, include=FALSE}
 
-# load("data/fittedSimple.RData")
-# load("data/fittedCtrl.RData")
-# load("data/fittedCoax.RData")
-# load("data/fittedFullCtrst.RData")
-# load("data/fittedPrePost.RData")
-# load("data/newFull.RData")
+load("data/fittedSimple.RData")
+load("data/fittedCtrl.RData")
+load("data/fittedCoax.RData")
+load("data/fittedFullCtrst.RData")
+load("data/fittedPrePost.RData")
+load("data/newFull.RData")
+
 # 
 # has_converged <- function(object, numeric = TRUE){
 #   msg <- object@message
@@ -1280,14 +1348,14 @@ for(i in n_state_min:n_state_max) {
 
 ```{r, include=F}
 
-# Fitting "Coax" models with initial parameters from the fitted "Simple" model. 
-
+# Fitting "Coax" models with initial parameters from the fitted "Simple" model.
+# 
 # newCoax <- fittedCoax
 # for (ns in n_state_min : n_state_max){
 # 
 #   fmod <- fittedSimple[[ns]]
 #   origin_pars <- getpars(fmod)
-#   numCovIn <- 2 
+#   numCovIn <- 2
 #   numCovTr <- 2
 # 
 #   # create a new vector which has the right number of pars for the initial state probabilities
@@ -1299,12 +1367,12 @@ for(i in n_state_min:n_state_max) {
 #   new_mat <- mat[,c(1:2,2,2)]
 #   new_pars <- c(new_pars,as.numeric(new_mat))
 #   }
-#   #Concatenate the new vectors with the old vector of  "response parameters" 
+#   #Concatenate the new vectors with the old vector of  "response parameters"
 #   new_pars <- c(new_pars,origin_pars[(ns*numCovIn + 1 + (ns - 1)*numCovTr*ns + numCovTr*ns):length(origin_pars)])
 # 
-#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it. 
+#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it.
 #   newCoax[[ns]] <- setpars(newCoax[[ns]],new_pars)
-#   newCoax[[ns]] <- fit(newCoax[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
+#   newCoax[[ns]] <- fit(newCoax[[ns]], emcontrol= em.control(maxit = 2000,random.start = FALSE))
 # }
 # 
 # save(newCoax, file="data/newCoax.RData")
@@ -1406,7 +1474,7 @@ for(i in n_state_min : n_state_max) {
 
 ```{r, include=FALSE}
 
-# # Here we use parameters of fitted PrePost model as initial values of the FullContrast model to check whether we can approach true maximal likelihood. 
+# # Here we use parameters of BEST PrePost model as initial values of the FullContrast model to check whether we can approach true maximal likelihood. 
 
 # newFull <- fittedFullCtrst
 # for (ns in n_state_min :n_state_max){
@@ -1542,7 +1610,7 @@ models %>%
 
 ```
 
-```{r table-BICs-coax, include =FALSE, warning = FALSE, echo=FALSE, ft.align="center", tab.playerId='table-BICs-coax', label='table-BICs-coax'}
+```{r table-BICs-coax, include =F, warning = FALSE, echo=FALSE, ft.align="center", tab.playerId='table-BICs-coax', label='table-BICs-coax'}
 
 # data.frame(df_bics) %>% 
 #   `colnames<-` (c("Number of states","HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost","HMM-full")) %>%
@@ -1572,7 +1640,7 @@ df_liks %>%
 
 ```
 
-We used hidden Markov models (HMMs) to further assess differences between the intervention and control condition in participants' reactions to the investor. As in the models for the investor, these HMMs assume behaviour is governed by latent states, with participants' switches between states now dependent on the investments made. We also allowed for differences between games and conditions in how investments govern state transitions. More in particular, we fitted five main models which all regressed state transition probabilities onto investments, as well as on additional contrast-coded predictors for condition and/or game number. In the most complex model (HMM-full), the transition probabilities were allowed to differ between all four combinations of game number and condition. The HMM-coax model allowed differences between post-intervention and the other three conditions (pre-intervention, pre-control, post-control) assuming these latter were the same. Similarly, the HMM-ctrl model allowed differences between post-control and the other three conditions. The HMM-prepost model allowed differences between the first and second RGT. Finally, the HMM-inv model did not allow transition probabilities to differ between conditions or game numbers, modelling them only as a function of investment. As the number of hidden states was unknown, for each model we estimated versions with 2 to 7 states, and used the BIC to select the best fitting model. Generally, best fitting models had between 5 to 7 hidden states.
+We used hidden Markov models (HMMs) to further assess differences between the intervention and control condition in participants' reactions to the investor in the Repeated Trust Game. As in the models for the investor, these HMMs assume behavior is governed by latent states, with participants' switches between states now dependent on the investments made. We also allowed for differences between games and conditions in how investments govern state transitions: We fitted five main models which all regressed state transition probabilities onto investments, as well as on additional contrast-coded predictors for condition and/or Game. In the most complex model (HMM-full), the transition probabilities were allowed to differ between all four combinations of Game and condition. The HMM-coax model allowed differences between post-intervention and the other three conditions (pre-intervention, pre-control, post-control) treating these latter conditions as the same. Similarly, the HMM-ctrl model allowed differences between post-control and the other three conditions. The HMM-prepost model allowed differences between the first and second RTG. Finally, the HMM-inv model did not allow transition probabilities to differ between conditions or games, modelling them only as a function of investment. As the number of hidden states was unknown, for each model we estimated versions with 2 to 7 states, and used the BIC to select the best fitting model. Generally, best fitting models had between 5 to 7 hidden states. Further details on the HMMs and estimation procedure are provided in the Supplementary Information.
 
 <!-- Table \ref{tab:table-BICs-coax} shows the BICs of the various fitted models for an assumed number of states between 2 and 7.  For a simple model without any contrasts (HMM-inv) and a model with post-control only contrast (HMM-ctrl) we find a 6-state model to be best fitting. If the contrast is between the post-intervention group and all the other groups (HMM-coax), then a 7 state model is best fitting. When the contrast is comparing only pre and post Intervention groups (HMM-prepost), a 5 state model fits best. Finally, when we distinguish between pre-manipulation, post-control and post-intervention (HMM-full), we find that a 5 state model fits best. Since we only fit models between 2 and 7 states, it is possible that for those where we find the 7 state model to be best fitting, models with a higher number of states could fit the data better. We decided to stop at 7 states for computational cost reasons and because the interpretation of models with a higher number of states becomes complex.  -->
 
@@ -1602,10 +1670,8 @@ llratio(bestFull[[5]],bestPrePost[[5]])
 # llratio(bestFull[[6]],bestPrePost[[6]])
 ```
 
-<!-- MS: There seems to be an issue with the likelihoods of the models. For example, for 6 states models, the likelihood of the Ctrl and Coax model are higher than for the Full model, but this is theoretically not possible as additional parameters can only increase the likelihood! -->
 
-Focusing on models with 5 latent states (which is the optimal number for the HMM-full model), likelihood ratio tests showed that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCtrl[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCoax[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestPrePost[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). This is consistent with state transitions differing both due to game number and condition as can be seen in Figure \ref{fig:plotTransitionsDiscGaus}.
-
+Focusing on models with 5 latent states (which is the optimal number for the HMM-full model), likelihood ratio tests showed that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCtrl[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCoax[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestPrePost[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$).
 <!-- We start by comparing HMM-full with HMM-inv. We find that HMM-full fits the data better than HMM-inv ($\chi^2(84) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). Likewise HMM-ctrl fits better than HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestCtrl[[5]]))) , 2)`$, $p < .001$). The same is true for HMM-coax compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestCoax[[5]]))) , 2)`$, $p < .001$) and HMM-prepost compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestPrePost[[5]]))) , 2)`$, $p < .001$). HMM-inv being the worst fitting model compared to the others indicates the existence of differentiated behavior pre vs post manipulation and/or between the control and intervention groups.  -->
 
 <!-- Using likelihood ratio tests, we find that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCtrl[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCoax[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestPrePost[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). This is consistent with a differentiated behavior of the trustees between all three groups: the post-intervention group, the post-control group and the pre-manipulation group. -->
@@ -1641,57 +1707,104 @@ response_best_mod <- as.data.frame(cbind(returns,state1,state2,state3,state4,sta
 
 ```{r, include=FALSE}
 
+# plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
+# 
+#   #print(getpars(fmod))
+#   ns <- nstates(fmod)
+#   
+#   trans_prob <- data.frame(
+#     from = rep(1:ns, each=100*ns),
+#     to = rep(1:ns, each=100),
+#     investment = seq(0,20,length=100),
+#     prob_pre = 0,
+#     prob_ctrl = 0,
+#     prob_coax =0
+#   )
+#   
+#   y0 <- matrix(0.0,ncol=ns, nrow=100)
+#   y1 <- matrix(0.0,ncol=ns, nrow=100)
+#   y2 <- matrix(0.0,ncol=ns, nrow=100)
+#   
+#   for(from in 1:ns) {
+#   pars <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
+#   #print(pars)
+#   
+#     for(to in 1:ns) {
+#         x <- trans_prob[trans_prob$from == from & trans_prob$to == to,"investment"]
+#         y0[,to] <- exp(pars[to,1] + pars[to,2]*x)
+#         #ctrst 2 = 1, post intervention vs pre
+#         y2[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,3]*1 + pars[to,5]*x )
+#         #ctrst 1 = 1, post control vs pre
+#         y1[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,4]*1 + pars[to,6]*x )
+#     }
+#     y0 <- y0/rowSums(y0)
+#     y1 <- y1/rowSums(y1)
+#     y2 <- y2/rowSums(y2)
+#     
+#     for(to in 1:ns) {
+#       trans_prob$prob_pre[trans_prob$from == from & trans_prob$to == to] <- y0[,to]
+#       trans_prob$prob_ctrl[trans_prob$from == from & trans_prob$to == to] <- y1[,to]
+#       trans_prob$prob_coax[trans_prob$from == from & trans_prob$to == to] <- y2[,to]
+#     }
+#   }
+#   
+#   
+#   
+#   saveRDS(trans_prob, "data/trans_prob.RDS")
+#   
+#   return(trans_prob)
+# 
+# }
+# 
+# 
+# plot_state_transitions(tr_fdmod_5,numCovIn=2, numCovTr=6) 
 plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
 
   #print(getpars(fmod))
   ns <- nstates(fmod)
   
   trans_prob <- data.frame(
-    from = rep(1:ns, each=100*ns),
-    to = rep(1:ns, each=100),
+    from = rep(paste0("from State ", 1:ns), each=100*ns),
+    to = rep(paste0("State ", 1:ns), times=100),
     investment = seq(0,20,length=100),
     prob_pre = 0,
     prob_ctrl = 0,
     prob_coax =0
   )
   
-  y0 <- matrix(0.0,ncol=ns, nrow=100)
-  y1 <- matrix(0.0,ncol=ns, nrow=100)
-  y2 <- matrix(0.0,ncol=ns, nrow=100)
+  y0 <- matrix(0.0, ncol=ns, nrow=100)
+  y1 <- matrix(0.0, ncol=ns, nrow=100)
+  y2 <- matrix(0.0, ncol=ns, nrow=100)
   
   for(from in 1:ns) {
-  pars <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
-  #print(pars)
-  
+    pars <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)], ncol=numCovTr)
+    #print(pars)
+    
     for(to in 1:ns) {
-        x <- trans_prob[trans_prob$from == from & trans_prob$to == to,"investment"]
+        x <- trans_prob[trans_prob$from == paste0("from State ", from) & trans_prob$to == paste0("State ", to), "investment"]
         y0[,to] <- exp(pars[to,1] + pars[to,2]*x)
-        #ctrst 2 = 1, post intervention vs pre
-        y2[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,3]*1 + pars[to,5]*x )
-        #ctrst 1 = 1, post control vs pre
-        y1[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,4]*1 + pars[to,6]*x )
+        y2[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,3]*1 + pars[to,5]*x)
+        y1[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,4]*1 + pars[to,6]*x)
     }
+    
     y0 <- y0/rowSums(y0)
     y1 <- y1/rowSums(y1)
     y2 <- y2/rowSums(y2)
     
     for(to in 1:ns) {
-      trans_prob$prob_pre[trans_prob$from == from & trans_prob$to == to] <- y0[,to]
-      trans_prob$prob_ctrl[trans_prob$from == from & trans_prob$to == to] <- y1[,to]
-      trans_prob$prob_coax[trans_prob$from == from & trans_prob$to == to] <- y2[,to]
+      trans_prob$prob_pre[trans_prob$from == paste0("from State ", from) & trans_prob$to == paste0("State ", to)] <- y0[,to]
+      trans_prob$prob_ctrl[trans_prob$from == paste0("from State ", from) & trans_prob$to == paste0("State ", to)] <- y1[,to]
+      trans_prob$prob_coax[trans_prob$from == paste0("from State ", from) & trans_prob$to == paste0("State ", to)] <- y2[,to]
     }
   }
-  
-  
   
   saveRDS(trans_prob, "data/trans_prob.RDS")
   
   return(trans_prob)
-
 }
 
+plot_state_transitions(tr_fdmod_5, numCovIn=2, numCovTr=6)
 
-plot_state_transitions(tr_fdmod_5,numCovIn=2, numCovTr=6) 
 
 ```
 
@@ -1705,7 +1818,7 @@ ctrl_pre_plot <- ggplot(trans_prob,aes(x=investment,y=prob_ctrl, colour = as.fac
   facet_wrap(~from) + 
   ylim(c(0,1)) + 
   ggtitle("Transition function pre- and post-control manipulation") + 
-  labs(x = "Investment", y = "Transition probability", color='State Transitioned to') + 
+  labs(x = "Investment", y = "Transition probability", color='Transition to:') + 
   theme_bw()
 
 
@@ -1715,7 +1828,7 @@ coax_pre_plot <- ggplot(trans_prob,aes(x=investment)) +
   facet_wrap(~from) + 
   ylim(c(0,1)) + 
   ggtitle("Transition function pre- and post-intervention manipulation") + 
-  labs(x = "Investment", y = "Transition probability", color='State Transitioned to', linetype = "Line Type") + 
+  labs(x = "Investment", y = "Transition probability", color='Transition to:', linetype = "Line Type") + 
   scale_linetype_manual(values = c("Post-manipulation" = "solid", "Pre-manipulation" = "dotted")) +
   theme_bw()
 
@@ -1723,7 +1836,7 @@ coax_pre_plot <- ggplot(trans_prob,aes(x=investment)) +
 
 ```
 
-```{r plotTransitionsDiscGaus, fig.cap="Transition function for the HMM-full trustee model. Each panel represents the state transitioned from, and each color the state transitioned to. Solid lines show estimated transition probabillities post-manipulation. Dotted lines show the same probabilities prior to the manipulation",fig.align="center", fig.width=6, fig.height = 7 }
+```{r plotTransitionsDiscGaus, include=F, fig.cap="Transition function for the HMM-full trustee model. Each panel represents the state transitioned from. For instance the upper left panel represents all transition probabilities from state 1.  The colors of the lines within each panel indicate the state transitioned to. For instance, in the upper left panel, the red line represents the transition probability to state 1 as a function of the received investment. In this case this is also the probability of staying in state 1 since we are in the state 1 panel.  Solid lines show estimated transition probabillities post-manipulation while dotted lines show the same probabilities prior to the manipulation",fig.align="center", fig.width=6, fig.height = 7 }
 
 grid.arrange(ctrl_pre_plot , coax_pre_plot , nrow=2, ncol=1)
 
@@ -1737,7 +1850,7 @@ set.seed(20221010)
 
 # mention we are using local decoding (refer to the book). 
 predTrStates <- posterior(tr_fdmod_5, type="local")
-avg_ret_df$TrState <-  factor(predTrStates, levels= c(1,2,3,4,5),labels=c("1","2","3","4","5"))
+avg_ret_df$TrState <-  factor(predTrStates, levels= c(1,2,3,4,5),labels=c("State 1","State 2","State 3","State 4","State 5"))
 
 # avg_ret_df$TrState <-  factor(predTrStates, levels= c(5,4,3,2,1),labels=c("5","4","3","2","1"))
 
@@ -1762,12 +1875,20 @@ trusteeHMMPlot <- ggplot(response_best_mod,
   theme(legend.position = "bottom")
 
 # investor real state distribution (posterior)
+# postHMM <- ggplot(avg_ret_df %>% dplyr::filter(gameNum.f=="post")) +
+#   geom_bar(aes(x = roundNum, group = TrState, fill = TrState),  position = position_stack(reverse = TRUE)) + 
+#   facet_wrap(~condition.f) +  
+#   labs(x = "Round", fill='Posterior trustee state') +
+#   theme_bw() +
+#   theme(legend.position = "bottom")
+
 postHMM <- ggplot(avg_ret_df %>% dplyr::filter(gameNum.f=="post")) +
   geom_bar(aes(x = roundNum, group = TrState, fill = TrState),  position = position_stack(reverse = TRUE)) + 
-  facet_wrap(~condition.f) +  
+  facet_wrap(~factor(condition.f, levels = rev(levels(as.factor(condition.f))))) +  
   labs(x = "Round", fill='Posterior trustee state') +
   theme_bw() +
   theme(legend.position = "bottom")
+
 
 ```
 
@@ -1826,11 +1947,11 @@ prop.test(c(48,18), c(159,159))
 
 ```
 
-Taking the best-fitting 5-state HMM-full model, we used a local decoding procedure to assign observations (participants' returns on trials) to latent states. The states are ordered by expected return, with state 1 having the lowest mean return and state 5 the highest. Figure \ref{fig:postStatesBestMod} shows that participants were more likely to be in a lower return state in the control condition compared to the intervention condition both pre and post defection. For instance, in round 5, state 1 was the most likely posterior state for only $7$% of participants in the intervention condition compared to $24$% in the control condition ($\chi^2(1) = 8.26, p < 0.01$). For the post-defection trial after the intervention (round 14), state 1 was the most likely state for only $22$% of participants in the intervention condition compared to $43$% in the control condition ($\chi^2(1) = 14.70, p < 0.001$). Whilst the posterior states indicate that the intervention was effective, a non-negligible proportion of participants in the intervention condition did not exhibit the coaxing behaviour promoted by the intervention. Directly following the low investment in round 13, $30.2$% of participants in the intervention condition were assigned to state 1 with the lowest average returns. There is thus clear heterogeneity in the effectiveness of the intervention.
+Taking the best-fitting 5-state HMM-full model, we used a local decoding procedure to assign observations (participants' returns on trials) to latent states. The states are ordered by expected return, with state 1 having the lowest mean return and state 5 the highest. Figure \ref{fig:postStatesBestMod} shows that participants were more likely to be in a lower return state in the control condition compared to the intervention condition both pre and post defection. For instance, in round 5, state 1 was the most likely posterior state for only $7$% of participants in the intervention condition compared to $24$% in the control condition ($\chi^2(1) = 8.26, p < 0.01$). For the post-defection trial after the intervention (round 14), state 1 was the most likely state for only $22$% of participants in the intervention condition compared to $43$% in the control condition ($\chi^2(1) = 14.70, p < 0.001$). Whilst the posterior states indicate that the intervention was effective, a non-negligible proportion of participants in the intervention condition did not exhibit the coaxing behavior promoted by the intervention. Directly following the low investment in round 13, $30.2$% of participants in the intervention condition were assigned to state 1 with the lowest average returns. There is thus clear heterogeneity in the effectiveness of the intervention.
 
 <!-- To quantitatively explore the differences in transition probabilities between the control and intervention conditions, we can estimate from the model, using local decoding methods from the depmixS4 package [@visser_depmixs4_2021], the most likely posterior state of the trustee participants by round given the actions they have taken. Figure \ref{fig:postStatesBestMod}.B shows that participants were more likely to be in a lower return state in the control condition compared to the intervention condition both pre and post defection. For instance, in round 5, state 1 was the most likely posterior state for only $7$% of participants in the intervention condition compared to $24$% in the control condition ($\chi^2(1) = 8.26, p < 0.01$). For the post-defection trial after the intervention (round 14), state 1 was the most likely state for only $22$% of participants in the intervention condition compared to $43$% in the control condition ($\chi^2(1) = 14.70, p < 0.001$). 
 
-The posteriors also suggest that a non-negligible proportion of participants in the intervention condition did not exhibit a behaviour consistent with the goal of the intervention as they were still best fit by low-return states post intervention. For instance, focusing on round 13 post defection $30.2$% of those in the intervention condition were most likely to be in the least pro-social state 1. These differences can be seen as an indication of important heterogeneity in the effectiveness of the intervention.
+The posteriors also suggest that a non-negligible proportion of participants in the intervention condition did not exhibit a behavior consistent with the goal of the intervention as they were still best fit by low-return states post intervention. For instance, focusing on round 13 post defection $30.2$% of those in the intervention condition were most likely to be in the least pro-social state 1. These differences can be seen as an indication of important heterogeneity in the effectiveness of the intervention.
 -->
 
 ```{r, include=FALSE}
@@ -1888,23 +2009,25 @@ The posteriors also suggest that a non-negligible proportion of participants in 
 
 # Discussion
 
-In this experiment, human participants took the role of the trustee in a repeated trust game (RTG) where they faced artificial computer agents who's behaviour was partly determined by participants' returns. The behaviour of the artificial investors was determined by a 3-state hidden Markov model (HMM), which was estimated from the behaviour of humans in the RTG in prior research. Overall, investments and returns by the artificial and human agents replicated that of human dyads in prior research using the RTG [@charness_investment_2008; @fiedler_social_2011]. This, together with participants' reported uncertainty about whether they faced a human or artificial investor, shows the potential of using HMM-based artificial agents to mimic human behaviour in economic games, whilst offering a higher degree of experimental control.
+In this experiment, human participants took the role of the trustee in a Repeated trust game (RTG) where they faced artificial computer agents who's behavior was partly determined by participants' returns. The behavior of the artificial investors was determined by a 3-state hidden Markov model (HMM), which was estimated from the behavior of humans in the RTG in prior research. Overall, investments and returns by the artificial and human agents replicated that of human dyads in prior research using the RTG [@charness_investment_2008; @fiedler_social_2011]. This, together with participants' reported uncertainty about whether they faced a human or artificial investor, shows the potential of using HMM-based artificial agents to mimic human behavior in economic games, whilst offering a higher degree of experimental control than human dyadic interaction.
 
-The aim of the cognitive intervention was to articulate the potential unwanted effects of acting on impulse after a transgressive action from the investor in the form of a one-off low investment. After the intervention, participants sent back higher returns compared to before the intervention, and did not decrease their returns after a transgressive action like participants in the control condition did. The overall higher returns after the intervention occurred despite participants' emotional reactions to the investments remaining largely the same as before the intervention. This indicates the intervention achieved its goal of encouraging participants to respond in a non-impulsive and considered manner, overriding an emotional urge to retaliate. 
+The aim of the cognitive intervention was to articulate the potential unwanted effects of acting on impulse after a transgressive action from the investor in the form of a one-off low investment. After the intervention, participants sent back higher returns compared to before the intervention, and did not decrease their returns after a transgressive action like participants in the control condition did. The overall higher returns after the intervention occurred despite participants' emotional reactions to the investments remaining largely the same as before the intervention. This indicates the intervention achieved its goal of encouraging participants to respond in a non-impulsive and considered manner, possibly overriding the urge to retaliate. 
 
-That participants generally send higher returns to the investor after the intervention is unlikely due to a  general learning effect unrelated to the intervention, as participants in the control condition did not increase their returns. Also, as participants in the intervention and control condition faced the same HMM investor, the higher post-intervention returns are not solely due to a difference in investor behaviour. As the investor reacts to participants' returns, those who return more will generally see higher investments. But this is driven by the magnitude of their returns, not by a change in the strategy of the investor. Finally, as there were no differences between conditions in how participants rated the first and second HMM agent on attributes such as cooperativeness and trust, the increased returns are unlikely to be the result of a more favourable evaluation of the investor. Rather, we find it most likely that the increased returns are due to participants inferring from the intervention that pro-social and trustworthy behaviour may generally motivate the investor to send high investments, which can provide more beneficial outcomes to them in the long run.
+That participants generally send higher returns to the investor after the intervention is unlikely due to a  general learning effect unrelated to the intervention, as participants in the control condition did not increase their returns. Also, as participants in the intervention and control condition faced the same HMM investor, the higher post-intervention returns are not solely due to a difference in investor behavior. As the investor reacts to participants' returns, those who return more will generally see higher investments. But this is driven by the magnitude of their returns, not by a change in the strategy of the investor. Finally, as there were no differences between conditions in how participants rated the first and second HMM agent on attributes such as cooperativeness and trust, the increased returns are unlikely to be the result of a more favourable evaluation of the investor. Rather, we find it most likely that the increased returns are due to participants inferring from the intervention that pro-social and trustworthy behavior may generally motivate the investor to send high investments, which can provide more beneficial outcomes to them in the long run.
 
-The effect of the intervention was not transferred to the Repeated Prisoner's Dilemma (RPD) game. There was no difference between the intervention and control condition in the rate of cooperation, whether before or after a preprogrammed defection by the artificial agent. As the prisoner's dilemma is a popular economic game, it is possible that participants had a strong prior commitment towards the strategy they would adopt, which was not overridden by the intervention. The RPD also involves much coarser actions (cooperate vs defect) than the finer-grained returns in the RTG. This would make it more difficult to observe more subtle effects of the intervention. As such, the RPD might not be the best choice for any knowledge transfer. In any case, we can not rule out that the effects of the brief cognitive intervention, which explicitly focused on the RTG, are confined to the RTG. Future research will need to assess whether transfer to other games is possible. <!-- For those that took on the intervention message and showed coaxing behavior in the second trust game, the fact that the investor still defected in the final rounds might have reinforced the idea that not reciprocating negative behavior is a losing strategy after all.-->
+The effect of the intervention was not transferred to the Repeated Prisoner's Dilemma (RPD) game. There was no difference between the intervention and control condition in the rate of cooperation, whether before or after a preprogrammed defection by the artificial agent. As the prisoner's dilemma is a popular economic game, it is possible that participants had a strong prior commitment towards the strategy they would adopt, which was not overridden by the intervention. The RPD also involves much coarser actions (cooperate vs defect) than the finer-grained returns in the RTG. This makes it more difficult to observe more subtle effects of the intervention. As such, the RPD might not be the best choice of task to measure transfer. In any case, we can not rule out that the effects of the brief cognitive intervention, which explicitly focused on the RTG, are confined to the RTG. Future research will need to assess whether transfer to other games is possible. <!-- For those that took on the intervention message and showed coaxing behavior in the second trust game, the fact that the investor still defected in the final rounds might have reinforced the idea that not reciprocating negative behavior is a losing strategy after all.-->
 
-Analysing participants' behaviour with hidden Markov models, we found clear individual differences in how returns changed between the pre- and post-intervention RTG, which can be seen as a proxy for the effectiveness of the intervention. Some participants may not have been convinced that coaxing via high returns was a good way to establish cooperation and decided to reduce their returns in the second trust game. Their impulse to “punish” the other player for a transgression may have been too strong to be overridden by the intervention. This was also evident from the participants' replies to a question about whether they would change their behaviour, just after receiving the intervention. Other participants responded to the intervention and increased their returns. <!-- This raises important questions for the measurement of intervention effectiveness.--> Heterogeneity in response to treatment is common in psychiatry and related fields. Such heterogeneity may reflect the complex nature of mental health problems, which may be best viewed as complex systems involving interactions between neuro-computational processes and socio-environmental contexts evolving over time [@fried_moving_2017]. This view was used to justify computational psychiatry's difficulty in establishing differential and reliable predictors of likely treatment response [@hitchcock_computational_2022]. Here, we found heterogeneity in reaction to a relatively explicit intervention by a sample of participants from the general population. This suggests that the issue of variable treatment responses may result from the interaction of two sources of variability: the phenotyping of the disorder as well as the phenomenological aspects of the intervention itself. As such, a rigorous exploration of the determinants of inter-individual differences to an intervention in the general patient population is required.
+Analysing participants' behavior with hidden Markov models, we found clear individual differences in how returns changed between the pre- and post-intervention RTG, which can be seen as a proxy for the effectiveness of the intervention. Some participants may not have been convinced that coaxing via high returns was a good way to establish cooperation and decided to reduce their returns in the second trust game. Their impulse to “punish” the other player for a defection may have been too strong to be overridden by the intervention. This was also evident from participants' replies to a question about whether they would change their behavior, just after receiving the intervention. Other participants responded to the intervention and increased their returns. <!-- This raises important questions for the measurement of intervention effectiveness.--> Heterogeneity in response to treatment is common in psychiatry and related fields. Such heterogeneity may reflect the complex nature of mental health problems, which may be best viewed as complex systems involving interactions between neuro-computational processes and socio-environmental contexts evolving over time [@fried_moving_2017]. This view was used to justify computational psychiatry's difficulty in establishing differential and reliable predictors of likely treatment response [@hitchcock_computational_2022]. Here, we found heterogeneity in reaction to a relatively explicit intervention by a sample of participants from the general population. This suggests that the issue of variable treatment responses may result from the interaction of two sources of variability: the phenotyping of the disorder as well as the phenomenological aspects of the intervention itself. As such, a rigorous exploration of the determinants of inter-individual differences to an intervention in the general patient population is required.
 
-Overall, we are encouraged that our brief cognitive intervention, consisting of reading a short text detailing a non-impulsive reaction to low investments, can lead to clearly differentiated behaviour. In future studies, we aim to explore the effects of improved cognitive interventions to enhance cooperative behaviour. We may enhance engagement by making the intervention more interactive and visually appealing, rather than the "dry" textual format used in the experiment. It would also be of interest to test such interventions with who suffer from an inability or unwillingness to repair relationships after an accidental breakdown of trust, such as people with Borderline Personality Disorder. The relative ease by which online interventions can be assigned, and the opportunity for people to test the effect of their behaviour with artificial, but human-like agents, may pave the way for efficient, low-cost, effective treatment programmes which may help a wide-variety of people overcome detrimental actions in social situations.
-
-
-
-# Conclusion
+Overall, we are encouraged that our brief cognitive intervention, consisting of reading a short text detailing a non-impulsive reaction to low investments, can lead to clearly differentiated behavior. In future studies, we aim to explore the effects of improved cognitive interventions to enhance cooperative behavior. We may enhance engagement by making the intervention more interactive and visually appealing, rather than the "dry" textual format used in the experiment. It would also be of interest to test such interventions with participants that suffer from an inability or unwillingness to repair relationships after an accidental breakdown of trust, such as people with Borderline Personality Disorder. The relative ease by which online interventions can be assigned, and the opportunity for people to test the effect of their behavior with artificial but human-like agents, may pave the way for efficient, low-cost, effective treatment programmes which may help a wide-variety of people overcome detrimental actions in social situations.
 
 
-We explored the effect of a brief cognitive intervention on the behaviour of human trustees facing adaptive artificial investors designed to replicate the behaviour of human investors in the repeated trust game. Each state defines different levels of a cooperative response with the agent able to transition between these states based on the behavior of the human opponent. Feedback from participants indicated that these agents were sometimes perceived as humans. Their strategy led to emergent cooperative behaviour when playing the repeated trust game with human players. The intervention, promoting a less impulsive reaction to transgressive actions, led to coaxing behavior and less negative reciprocity when the investor sent a very low investment. It also led to more trustworthy behavior prior to the pre-programmed defection trial and to coaxing behavior after defection. Whilst this intervention effect varied between participants and generally was not transferred to a new game, an HMM analysis of participant's play post intervention showed differentiated patterns of transitions between latent states, indicating a change in the effect of the opponent action on the probability of transitioning between latent mental states.
+
+<!-- # Conclusion -->
+
+
+<!-- We explored the effect of a brief cognitive intervention on the behavior of human trustees facing adaptive artificial investors designed to replicate the behavior of human investors in the Repeated Trust Game. Each state defines different levels of a cooperative response with the agent able to transition between these states based on the behavior of the human opponent. Feedback from participants indicated that these agents were sometimes perceived as humans. Their strategy led to emergent cooperative behavior when playing the Repeated Trust Game with human players. The intervention, promoting a less impulsive reaction to transgressive actions, led to coaxing behavior and less negative reciprocity when the investor sent a very low investment. It also led to more trustworthy behavior prior to the pre-programmed defection trial and to coaxing behavior after defection. Whilst this intervention effect varied between participants and generally was not transferred to a new game, an HMM analysis of participant's play post intervention showed differentiated patterns of transitions between latent states, indicating a change in the effect of the opponent action on the probability of transitioning between latent mental states. -->
+
+\pagebreak
 
 # References

@@ -255,25 +255,10 @@ In the control condition, participants were asked to solve five anagrams ("liste
 ## Procedure
 
 
-<!-- Figure \ref{fig:timeline} shows the timeline of the experiment. After reviewing an information sheet about the experiment, participants were informed that there would be three phases to go through, with them facing a different opponent in each phase. They would face the same player throughout the first phase, consisting of the "Investment Game" with several rounds. This was the moniker used for the repeated trust game, and a total of 15 rounds were played. Participants were then randomly assigned to either a control or intervention condition. -->
-
-<!-- <!-- After reading instructions on how to play the trust game, players were told that they would be assigned the role of the trustee.  A comprehension quiz on the trust game followed the instructions. The first trust game then ensued:  Each round started with an investment stage where the investor decided how much to send to the trustee and that choice was revealed. Immediately afterwards, participants were presented with a two-dimensional field to indicate their emotional state on two dimensions: valence, from unpleasant to pleasant (on the horizontal axis) and arousal, from low arousal to high arousal (on the vertical axis). After selecting a point on the field, participants were asked to decide how much to send back to the investor using a slider ranging from sending back nothing to sending back the whole (tripled) investment. Following that choice, an outcome page summarised both players decisions and showed the total pay-off for each player and the round then concluded. At the end of the game, participants were asked to rate the player they were facing on 4 attributes using a scale from 1 to 10: Trustworthiness, friendliness, cooperativeness and selfishness. -->
-
-<!-- In the second phase of the experiment, participants were informed they would be paired with a different player. This phase was similar to the first phase in terms of the game played (RTG) and the number of rounds. In all rounds of the RTG, participants gave feedback after seeing the investment received. This feedback was given though a two dimensional grid that was either related to their emotional state (degree of valence of arousal) in the Intervention group, or unrelated to the emotional state in the control group (speed of investor's response and magnitude of investment). At the end of each RTG, participants were asked to rate how cooperative, selfish, trustworthy and friendly they thought their interaction partner was. Details of the two dimensional grid and player ratings are given in the supplement. -->
-
-<!-- After both trust games,  players were told they would be paired with a new player in the third phase of the experiment. This third phase consisted of 7 rounds of the prisoner's dilemma game, facing the new player. Throughout all games, players were explicitly told to aim to maximise the number of points as their bonus would depend on the score they accumulated throughout the experiment. The total number of rounds was not communicated to the participants in any of the games played. -->
-
-<!-- After the three phases were completed, participants were asked to complete a series of questionnaires at the end of the experiment.  -->
-
-<!-- <!-- These included: the PAI-BOR measuring Borderline traits [@morey_personality_1991], the DERS measuring Emotion Regulation ability [@gratz_multidimensional_2004] and the RFQ8 for mentalising abilities [@fonagy_development_2016].  -->
-
-<!-- Finally, participants were asked a series of questions around how they played each phase. First, they were asked whether they thought they played differently in the second compared to the first phase of the RTG. Second, participants had to select whether they thought the opponents they faced were human or computer agents. Finally, we revealed to the participants that they faced the same computer agent throughout the RTG. We explained that any change in their perception of the opponent or any change in how the opponent played is due to their own change in behavior as the agent was simply reacting to their actions. Finally, we asked participants to reveal whether this experiment has taught them anything about how they should behave in social situations. -->
-
 At the start of the experiment (Figure \ref{fig:timeline}), participants provided informed consent and were instructed the study would consist of three phases in which they would face a different other player. Participants were told their goal was to maximise the number of points in all phases. They were not told the number of rounds of each phase. Phase one was a 15 round Repeated Trust Game (RTG) in which participants took the role of trustee, facing the same investor over all 15 rounds. On each round, after being informed about the amount sent by the investor, participants were asked to provide feedback, with participants in the Intervention condition rating their feeling in terms of valence (from negative to positive) and arousal (from low to high), and participants in the Control condition rating the investment in terms of speed (from slow to fast) and magnitude (from low to high). These ratings were made by indicating a point on a two-dimensional grid. Participants then decided on how much of the tripled investment to return to the investor, before continuing to the next round. After completing 15 rounds of the RTG, participants rated how cooperative, selfish, trustworthy and friendly they perceived their interaction partner (all on a scale from 1 to 10). After phase one, participants in the intervention condition completed the intervention, and participants in the control condition solved anagrams. Subsequent phase two was similar to phase one, with participants being told they would face a new player. Phase three consisted of 7 rounds of the Repeated Prisoner's Dilemma game (RPD), with participants informed they would face a third player. Participants then completed questionnaires related to mentalising abilities, emotion regulation, and BPD traits (see the supplement for details). They were then asked about the strategy in the games, as well as whether they thought the other players were human or computer agents. They were then debriefed and thanked for their participation. 
 
 ## Statistical analysis
 
-<!-- To explore whether participants behaved differently in the RTG after the intervention compared to the control group, we estimate a linear-mixed effects model via the "afex" [@singmann_afex_2022] package for R [@R_package], of the percentage return (percentage of tripled investment returned to investor) as the dependent variable and with fixed effects for Condition (intervention vs. control), Game (RTG game pre vs. post-intervention) and Investment, as well as interactions between Condition and both Investment and Game, and participant-wise random intercepts and random slopes for Game. More complex models with additional random effects could not be estimated reliably, and as such the estimated model can be considered to include the optimal random effects structure [@matuschek2017balancing]. A similar process was used to establish the random effects structures of other linear mixed-effects models used throughout the statistical analyses. For the $F$-tests, we used the Kenward-Roger approximation to the degrees of freedom, as implemented in the R package "afex". We Z-transform the Investment variable as centering is beneficial to interpreting the main effects more easily in the presence of interactions. -->
 
 To explore whether participants behaved differently in the RTG after the intervention compared to the control group, we model the percentage return (percentage of tripled investment returned to investor) using a linear mixed-effects model as described below:
 
@@ -306,11 +291,6 @@ where:
 
 
 The model was estimated using the `afex` package [@singmann_afex_2022] in R [@R_package]. More complex models with additional random effects could not be estimated reliably, and as such the estimated model can be considered to include the optimal random effects structure [@matuschek2017balancing]. A similar process was used to establish the random effects structures of other linear mixed-effects models used throughout the statistical analyses. For the $F$-tests, we used the Kenward-Roger approximation to the degrees of freedom, as implemented in the R package "afex". We Z-transform the Investment variable as centering is beneficial to interpreting the main effects more easily in the presence of interactions.
-
-
-
-
-<!-- To explore whether the HMM investors behaved differently in the RTG after the intervention compared to the control group, we estimate linear mixed effects model of investments sent by the computerised HMM agent with Condition and Game and their interaction as fixed effects -->
 
 To model participants' returns in the RTG across games and conditions, we fit various hidden Markov models [@visser2022hidden] to participants' returns using the depmixS4 package [@visser_depmixs4_2021] for R. The transition between latent states is assumed to depend on the investment received and a dummy variable to characterise the group that the participant belongs to. Details on how the models are constructed can be found in the supplement. We fit models with different numbers of hidden states, and use the Bayesian Information Criterion [@schwarz_estimating_1978-1] to select the best model.
 
@@ -372,16 +352,6 @@ ggplot(avg_ret_df, aes(x=as.factor(roundNum), y=ret_pct, group=gameNum.f, color 
 ```{r, include =F}
 ret_post_int <- avg_ret_df %>% filter(roundNum == 13 , gameNum.f == "post") 
 
-# plot(jitter(ret_post_int$returns), main="Jitter Plot", ylab="Returns", pch=19, col="blue")
-# plot(ecdf(ret_post_int$returns), main="ECDF", xlab="Returns", ylab="Cumulative Probability")
-# 
-# ggplot(ret_post_int , aes(x = "", y = returns)) +
-#   geom_violin(fill="lightblue") +
-#   geom_boxplot(width=0.1, fill="white") +
-#   theme_minimal() +
-#   labs(x = NULL, y = "Returns", title = "Violin plot")
-
-
 library(ggplot2)
 ggplot(ret_post_int, aes(x = "", y = ret_pct)) +
   geom_violin(fill="lightblue") +
@@ -441,7 +411,7 @@ pctRet_all <- afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "conditi
   geom_signif(xmin = 0.8, xmax = 1.8, annotations = "***", y_position = 0.88, tip_length = 0.03, textsize = 3) +  # Intervention Group
   geom_signif(xmin = 1.2, xmax = 2.2, annotations = "*", y_position = 0.80, tip_length = 0.03, textsize = 3)  # Control Group
 
-pctRet_all
+
             
 ```
 

@@ -11,13 +11,15 @@ keywords:
 
 
 abstract: |
-  Social trust is an important building block of strong social bonds, and its absence is a risk factor for social dysfunction. As such, interventions to foster and strengthen trust-based cooperation are highly desirable. Using the Repeated Trust Game paradigm, we assess the effectiveness of a cognitive intervention derived from Dialectical Behavior Therapy. The intervention's goal was to repair the potential breakdown of cooperation from a pre-programmed, one-off defection by the opponent. Over two games, participants are given the role of the trustee and face what they believe are two different players. In between games, they either receive a brief cognitive intervention or not. Post-intervention, participants showed more cooperative behavior both before and after defection by the opponent. Analysing participants' actions with a hidden Markov model shows that participants in the intervention group had a lower probability of transitioning to non cooperative states, and a higher proportion of cooperative states, than participants in the control group. This is consistent with participants inferring from the intervention that pro-social and trustworthy behavior may generally provide more beneficial outcomes to them in the long run.
+  Social trust is an important building block of strong social bonds, and its absence is a risk factor for social dysfunction. As such, interventions to foster and strengthen trust-based cooperation are highly desirable. Using the Repeated Trust Game paradigm, we assess the effectiveness of a cognitive intervention derived from Dialectical Behavior Therapy. The intervention's goal was to repair the potential breakdown of cooperation from a pre-programmed, one-off defection by the opponent. Over two games, participants are given the role of the trustee and face what they believe are two different players. In between games, they either receive a brief cognitive intervention or not. Post-intervention, participants showed more cooperative behavior both before and after defection by the opponent. Analysing participants' actions with a hidden Markov model shows that participants in the intervention group had a higher proportion of cooperative states than participants in the control group. This is consistent with participants inferring from the intervention that pro-social and trustworthy behavior may generally provide more beneficial outcomes to them in the long run.
   
 bibliography: "bib/cogIntervention.bib"
 biblio-style: spphys
+
 output:
   bookdown::pdf_document2:
    toc: false
+
 ---
 \small  
 ^1^ *Department of Experimental Psychology, Division of Psychology and Language Sciences, UCL*.  
@@ -229,7 +231,7 @@ plotInvTran <- plot_HMM_transitions(3, pars_inv)
 ```
 
 
-```{r HMMPanels, fig.cap=" We construct the artificial investor agent by fitting a three-state hidden Markov model to data of human investors engaged in the 10 round Repeated Trust Game against human trustees. From the fitted HMM, we get the distribution of investments by the artificial investor agent conditional on its latent state as shown in Panel A. The fitted HMM also yields the transition probability of the agent to a state on trial t+1 as a function of the net return (difference between the investment sent and the amount received in return) on trial t as shown in Panel B. Each plot in Panel B represents a different starting latent state on trial t, and each line represents the probability of transitioning to a particular state in trial t+1. The policy in each state in Panel A and the way the agent transitions between states as defined in Panel B characterises the artificial agent's behavior in the Repeated Trust Game.", fig.align="center"}
+```{r HMMPanels, fig.cap="We construct the artificial investor agent by fitting a three-state hidden Markov model to data of human investors engaged in the 10 round Repeated Trust Game against human trustees. From the fitted HMM, we get the distribution of investments by the artificial investor agent conditional on its latent state as shown in Panel A. The fitted HMM also yields the transition probability of the agent to a state on trial t+1 as a function of the net return (difference between the investment sent and the amount received in return) on trial t as shown in Panel B. Each plot in Panel B represents a different starting latent state on trial t, and each line represents the probability of transitioning to a particular state in trial t+1. The policy in each state in Panel A and the way the agent transitions between states as defined in Panel B characterises the artificial agent's behavior in the Repeated Trust Game.", fig.align="center"}
 
 ggpubr::ggarrange(plotinvHMM , plotInvTran, nrow=2, ncol=1, labels = c("A", "B"), common.legend = TRUE, legend = "bottom")
 
@@ -394,7 +396,7 @@ ggplot(ret_post_int, aes(x = "", y = ret_pct)) +
 ```
 
 
-```{r, include=FALSE, cache=TRUE}
+```{r modAllReturns, include=FALSE, cache=TRUE}
 
 mod_returns_pct <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| playerId), avg_ret_df, REML= TRUE, method="KR")
 anova(mod_returns_pct)
@@ -415,6 +417,16 @@ effectsize::eta_squared(mod_returns_pct)
 ```
 
 
+```{r, include=F}
+# Function to calculate y_position for geom_signif
+calculate_y_position <- function(plot) {
+  plot_data <- ggplot_build(plot)$data[[1]]
+  max_y <- max(plot_data$ymax, na.rm = TRUE)
+  y_position <- max_y + (max_y * 0.05) # Adding 5% of the maximum y-value as a margin
+  return(y_position)
+}
+```
+
 ```{r, include=FALSE}
 pctRet_all <- afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
             mapping = c("linetype", "shape", "fill"),
@@ -424,8 +436,12 @@ pctRet_all <- afex::afex_plot(mod_returns_pct, x = "gameNum.f", trace = "conditi
   theme_bw() + 
   labs(y = "Percentage Return", x = "Game") + 
   ggtitle("All rounds percentage returns") + 
-  theme(plot.title = element_text(size = 10)) +
-  theme(legend.position = "bottom") 
+  theme(plot.title = element_text(size = 16)) +
+  theme(legend.position = "bottom") +
+  geom_signif(xmin = 0.8, xmax = 1.8, annotations = "***", y_position = 0.88, tip_length = 0.03, textsize = 3) +  # Intervention Group
+  geom_signif(xmin = 1.2, xmax = 2.2, annotations = "*", y_position = 0.80, tip_length = 0.03, textsize = 3)  # Control Group
+
+pctRet_all
             
 ```
 
@@ -441,7 +457,7 @@ Finally, we find a three way interaction between Game, Condition and Investment,
 
 
 
-```{r, include=FALSE, cache=TRUE}
+```{r modInvs, include=FALSE, cache=TRUE}
 mod_invs <- mixed( investment ~ gameNum.f*condition.f  + (1 + gameNum.f| playerId), avg_ret_df, method="KR")
 summary(mod_invs)
 anova(mod_invs)
@@ -469,9 +485,11 @@ inv_all <- afex_plot(mod_invs, x = "gameNum.f", trace = "condition.f", dodge = 0
   theme_bw() + 
   ggtitle("All rounds investments") +
   labs(y = "HMM Investment", x = "Game") + 
-  theme(plot.title = element_text(size = 10)) +
-  theme(legend.position = "bottom")
-          
+  theme(plot.title = element_text(size = 16)) +
+  theme(legend.position = "bottom") +
+  geom_signif(xmin = 0.8, xmax = 1.8, annotations = "***", y_position = 1, tip_length = -0.03,textsize = 3) +  # Intervention Group
+  geom_signif(xmin = 1.2, xmax = 2.2, annotations = "***", y_position = 18, tip_length = 0.03,textsize = 3)   # Control Group
+  
 
 ```
 
@@ -485,12 +503,17 @@ pre_int_data <- avg_ret_df %>% filter(roundType=="trust",!is.na(gameNum.f),(roun
 mod_returns_pre <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| playerId), pre_int_data, REML= TRUE, method="KR")
 anova(mod_returns_pre)
 summary(mod_returns_pre)
+saveRDS(mod_returns_pre, "data/mod_returns_pre")
 
 pairs_pre_int <- pairs(emmeans::emmeans(mod_returns_pre, c("gameNum.f"), by = "condition.f", pbkrtest.limit = 9400, reverse=TRUE))
+saveRDS(pairs_pre_int, "data/pairs_pre_int")
 
 ```
+
 ```{r, include=F}
-saveRDS(summary(mod_returns_pre), "data/mod_returns_pre")
+
+# load(mod_returns_pre)
+# load(pairs_pre_int)
 ```
 
 
@@ -509,8 +532,11 @@ pctRet_pre <- afex_plot(mod_returns_pre, x = "gameNum.f", trace = "condition.f",
   theme_bw() + 
   labs(y = "Percentage Return", x = "Game") + 
   ggtitle("Pre defection trials percentage returns")+
-  theme(plot.title = element_text(size = 10)) +
-  theme(legend.position = "bottom")
+  theme(plot.title = element_text(size = 16)) +
+  theme(legend.position = "bottom") + 
+  geom_signif(xmin = 0.8, xmax = 1.8, annotations = "***", y_position = 0.95, tip_length = 0.03,textsize = 3) +  # Intervention Group
+  geom_signif(xmin = 1.2, xmax = 2.2, annotations = "n.s", y_position = 0.85, tip_length = 0.03,textsize = 3)   # Control Group
+
 ```
 
 ```{r, include =FALSE}
@@ -549,6 +575,7 @@ saveRDS(summary(mod_postcoax_trust), "data/mod_returns_post")
 ```
 
 ```{r, include=FALSE}
+
 pctRet_post <- afex_plot(mod_postcoax_trust, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
             mapping = c("linetype", "shape", "fill"),
             data_geom = geom_violin,
@@ -557,12 +584,15 @@ pctRet_post <- afex_plot(mod_postcoax_trust, x = "gameNum.f", trace = "condition
             legend_title = "Condition") + 
   theme_bw() + 
   labs(y = "Percentage Return", x = "Game") + 
-  ggtitle("Post defection trials percentage returns")+
-  theme(plot.title = element_text(size = 10)) +
-  theme(legend.position = "bottom")
+  ggtitle("Post defection trials percentage returns") +
+  theme(plot.title = element_text(size = 16)) +
+  theme(legend.position = "bottom") +
+  geom_signif(xmin = 0.8, xmax = 1.8, annotations = "n.s", y_position = 0.95, tip_length = 0.03,textsize = 3) +  # Intervention Group
+  geom_signif(xmin = 1.2, xmax = 2.2, annotations = "***", y_position = 0.9, tip_length = 0.03,textsize = 3)   # Control Group
+
 ```
 
-```{r violinPanels, fig.cap="Participants in the Intervention condition returned higher proportions of the multiplied investment received in the second game compared to the first game over all ronds (Panel A). This was also the case both before (Panel C) and after (Panel D) the pre-programmed defection by the HMM investor. Those in the control conditions returned similar amounts between games before the defection, and lower amounts in the second game after the defection by the investor. Investments by the HMM agent (Panel B) were higher in the second game compared to the first game across conditions. All panels show marginal means and distributions of either investments or percentage returns across participants by Game and Condition", fig.align="center", fig.width=6, fig.height = 6}
+```{r violinPanels, fig.cap="Participants in the Intervention condition returned higher proportions of the multiplied investment received in the second game compared to the first game over all ronds (Panel A), whilst those in the Control condition sent back lower returns. Focusing on pre-defection trials (Panel C), those in the Control condition returned similar amounts between games, while returns were higher in the Intervention condition in the second game. Post-defection (Panel D), returns were similar for those in the Intervention condition while those in the Control condition returned lower amounts in the second game. Investments by the HMM agent (Panel B) were higher in the second game compared to the first game across conditions. All panels show marginal means and distributions of either investments or percentage returns across participants by Game and Condition", fig.align="center", fig.height=10, fig.width=10}
 
 ggpubr::ggarrange(pctRet_all, inv_all, pctRet_pre, pctRet_post, nrow=2, ncol=2, labels = c("A", "B", "C", "D"), common.legend = TRUE, legend = "bottom")
 ```
@@ -611,7 +641,7 @@ datCtrl <- full_dat %>% filter(condition.f=="control")
 
 ```
 
-```{r emoPlotCoax, fig.cap="Self-reported emotion valence and arousal as well as investment z-scores for each round of the Repeated Trust Game averaged across participants in the intervention condition only. The participants' emotion self-reports for the investor's defection were similar before and after the intervention.",fig.align="center", fig.width=7, fig.height = 4}
+```{r emoPlotCoax, fig.cap="Self-reported emotion valence and arousal as well as investment z-scores for each round of the Repeated Trust Game averaged across participants in the intervention condition only. The participants' emotion reaction measured during the investor's defection round were similar before (round 12) and after (round 13) the intervention.",fig.align="center", fig.width=7, fig.height = 4}
 
 #################### two panels for before and after defection 
 library(ggplot2)
@@ -862,7 +892,7 @@ turing  %>%
 
 # HMM analysis of participant returns
 
-```{r, include=FALSE}
+```{r, include=FALSE, echo=FALSE, warning=F}
 
 
 # Removing player whose return was not properly recorded by data (NA in one of the rounds) so as to run depmixS4
@@ -939,10 +969,295 @@ order_mod_gauss <- function(mod) {
   return(mod)
 }
 
+# ordering states for a truncated discretised Gaussian
+order_mod_truncdiscgaus <- function(mod) {
+  ns <- nstates(mod)
+  sum <- rep(0.0,ns)
+  for(i in 1:ns) {
+    # Expected return in each state calculation
+    tpars <- getpars(mod@response[[i]][[1]])
+    dmod <- truncdiscgaus(seq(0, 20), pstart = tpars, min=-0.5, max=20.5)
+    sum[i] <- sum(seq(0,20)*dens(dmod))
+  }
+  cat("Expected values for states: ",sum, "\n")
+  # reordering the states
+  mod <- label_switch(mod, rank(sum, ties.method = "first"))
+  return(mod)
+}
+
+# ordering states for a variable response truncated discretised Gaussian
+order_mod_vtdgaus <- function(mod) {
+  ns <- nstates(mod)
+  sum <- rep(0.0,ns)
+  for(i in 1:ns) {
+    # Expected return in each state calculation
+    tpars <- getpars(mod@response[[i]][[1]])
+    dmod <- vtdgaus(seq(0, 1, length=61), pstart = tpars, yield=rep(60, 61))
+    sum[i] <- sum(seq(0, 1, length=61)*dens(dmod))
+  }
+  # reordering the states
+  mod <- label_switch(mod, rank(sum, ties.method = "first"))
+  return(mod)
+}
+
 
 ```
 
 ```{r, include=F}
+# # define a response class which only contains the standard slots, no additional slots
+# setClass("discgaus", contains="response", slots=c(breaks="numeric"))
+# 
+# # define a generic for the method defining the response class
+# 
+# setGeneric("discgaus", function(y, pstart = NULL, fixed = NULL, ...) standardGeneric("discgaus"))
+# 
+# # define the method that creates the response class
+# 
+# setMethod("discgaus", 
+#           signature(y="ANY"), 
+#           function(y,pstart=NULL,fixed=NULL, breaks = c(-Inf, 0:19 + .5, Inf), ...) {
+#             y <- matrix(y,length(y))
+#             x <- matrix(1)
+#             parameters <- list()
+#             npar <- 2
+#             if(is.null(fixed)) fixed <- as.logical(rep(0,npar))
+#             if(!is.null(pstart)) {
+#               if(length(pstart)!=npar) stop("length of 'pstart' must be ",npar)
+#               parameters$mu <- pstart[1]
+#               parameters$sigma <- pstart[2]
+#             }
+#             mod <- new("discgaus",parameters=parameters,fixed=fixed,x=x,y=y,npar=npar, breaks=breaks)
+#             mod
+#           }
+# )
+# 
+# setMethod("show","discgaus",
+#           function(object) {
+#             cat("Gaussian with discrete support\n")
+#             cat("Parameters: \n")
+#             cat("mu: ", object@parameters$mu, "\n")
+#             cat("sigma: ", object@parameters$sigma, "\n")
+#           }
+# )
+# 
+# setMethod("dens","discgaus",
+#           function(object,log=FALSE) {
+#             p <- pnorm(object@breaks[-1], mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(object@breaks[-length(object@breaks)], mean = object@parameters$mu, sd = object@parameters$sigma)
+#             if(log) return(log(p[as.numeric(cut(object@y, breaks=object@breaks))])) else return(p[as.numeric(cut(object@y, breaks=object@breaks))])
+#           }
+# )
+# 
+# setMethod("setpars","discgaus",
+#           function(object, values, which="pars", ...) {
+#             npar <- npar(object)
+#             if(length(values)!=npar) stop("length of 'values' must be",npar)
+#             # determine whether parameters or fixed constraints are being set
+#             nms <- names(object@parameters)
+#             switch(which,
+#                    "pars"= {
+#                      object@parameters$mu <- values[1]
+#                      object@parameters$sigma <- values[2]
+#                    },
+#                    "fixed" = {
+#                      object@fixed <- as.logical(values)
+#                    }
+#             )
+#             names(object@parameters) <- nms
+#             return(object)
+#           }
+# )
+# 
+# setMethod("getpars","discgaus",
+#           function(object,which="pars",...) {
+#             switch(which,
+#                    "pars" = {
+#                      parameters <- numeric()
+#                      parameters <- unlist(object@parameters)
+#                      pars <- parameters
+#                    },
+#                    "fixed" = {
+#                      pars <- object@fixed
+#                    }
+#             )
+#             return(pars)
+#           }
+# )
+# 
+# setMethod("fit","discgaus",
+#           function(object,w) {
+#             if(missing(w)) w <- NULL
+#             if(!is.null(w)) {
+#               negLL <- function(pars) {
+#                 object <- setpars(object, c(pars[1], exp(pars[2])))
+#                 -sum(w*log(dens(object)))
+#               }
+#             } else {
+#               negLL <- function(pars) {
+#                 object <- setpars(object, c(pars[1], exp(pars[2])))
+#                 -sum(log(dens(object)))
+#               }
+#             }
+#             pars <- optim(c(object@parameters$mu, log(object@parameters$sigma)), fn=negLL)$par
+#             object <- setpars(object,c(pars[1], exp(pars[2])))
+#             object
+#           }
+# )
+# 
+# setClass("truncdiscgaus", contains="discgaus", slots=c(min="numeric", max="numeric"))
+# 
+# setMethod("dens","truncdiscgaus",
+#           function(object,log=FALSE) {
+#             breaks <- c(object@min, object@breaks[object@breaks > object@min & object@breaks < object@max], object@max)
+#             p <- pnorm(breaks[-1], mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(breaks[-length(breaks)], mean = object@parameters$mu, sd = object@parameters$sigma)
+#             p <- p/sum(p)
+#             if(log) return(log(p[as.numeric(cut(object@y, breaks=object@breaks))])) else return(p[as.numeric(cut(object@y, breaks=object@breaks))])
+#           }
+# )
+# 
+# setGeneric("truncdiscgaus", function(y, pstart = NULL, fixed = NULL, ...) standardGeneric("truncdiscgaus"))
+# 
+# setMethod("truncdiscgaus", 
+#           signature(y="ANY"), 
+#           function(y,pstart=NULL,fixed=NULL, breaks = c(-Inf, 0:19 + .5, Inf), min=0, max=20, ...) {
+#             y <- matrix(y,length(y))
+#             x <- matrix(1)
+#             parameters <- list()
+#             npar <- 2
+#             if(is.null(fixed)) fixed <- as.logical(rep(0,npar))
+#             if(!is.null(pstart)) {
+#               if(length(pstart)!=npar) stop("length of 'pstart' must be ",npar)
+#               parameters$mu <- pstart[1]
+#               parameters$sigma <- pstart[2]
+#             }
+#             mod <- new("truncdiscgaus",parameters=parameters,fixed=fixed,x=x,y=y,npar=npar, breaks=breaks, min=min, max=max)
+#             mod
+#           }
+# )
+# 
+# 
+# order_mod_gauss <- function(mod) {
+#   ns <- nstates(mod)
+#   sum <- rep(0.0,ns)
+#   for(i in 1:ns) {
+#     # Expected return in each state calculation 
+#     sum[i] = mod@response[[i]][[1]]@parameters$mu
+#   }
+#   # reordering the states
+#   mod <- label_switch(mod, rank(sum))
+#   return(mod)
+# }
+# 
+# # define a response class which only contains the standard slots, no additional slots
+# setClass("vtdgaus", contains="response", slots=c(yield="numeric"))
+# 
+# # define a generic for the method defining the response class
+# 
+# setGeneric("vtdgaus", function(y, pstart = NULL, fixed = NULL, ...) standardGeneric("vtdgaus"))
+# 
+# # define the method that creates the response class
+# 
+# setMethod("vtdgaus", 
+#           signature(y="ANY"), 
+#           function(y, yield, pstart=NULL,fixed=NULL, ...) {
+#             y <- matrix(y,length(y))
+#             x <- matrix(1)
+#             parameters <- list()
+#             npar <- 2
+#             if(is.null(fixed)) fixed <- as.logical(rep(0,npar))
+#             if(!is.null(pstart)) {
+#               if(length(pstart)!=npar) stop("length of 'pstart' must be ",npar)
+#               parameters$mu <- pstart[1]
+#               parameters$sigma <- pstart[2]
+#             } else {
+#               parameters <- list(mu=.5,sigma=1)
+#             }
+#             mod <- new("vtdgaus",parameters=parameters,fixed=fixed,x=x,y=y,npar=npar, yield=yield)
+#             mod
+#           }
+# )
+# 
+# setMethod("show","vtdgaus",
+#   function(object) {
+#     cat("Gaussian with variable discrete support for percentage responses\n")
+#     cat("Parameters: \n")
+#     cat("mu: ", object@parameters$mu, "\n")
+#     cat("sigma: ", object@parameters$sigma, "\n")
+#   }
+# )
+# 
+# setMethod("dens","vtdgaus",
+#   function(object,log=FALSE) {
+#       # determine cuts for pnorm based on 
+#       p <- pnorm(sapply(object@y + .5*(1/object@yield),function(x) min(x,1.001)), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(sapply(object@y - .5*(1/object@yield),function(x) max(x,-0.001)), mean = object@parameters$mu, sd = object@parameters$sigma)
+#       norm <- (pnorm(1 + .001, mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(-0.001, mean = object@parameters$mu, sd = object@parameters$sigma))
+#       p <- p/norm
+#       # alternatively, normalize factor based on size of cuts
+#       #p <- pnorm(object@y + .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(object@y - .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma)
+#       #p <- p/(pnorm(1 + .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(0 - .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma))
+#     # probability when yield == 0 is always 1 
+#       p[object@yield == 0] <- 1
+#       if(log) return(log(p)) else return(p)
+#     }
+# )
+# 
+# setMethod("setpars","vtdgaus",
+#           function(object, values, which="pars", ...) {
+#             npar <- npar(object)
+#             if(length(values)!=npar) stop("length of 'values' must be",npar)
+#             # determine whether parameters or fixed constraints are being set
+#             nms <- names(object@parameters)
+#             switch(which,
+#                    "pars"= {
+#                      object@parameters$mu <- values[1]
+#                      object@parameters$sigma <- values[2]
+#                    },
+#                    "fixed" = {
+#                      object@fixed <- as.logical(values)
+#                    }
+#             )
+#             names(object@parameters) <- nms
+#             return(object)
+#           }
+# )
+# 
+# setMethod("getpars","vtdgaus",
+#           function(object,which="pars",...) {
+#             switch(which,
+#                    "pars" = {
+#                      parameters <- numeric()
+#                      parameters <- unlist(object@parameters)
+#                      pars <- parameters
+#                    },
+#                    "fixed" = {
+#                      pars <- object@fixed
+#                    }
+#             )
+#             return(pars)
+#           }
+# )
+# 
+# setMethod("fit","vtdgaus",
+#           function(object,w) {
+#             if(missing(w)) w <- NULL
+#             if(!is.null(w)) {
+#               negLL <- function(pars) {
+#                 object <- setpars(object, c(pars[1], exp(pars[2])))
+#                 -sum(w*log(dens(object)))
+#               }
+#             } else {
+#               negLL <- function(pars) {
+#                 object <- setpars(object, c(pars[1], exp(pars[2])))
+#                 -sum(log(dens(object)))
+#               }
+#             }
+#             pars <- optim(c(object@parameters$mu, log(object@parameters$sigma)), fn=negLL)$par
+#             object <- setpars(object,c(pars[1], exp(pars[2])))
+#             object
+#           }
+# )
+```
+
+```{r,include=F}
 # define a response class which only contains the standard slots, no additional slots
 setClass("discgaus", contains="response", slots=c(breaks="numeric"))
 
@@ -954,7 +1269,7 @@ setGeneric("discgaus", function(y, pstart = NULL, fixed = NULL, ...) standardGen
 
 setMethod("discgaus", 
           signature(y="ANY"), 
-          function(y,pstart=NULL,fixed=NULL, breaks = c(-Inf, 0:19 + .5, Inf), ...) {
+          function(y,pstart=NULL,fixed=NULL, breaks = c(-Inf, seq(0, 19) + .5, Inf), ...) {
             y <- matrix(y,length(y))
             x <- matrix(1)
             parameters <- list()
@@ -964,6 +1279,8 @@ setMethod("discgaus",
               if(length(pstart)!=npar) stop("length of 'pstart' must be ",npar)
               parameters$mu <- pstart[1]
               parameters$sigma <- pstart[2]
+            } else {
+              parameters <- list(mu = 10, sigma = 3)
             }
             mod <- new("discgaus",parameters=parameters,fixed=fixed,x=x,y=y,npar=npar, breaks=breaks)
             mod
@@ -1047,9 +1364,16 @@ setClass("truncdiscgaus", contains="discgaus", slots=c(min="numeric", max="numer
 setMethod("dens","truncdiscgaus",
           function(object,log=FALSE) {
             breaks <- c(object@min, object@breaks[object@breaks > object@min & object@breaks < object@max], object@max)
-            p <- pnorm(breaks[-1], mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(breaks[-length(breaks)], mean = object@parameters$mu, sd = object@parameters$sigma)
-            p <- p/sum(p)
-            if(log) return(log(p[as.numeric(cut(object@y, breaks=object@breaks))])) else return(p[as.numeric(cut(object@y, breaks=object@breaks))])
+            prec <- pnorm(object@max, mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(object@min, mean = object@parameters$mu, sd = object@parameters$sigma)
+            if(prec < 1e-12) {
+              # return uniform probabilities as precision is likely off
+              p <- rep(1/(length(breaks)-1), length(object@y))
+              if(log) return(log(p)) else return(p)
+            } else {
+              p <- pnorm(breaks[-1], mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(breaks[-length(breaks)], mean = object@parameters$mu, sd = object@parameters$sigma)
+              p <- p/sum(p)
+              if(log) return(log(p[as.numeric(cut(object@y, breaks=object@breaks))])) else return(p[as.numeric(cut(object@y, breaks=object@breaks))])
+            }
           }
 )
 
@@ -1057,7 +1381,7 @@ setGeneric("truncdiscgaus", function(y, pstart = NULL, fixed = NULL, ...) standa
 
 setMethod("truncdiscgaus", 
           signature(y="ANY"), 
-          function(y,pstart=NULL,fixed=NULL, breaks = c(-Inf, 0:19 + .5, Inf), min=0, max=20, ...) {
+          function(y,pstart=NULL,fixed=NULL, breaks = c(-Inf, seq(0, 19) + .5, Inf), min=-0.5, max=20.5, ...) {
             y <- matrix(y,length(y))
             x <- matrix(1)
             parameters <- list()
@@ -1072,19 +1396,6 @@ setMethod("truncdiscgaus",
             mod
           }
 )
-
-
-order_mod_gauss <- function(mod) {
-  ns <- nstates(mod)
-  sum <- rep(0.0,ns)
-  for(i in 1:ns) {
-    # Expected return in each state calculation 
-    sum[i] = mod@response[[i]][[1]]@parameters$mu
-  }
-  # reordering the states
-  mod <- label_switch(mod, rank(sum))
-  return(mod)
-}
 
 # define a response class which only contains the standard slots, no additional slots
 setClass("vtdgaus", contains="response", slots=c(yield="numeric"))
@@ -1127,13 +1438,22 @@ setMethod("show","vtdgaus",
 setMethod("dens","vtdgaus",
   function(object,log=FALSE) {
       # determine cuts for pnorm based on 
-      p <- pnorm(sapply(object@y + .5*(1/object@yield),function(x) min(x,1.001)), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(sapply(object@y - .5*(1/object@yield),function(x) max(x,-0.001)), mean = object@parameters$mu, sd = object@parameters$sigma)
-      norm <- (pnorm(1 + .001, mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(-0.001, mean = object@parameters$mu, sd = object@parameters$sigma))
-      p <- p/norm
+      #p <- pnorm(sapply(object@y + .5*(1/object@yield), function(x) min(x,1.001)), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(sapply(object@y - .5*(1/object@yield),function(x) max(x,-0.001)), mean = object@parameters$mu, sd = object@parameters$sigma)
+      #norm <- (pnorm(1 + .001, mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(-0.001, mean = object@parameters$mu, sd = object@parameters$sigma))
+      #p <- p/norm
+    
       # alternatively, normalize factor based on size of cuts
-      #p <- pnorm(object@y + .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(object@y - .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma)
-      #p <- p/(pnorm(1 + .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(0 - .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma))
-    # probability when yield == 0 is always 1 
+    
+      prec <- pnorm(1 + .5*(1/60), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(0 - .5*(1/60), mean = object@parameters$mu, sd = object@parameters$sigma)
+      # check for issues with precision, using highest yield
+      if(prec < 1e-12) {
+        p <- 1/(object@yield + 1)
+      } else {
+        p <- pnorm(object@y + .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(object@y - .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma)
+        norm <- pnorm(1 + .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma) - pnorm(0 - .5*(1/object@yield), mean = object@parameters$mu, sd = object@parameters$sigma)
+        p <- p/norm
+      }
+      # probability when yield == 0 is always 1 
       p[object@yield == 0] <- 1
       if(log) return(log(p)) else return(p)
     }
@@ -1196,6 +1516,7 @@ setMethod("fit","vtdgaus",
 )
 ```
 
+
 ```{r, include=F}
 priordat <- avg_ret_df %>% filter(roundNum==1)
 n_state_min <- 2
@@ -1224,7 +1545,17 @@ simple_HMMs <- ctrl_HMMs <- coax_HMMs <- fullCtrst_HMMs <- prePost_HMMs <- list(
 
 for(i in n_state_min:n_state_max) {
 
-  rModels <- rep(list(list(vtdgaus(y=avg_ret_df$ret_pct_0,yield=3*avg_ret_df$investment))),each=i)
+  # rModels <- rep(list(list(vtdgaus(y=avg_ret_df$ret_pct_0,yield=3*avg_ret_df$investment))),each=i)
+  
+  ###########################################################
+  mus <- (1:i)*(1/(i+1))
+  sigmas <- rep(1/(i+1), i)
+  rModels <- list()
+  for(s in 1:i) {
+    rModels[[s]] <- list(vtdgaus(y=avg_ret_df$ret_pct_0,yield=3*avg_ret_df$investment, pstart=c(mus[s],sigmas[s])))
+  }
+  #########################################################
+  
   
   simple_HMMs[[i]] <- makeDepmix(response=rModels,transition=trust_simple[[i]]@transition,prior=trust_simple[[i]]@prior, ntimes = rep(15,636), homogeneous=FALSE)
   
@@ -1237,49 +1568,53 @@ for(i in n_state_min:n_state_max) {
   prePost_HMMs[[i]] <- makeDepmix(response=rModels,transition=trust_prePost[[i]]@transition,prior=trust_prePost[[i]]@prior, ntimes = rep(15,636), homogeneous=FALSE)
     
 }
+
+
 ```
 
 ```{r, include=FALSE}
 
 # fittedSimple <- fittedCoax  <- fittedCtrl  <- fittedFullCtrst  <- fittedPrePost  <- list()
-# # increase default in multistart from 10 to 20. or set the same seed for every model
-# 
 # set.seed(20221028)
 # for(i in n_state_min:n_state_max) {
 # 
-#   fittedSimple[[i]] <- multistart(simple_HMMs[[i]],nstart=20)
+#   #fittedSimple[[i]] <- multistart(simple_HMMs[[i]],nstart=20)
+#   fittedSimple[[i]] <- fit(simple_HMMs[[i]], emcontrol=em.control(random.start = FALSE))
 # }
-# save(fittedSimple, file="fittedSimple.RData")
+# save(fittedSimple, file="data/fittedSimple.RData")
 # ##############################
 # 
 # set.seed(20221028)
 # for(i in n_state_min:n_state_max) {
-#   fittedCtrl[[i]] <- multistart(ctrl_HMMs[[i]],nstart=20)
+#   #fittedCtrl[[i]] <- multistart(ctrl_HMMs[[i]],nstart=20)
+#   fittedCtrl[[i]] <- fit(ctrl_HMMs[[i]], emcontrol=em.control(random.start = FALSE))
 # }
-# save(fittedCtrl, file="fittedCtrl.RData")
+# save(fittedCtrl, file="data/fittedCtrl.RData")
 # ##############################
 # 
-# fittedCoax <- list()
+# 
 # set.seed(20230918)
 # for(i in n_state_min:n_state_max) {
-#   fittedCoax[[i]] <- multistart(coax_HMMs[[i]],nstart=20)
+#   # fittedCoax[[i]] <- multistart(coax_HMMs[[i]],nstart=20)
+#   fittedCoax[[i]] <- fit(coax_HMMs[[i]], emcontrol=em.control(random.start = FALSE))
 # }
-# save(fittedCoax, file="fittedCoax.RData")
+# save(fittedCoax, file="data/fittedCoax.RData")
 # ##############################
 # 
 # set.seed(20221028)
 # for(i in n_state_min:n_state_max) {
-#   fittedPrePost[[i]] <- multistart(prePost_HMMs[[i]],nstart=20)
+#   #fittedPrePost[[i]] <- multistart(prePost_HMMs[[i]],nstart=20)
+#   fittedPrePost[[i]] <- fit(prePost_HMMs[[i]], emcontrol=em.control(random.start = FALSE))
 # }
-# save(fittedPrePost, file="fittedPrePost.RData")
+# save(fittedPrePost, file="data/fittedPrePost.RData")
 # #############################
 # 
-# 
-# 
+# set.seed(20230922)
 # for(i in n_state_min:n_state_max) {
-#   fittedFullCtrst[[i]] <- multistart(fullCtrst_HMMs[[i]],nstart=20)
+#   #fittedFullCtrst[[i]] <- multistart(fullCtrst_HMMs[[i]],nstart=20)
+#   fittedFullCtrst[[i]] <- fit(fullCtrst_HMMs[[i]], emcontrol=em.control(random.start = FALSE))
 # }
-# save(fittedFullCtrst, file="fittedFullCtrst.RData")
+# save(fittedFullCtrst, file="data/fittedFullCtrst.RData")
 # ###############################
 
 
@@ -1290,23 +1625,9 @@ for(i in n_state_min:n_state_max) {
 load("data/fittedSimple.RData")
 load("data/fittedCtrl.RData")
 load("data/fittedCoax.RData")
-load("data/fittedFullCtrst.RData")
 load("data/fittedPrePost.RData")
-load("data/newFull.RData")
+load("data/fittedFullCtrst.RData")
 
-# 
-# has_converged <- function(object, numeric = TRUE){
-#   msg <- object@message
-#   if(numeric) as.integer(grepl("converged", msg)) else 0
-# }
-# 
-# 
-# sapply(fittedSimple[2:7],has_converged)
-# sapply(fittedCtrl[2:7],has_converged)
-# sapply(fittedCoax[2:7],has_converged)
-# sapply(fittedFullCtrst[2:7],has_converged)
-# sapply(fittedPrePost[2:7],has_converged)
-# sapply(newFull[2:7],has_converged)
 
 ```
 
@@ -1320,7 +1641,7 @@ load("data/newFull.RData")
 # 
 #   fmod <- fittedSimple[[ns]]
 #   origin_pars <- getpars(fmod)
-#   numCovIn <- 2 
+#   numCovIn <- 2
 #   numCovTr <- 2
 # 
 #   # create a new vector which has the right number of pars for the initial state probabilities
@@ -1332,10 +1653,10 @@ load("data/newFull.RData")
 #   new_mat <- mat[,c(1:2,2,2)]
 #   new_pars <- c(new_pars,as.numeric(new_mat))
 #   }
-#   #Concatenate the new vectors with the old vector of  "response parameters" 
+#   #Concatenate the new vectors with the old vector of  "response parameters"
 #   new_pars <- c(new_pars,origin_pars[(ns*numCovIn + 1 + (ns - 1)*numCovTr*ns + numCovTr*ns):length(origin_pars)])
 # 
-#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it. 
+#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it.
 #   newCtrl[[ns]] <- setpars(newCtrl[[ns]],new_pars)
 #   newCtrl[[ns]] <- fit(newCtrl[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
 # }
@@ -1349,7 +1670,6 @@ load("data/newFull.RData")
 ```{r, include=F}
 
 # Fitting "Coax" models with initial parameters from the fitted "Simple" model.
-# 
 # newCoax <- fittedCoax
 # for (ns in n_state_min : n_state_max){
 # 
@@ -1381,14 +1701,14 @@ load("data/newFull.RData")
 
 ```{r, include=F}
 
-# Fitting "Prepost" models with initial parameters from the fitted "Simple" model. 
+# Fitting "Prepost" models with initial parameters from the fitted "Simple" model.
 
 # newPrePost <- fittedPrePost
 # for (ns in n_state_min : n_state_max){
 # 
 #   fmod <- fittedSimple[[ns]]
 #   origin_pars <- getpars(fmod)
-#   numCovIn <- 2 
+#   numCovIn <- 2
 #   numCovTr <- 2
 # 
 #   # create a new vector which has the right number of pars for the initial state probabilities
@@ -1400,10 +1720,10 @@ load("data/newFull.RData")
 #   new_mat <- mat[,c(1:2,2,2)]
 #   new_pars <- c(new_pars,as.numeric(new_mat))
 #   }
-#   #Concatenate the new vectors with the old vector of  "response parameters" 
+#   #Concatenate the new vectors with the old vector of  "response parameters"
 #   new_pars <- c(new_pars,origin_pars[(ns*numCovIn + 1 + (ns - 1)*numCovTr*ns + numCovTr*ns):length(origin_pars)])
 # 
-#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it. 
+#   # Set initial parameters of more complex model as the matrix of parameters we created from the simpler model and fit it.
 #   newPrePost[[ns]] <- setpars(newPrePost[[ns]],new_pars)
 #   newPrePost[[ns]] <- fit(newPrePost[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
 # }
@@ -1422,16 +1742,10 @@ load("data/newFull.RData")
 
 ```{r, include=FALSE}
 
-load("data/fittedSimple.RData")
-load("data/fittedCtrl.RData")
-load("data/fittedCoax.RData")
-load("data/fittedFullCtrst.RData")
-load("data/fittedPrePost.RData")
-
 load("data/newCtrl.RData")
 load("data/newCoax.RData")
 load("data/newPrePost.RData")
-load("data/newFull.RData")
+
 
 ```
 
@@ -1490,7 +1804,7 @@ for(i in n_state_min : n_state_max) {
 #   # from is state we are transitioning from
 #   for(from in 1:ns) {
 #   mat <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
-#   print(mat)
+#   #print(mat)
 #   new_mat <- mat[,c(1:2,3,3,4,4)]
 #   new_pars <- c(new_pars,as.numeric(new_mat))
 #   }
@@ -1501,11 +1815,14 @@ for(i in n_state_min : n_state_max) {
 #   newFull[[ns]] <- fit(newFull[[ns]], emcontrol= em.control(maxit = 1000,random.start = FALSE))
 # }
 # 
-# save(newFull, file="newFull.RData")
+# save(newFull, file="data/newFull.RData")
  
 ```
 
-```{r}
+```{r, include=F}
+
+load("data/newFull.RData")
+
 
 bestFull <- NULL
 # Loop through each index and select the model with the higher log-likelihood
@@ -1521,8 +1838,6 @@ for(i in n_state_min : n_state_max) {
 
 
 ```{r, include=F}
-
-
 BICs_simple <- BICs_Ctrl <- BICs_Coax <-  BICs_PrePost <-  BICs_Full <- list()
 
 for(i in n_state_min:n_state_max) {
@@ -1561,6 +1876,24 @@ df_liks
 df_bics <- cbind(2:7,as.numeric(BICs_simple[2:7]), as.numeric(BICs_Ctrl[2:7]),as.numeric(BICs_Coax[2:7]), as.numeric(BICs_PrePost[2:7]), as.numeric(BICs_Full[2:7]))
 df_bics
 
+df_bics_full <- data.frame(nstate = 2:7,
+                          logLik = unlist(lapply(bestFull[-1], logLik)),
+                          unlist(lapply(bestFull[-1], function(x) attr(logLik(x), which="df"))),
+                          AIC = unlist(lapply(bestFull[-1], AIC)),
+                          BIC = unlist(lapply(bestFull[-1], BIC)))
+```
+
+
+```{r, include=F}
+
+
+df_bics_full %>%
+  `colnames<-` (c("Number of states", "logLikelihood", "df", "AIC", "BIC")) %>%
+  mutate(across(all_of(c("logLikelihood", "df", "AIC", "BIC")), 
+                ~format(., digits=4, nsmall=0, big.mark=","))) %>%
+  knitr::kable(., escape = FALSE, booktabs = TRUE,
+               caption = 'Table comparing HMM-full model fit for assumed number of latent states between 2 and 7') %>%
+  kable_styling(latex_options="scale_down",font_size = 10) 
 
 ```
 
@@ -1612,12 +1945,19 @@ models %>%
 
 ```{r table-BICs-coax, include =F, warning = FALSE, echo=FALSE, ft.align="center", tab.playerId='table-BICs-coax', label='table-BICs-coax'}
 
-# data.frame(df_bics) %>% 
-#   `colnames<-` (c("Number of states","HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost","HMM-full")) %>%
-#   mutate_if(is.numeric, format, digits=4,nsmall = 0, big.mark = ",") %>% 
-#   knitr::kable(.,booktabs = TRUE,
-#   caption = 'Table of BICs for each of the estimated HMM models for assumed number of latent states between 2 and 7') %>% kable_styling(latex_options="scale_down")
+df_liks <- as.data.frame(df_liks)
 
+df_liks %>%
+  `colnames<-` (c("Number of states", "HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost", "HMM-full")) %>%
+  mutate_at(vars(-`Number of states`), bold_max) %>%
+  knitr::kable(., escape = FALSE, booktabs = TRUE,
+               caption = 'Table of likelihoods for each of the estimated HMM models for assumed number of latent states between 2 and 7') %>%
+  kable_styling(latex_options="scale_down")
+
+
+
+
+##### BICs ###########
 # Ensure df_bics is a data frame
 df_bics <- as.data.frame(df_bics)
 
@@ -1629,41 +1969,21 @@ df_bics %>%
   kable_styling(latex_options="scale_down")
 
 
-df_liks <- as.data.frame(df_liks)
-
-df_liks %>%
-  `colnames<-` (c("Number of states", "HMM-inv", "HMM-ctrl", "HMM-coax", "HMM-prepost", "HMM-full")) %>%
-  mutate_at(vars(-`Number of states`), bold_max) %>%
-  knitr::kable(., escape = FALSE, booktabs = TRUE,
-               caption = 'Table of likelihoods for each of the estimated HMM models for assumed number of latent states between 2 and 7') %>%
-  kable_styling(latex_options="scale_down")
-
 ```
 
-We used hidden Markov models (HMMs) to further assess differences between the intervention and control condition in participants' reactions to the investor in the Repeated Trust Game. As in the models for the investor, these HMMs assume behavior is governed by latent states, with participants' switches between states now dependent on the investments made. We also allowed for differences between games and conditions in how investments govern state transitions: We fitted five main models which all regressed state transition probabilities onto investments, as well as on additional contrast-coded predictors for condition and/or Game. In the most complex model (HMM-full), the transition probabilities were allowed to differ between all four combinations of Game and condition. The HMM-coax model allowed differences between post-intervention and the other three conditions (pre-intervention, pre-control, post-control) treating these latter conditions as the same. Similarly, the HMM-ctrl model allowed differences between post-control and the other three conditions. The HMM-prepost model allowed differences between the first and second RTG. Finally, the HMM-inv model did not allow transition probabilities to differ between conditions or games, modelling them only as a function of investment. As the number of hidden states was unknown, for each model we estimated versions with 2 to 7 states, and used the BIC to select the best fitting model. Generally, best fitting models had between 5 to 7 hidden states. Further details on the HMMs and estimation procedure are provided in the Supplementary Information.
+We used hidden Markov models (HMMs) to further assess differences between the intervention and control condition in participants' reactions to the investor in the Repeated Trust Game. As in the models for the investor, these HMMs assume behavior is governed by latent states, with participants' switches between states now dependent on the investments made. We also allowed for differences between games and conditions in how investments govern state transitions: We fitted five main models which all regressed state transition probabilities onto investments, as well as on additional contrast-coded predictors for condition and/or Game. In the most complex model (HMM-full), the transition probabilities were allowed to differ between all four combinations of Game and condition. The HMM-coax model allowed differences between post-intervention and the other three conditions (pre-intervention, pre-control, post-control) treating these latter conditions as the same. Similarly, the HMM-ctrl model allowed differences between post-control and the other three conditions. The HMM-prepost model allowed differences between the first and second RTG. Finally, the HMM-inv model did not allow transition probabilities to differ between conditions or games, modelling them only as a function of investment. 
+
+As the number of hidden states was unknown, we estimated models with 2 to 7 latent states for the most complex HMM-full model, and used the BIC to compare them. The best fitting HMM-full model according to the BIC had 6 latent states. Further details on the HMMs and estimation procedure are provided in the Supplementary Information.
+
 
 <!-- Table \ref{tab:table-BICs-coax} shows the BICs of the various fitted models for an assumed number of states between 2 and 7.  For a simple model without any contrasts (HMM-inv) and a model with post-control only contrast (HMM-ctrl) we find a 6-state model to be best fitting. If the contrast is between the post-intervention group and all the other groups (HMM-coax), then a 7 state model is best fitting. When the contrast is comparing only pre and post Intervention groups (HMM-prepost), a 5 state model fits best. Finally, when we distinguish between pre-manipulation, post-control and post-intervention (HMM-full), we find that a 5 state model fits best. Since we only fit models between 2 and 7 states, it is possible that for those where we find the 7 state model to be best fitting, models with a higher number of states could fit the data better. We decided to stop at 7 states for computational cost reasons and because the interpretation of models with a higher number of states becomes complex.  -->
 
 ```{r, include=FALSE}
-summary(fittedSimple[[5]])
 
-logLik(fittedSimple[[5]])
-logLik(bestCtrl[[5]])
-logLik(bestCoax[[5]])
-logLik(bestPrePost[[5]])
-# logLik(fittedFullCtrst[[5]])
-logLik(bestFull[[5]])
-
-# Nested model comparison for 5 states, with and without intervention contrast. llratio test shows no effect, meaning interaction term addition does not change goodness of fit of model. 
-llratio(bestFull[[5]], fittedSimple[[5]])
-
-llratio(bestCtrl[[5]],fittedSimple[[5]])
-llratio(bestCoax[[5]],fittedSimple[[5]])
-llratio(bestPrePost[[5]],fittedSimple[[5]])
-
-llratio(bestFull[[5]],bestCtrl[[5]])
-llratio(bestFull[[5]],bestCoax[[5]])
-llratio(bestFull[[5]],bestPrePost[[5]])
+llratio(bestFull[[6]], fittedSimple[[6]])
+llratio(bestFull[[6]],bestCtrl[[6]])
+llratio(bestFull[[6]],bestCoax[[6]])
+llratio(bestFull[[6]],bestPrePost[[6]])
 
 # llratio(bestFull[[6]],bestCtrl[[6]])
 # llratio(bestFull[[6]],bestCoax[[6]])
@@ -1671,7 +1991,7 @@ llratio(bestFull[[5]],bestPrePost[[5]])
 ```
 
 
-Focusing on models with 5 latent states (which is the optimal number for the HMM-full model), likelihood ratio tests showed that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCtrl[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCoax[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestPrePost[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$).
+Focusing on the HMM-full model with 6 latent states, likelihood ratio tests showed that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(60) = `r round(-2*as.numeric(logLik(bestCtrl[[6]])) - (-2*as.numeric(logLik(bestFull[[6]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(60) = `r round(-2*as.numeric(logLik(bestCoax[[6]])) - (-2*as.numeric(logLik(bestFull[[6]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(60) = `r round(-2*as.numeric(logLik(bestPrePost[[6]])) - (-2*as.numeric(logLik(bestFull[[6]]))) , 2)`$, $p < .001$).
 <!-- We start by comparing HMM-full with HMM-inv. We find that HMM-full fits the data better than HMM-inv ($\chi^2(84) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). Likewise HMM-ctrl fits better than HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestCtrl[[5]]))) , 2)`$, $p < .001$). The same is true for HMM-coax compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestCoax[[5]]))) , 2)`$, $p < .001$) and HMM-prepost compared to HMM-inv ($\chi^2(44) = `r round(-2*as.numeric(logLik(fittedSimple[[5]])) - (-2*as.numeric(logLik(bestPrePost[[5]]))) , 2)`$, $p < .001$). HMM-inv being the worst fitting model compared to the others indicates the existence of differentiated behavior pre vs post manipulation and/or between the control and intervention groups.  -->
 
 <!-- Using likelihood ratio tests, we find that the HMM-full model fits significantly better than HMM-ctrl ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCtrl[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$), HMM-coax ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestCoax[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$) and HMM-prepost ($\chi^2(40) = `r round(-2*as.numeric(logLik(bestPrePost[[5]])) - (-2*as.numeric(logLik(bestFull[[5]]))) , 2)`$, $p < .001$). This is consistent with a differentiated behavior of the trustees between all three groups: the post-intervention group, the post-control group and the pre-manipulation group. -->
@@ -1679,85 +1999,61 @@ Focusing on models with 5 latent states (which is the optimal number for the HMM
 <!--    ORDER THE STATES    -->
 
 ```{r, include=FALSE}
-tr_fdmod_5 <- order_mod_gauss(bestFull[[5]])
+tr_fdmod_6 <- order_mod_gauss(bestFull[[6]])
 ```
 
 ```{r, include=FALSE}
 
-state1 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_5@response[[1]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
+state1 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_6@response[[1]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
 
-state2 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_5@response[[2]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
+state2 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_6@response[[2]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
 
-state3 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_5@response[[3]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
+state3 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_6@response[[3]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
 
-state4 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_5@response[[4]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
+state4 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_6@response[[4]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
 
-state5 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_5@response[[5]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
+state5 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_6@response[[5]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
+
+state6 <- dens(truncdiscgaus(seq(0.025,0.975,length=20),pstart=c(unlist(tr_fdmod_6@response[[6]][[1]]@parameters)), breaks = c(0, seq(0.05,0.95,length=19) , 1),  min=0, max=1))
 
 returns <- seq(0.025,0.975,length=20)
 
-response_best_mod <- as.data.frame(cbind(returns,state1,state2,state3,state4,state5)) %>% 
-  pivot_longer(cols=c("state1","state2","state3","state4","state5"),
+response_best_mod <- as.data.frame(cbind(returns,state1,state2,state3,state4,state5, state6)) %>% 
+  pivot_longer(cols=c("state1","state2","state3","state4","state5", "state6"),
                     names_to='Trustee_state',
                     values_to='probability')
 
 ```
 
+```{r, include=F, fig.align="center"}
+
+tr_policy <- list()
+for(i in 1:nstates(tr_fdmod_6)) {
+  tr_policy[[i]] <- dens(vtdgaus(seq(0,1, length=61), yield=3*20, pstart=c(unlist(tr_fdmod_6@response[[i]][[1]]@parameters))))  
+}
+
+perc_return <- seq(0,1, length=61)
+df_tr_policy <- data.frame(trustee_state = rep(1:nstates(tr_fdmod_6), each=length(perc_return)),
+                            perc_return = perc_return,
+                            probability = unlist(tr_policy))
+
+ggplot(df_tr_policy,                            
+       aes(x = perc_return,
+           y = probability,
+           fill = factor(paste0("state ",trustee_state)))) +
+  geom_bar(stat = "identity",
+           position = "dodge") + 
+  labs(fill='Latent trustee state') +
+  xlab("Percentage return") +
+  theme_minimal() + 
+  theme(legend.position = "bottom")
+```
+
+
 
 
 ```{r, include=FALSE}
 
-# plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
-# 
-#   #print(getpars(fmod))
-#   ns <- nstates(fmod)
-#   
-#   trans_prob <- data.frame(
-#     from = rep(1:ns, each=100*ns),
-#     to = rep(1:ns, each=100),
-#     investment = seq(0,20,length=100),
-#     prob_pre = 0,
-#     prob_ctrl = 0,
-#     prob_coax =0
-#   )
-#   
-#   y0 <- matrix(0.0,ncol=ns, nrow=100)
-#   y1 <- matrix(0.0,ncol=ns, nrow=100)
-#   y2 <- matrix(0.0,ncol=ns, nrow=100)
-#   
-#   for(from in 1:ns) {
-#   pars <- matrix(getpars(fmod)[seq(ns*numCovIn + 1 + (from - 1)*numCovTr*ns, ns*numCovIn + 1 + (from - 1)*numCovTr*ns + numCovTr*ns - 1)],ncol=numCovTr)
-#   #print(pars)
-#   
-#     for(to in 1:ns) {
-#         x <- trans_prob[trans_prob$from == from & trans_prob$to == to,"investment"]
-#         y0[,to] <- exp(pars[to,1] + pars[to,2]*x)
-#         #ctrst 2 = 1, post intervention vs pre
-#         y2[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,3]*1 + pars[to,5]*x )
-#         #ctrst 1 = 1, post control vs pre
-#         y1[,to] <- exp(pars[to,1] + pars[to,2]*x + pars[to,4]*1 + pars[to,6]*x )
-#     }
-#     y0 <- y0/rowSums(y0)
-#     y1 <- y1/rowSums(y1)
-#     y2 <- y2/rowSums(y2)
-#     
-#     for(to in 1:ns) {
-#       trans_prob$prob_pre[trans_prob$from == from & trans_prob$to == to] <- y0[,to]
-#       trans_prob$prob_ctrl[trans_prob$from == from & trans_prob$to == to] <- y1[,to]
-#       trans_prob$prob_coax[trans_prob$from == from & trans_prob$to == to] <- y2[,to]
-#     }
-#   }
-#   
-#   
-#   
-#   saveRDS(trans_prob, "data/trans_prob.RDS")
-#   
-#   return(trans_prob)
-# 
-# }
-# 
-# 
-# plot_state_transitions(tr_fdmod_5,numCovIn=2, numCovTr=6) 
 plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
 
   #print(getpars(fmod))
@@ -1766,7 +2062,7 @@ plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
   trans_prob <- data.frame(
     from = rep(paste0("from State ", 1:ns), each=100*ns),
     to = rep(paste0("State ", 1:ns), times=100),
-    investment = seq(0,20,length=100),
+    investment = rep(seq(0,20,length=100),each=ns),
     prob_pre = 0,
     prob_ctrl = 0,
     prob_coax =0
@@ -1803,7 +2099,7 @@ plot_state_transitions <- function(fmod, numCovIn, numCovTr) {
   return(trans_prob)
 }
 
-plot_state_transitions(tr_fdmod_5, numCovIn=2, numCovTr=6)
+plot_state_transitions(tr_fdmod_6, numCovIn=2, numCovTr=6)
 
 
 ```
@@ -1849,39 +2145,14 @@ set.seed(20221010)
 # Get investor posterior states from model and add to data table
 
 # mention we are using local decoding (refer to the book). 
-predTrStates <- posterior(tr_fdmod_5, type="local")
-avg_ret_df$TrState <-  factor(predTrStates, levels= c(1,2,3,4,5),labels=c("State 1","State 2","State 3","State 4","State 5"))
-
-# avg_ret_df$TrState <-  factor(predTrStates, levels= c(5,4,3,2,1),labels=c("5","4","3","2","1"))
-
-
-# predTrStates <- posterior(tr_fdmod_5)
-# avg_ret_df$TrState <-  factor(predTrStates$state, levels= c(1,2,3,4,5),labels=c("1","2","3","4","5"))
+predTrStates <- posterior(tr_fdmod_6, type="local")
+avg_ret_df$TrState <-  factor(predTrStates, levels= c(1,2,3,4,5,6),labels=c("State 1","State 2","State 3","State 4","State 5", "State 6"))
 
 library(dplyr)
 temp_df <- avg_ret_df %>% dplyr::select(roundNum,investment,returns, next_investment, TrState)
 ```
 
 ```{r, include=FALSE}
-
-trusteeHMMPlot <- ggplot(response_best_mod,                            
-       aes(x = returns,
-           y = probability,
-           fill = Trustee_state)) +
-  geom_bar(stat = "identity",
-           position = "dodge") + 
-  labs(fill='Latent trustee State') +
-  theme_bw() + 
-  theme(legend.position = "bottom")
-
-# investor real state distribution (posterior)
-# postHMM <- ggplot(avg_ret_df %>% dplyr::filter(gameNum.f=="post")) +
-#   geom_bar(aes(x = roundNum, group = TrState, fill = TrState),  position = position_stack(reverse = TRUE)) + 
-#   facet_wrap(~condition.f) +  
-#   labs(x = "Round", fill='Posterior trustee state') +
-#   theme_bw() +
-#   theme(legend.position = "bottom")
-
 postHMM <- ggplot(avg_ret_df %>% dplyr::filter(gameNum.f=="post")) +
   geom_bar(aes(x = roundNum, group = TrState, fill = TrState),  position = position_stack(reverse = TRUE)) + 
   facet_wrap(~factor(condition.f, levels = rev(levels(as.factor(condition.f))))) +  
@@ -1892,13 +2163,8 @@ postHMM <- ggplot(avg_ret_df %>% dplyr::filter(gameNum.f=="post")) +
 
 ```
 
-```{r postStatesBestModOld,  echo=FALSE, fig.cap = "A: Distribution of participants' percentage return for each of the latent states in the 5 state HMM-full model. The latent states are ordered by the mean of the Gaussian that best fits the policy in that state, so higher numbered states are more pro-social. B: Distribution of posterior trustee states post manipulation by condition for all rounds, as estimated by the most likely posterior state in the best fitting HMM model (HMM-full) using a local decoding procedure.", fig.align="center", fig.height = 8}
 
-# ggpubr::ggarrange(trusteeHMMPlot , postHMM , nrow=2, ncol=1,labels = c("A", "B"),common.legend = FALSE)
-
-```
-
-```{r postStatesBestMod,  echo=FALSE, fig.cap = "Distribution of posterior trustee states post manipulation by condition for all rounds, as estimated by the most likely posterior state in the best fitting HMM model (HMM-full) using a local decoding procedure.", fig.align="center", fig.height = 4}
+```{r postStatesBestMod,  echo=FALSE, fig.cap = "Distribution of posterior trustee states post-manipulation by condition for all rounds, as estimated by the most likely posterior state in the best fitting HMM model (HMM-full) using a local decoding procedure. States are represented in increasing degrees of average percentage returns from the lowest (state 1) to the highest (state 6) return state. This figure characterises behavioral differences between conditions as the result of participants being in more pro-social (higher return) states in the intervention condition compared to the control condition both pre- and post-defection.", fig.align="center"}
 
 postHMM
 
@@ -1914,7 +2180,7 @@ props_df_5 <- avg_ret_df %>%
   summarise(n = n()) %>%
   mutate(freq = n / sum(n))
 
-prop.test(c(11,29), c(159,159))
+prop.test(c(8,20), c(159,159))
 
 props_df_14 <- avg_ret_df %>% 
   filter(gameNum.f=="post", roundNum== 14) %>% 
@@ -1933,6 +2199,8 @@ props_df_13 <- avg_ret_df %>%
   summarise(n = n()) %>%
   mutate(freq = n / sum(n))
 
+
+
 # compare proportions in state 1 in round 13 between conditions
 prop.test(c(48,72), c(159,159))
 
@@ -1947,7 +2215,7 @@ prop.test(c(48,18), c(159,159))
 
 ```
 
-Taking the best-fitting 5-state HMM-full model, we used a local decoding procedure to assign observations (participants' returns on trials) to latent states. The states are ordered by expected return, with state 1 having the lowest mean return and state 5 the highest. Figure \ref{fig:postStatesBestMod} shows that participants were more likely to be in a lower return state in the control condition compared to the intervention condition both pre and post defection. For instance, in round 5, state 1 was the most likely posterior state for only $7$% of participants in the intervention condition compared to $24$% in the control condition ($\chi^2(1) = 8.26, p < 0.01$). For the post-defection trial after the intervention (round 14), state 1 was the most likely state for only $22$% of participants in the intervention condition compared to $43$% in the control condition ($\chi^2(1) = 14.70, p < 0.001$). Whilst the posterior states indicate that the intervention was effective, a non-negligible proportion of participants in the intervention condition did not exhibit the coaxing behavior promoted by the intervention. Directly following the low investment in round 13, $30.2$% of participants in the intervention condition were assigned to state 1 with the lowest average returns. There is thus clear heterogeneity in the effectiveness of the intervention.
+Taking the best-fitting 6-state HMM-full model, we used a local decoding procedure to assign observations (participants' returns on trials) to latent states. The states are ordered by expected return, with state 1 having the lowest mean return and state 5 the highest. Figure \ref{fig:postStatesBestMod} shows that participants were more likely to be in a lower return state in the control condition compared to the intervention condition both pre and post defection. For instance, in round 5, state 1 was the most likely posterior state for only $5$% of participants in the intervention condition compared to $12$% in the control condition ($\chi^2(1) = 4.73, p = 0.03$). For the post-defection trial after the intervention (round 14), state 1 was the most likely state for only $15$% of participants in the intervention condition compared to $31$% in the control condition ($\chi^2(1) = 14.70, p < 0.001$). Whilst the posterior states indicate that the intervention was effective, a non-negligible proportion of participants in the intervention condition did not exhibit the coaxing behavior promoted by the intervention. Directly following the low investment in round 13, $17$% of participants in the intervention condition were assigned to state 1 with the lowest average returns highlighting individual differences in the effectiveness of the intervention.
 
 <!-- To quantitatively explore the differences in transition probabilities between the control and intervention conditions, we can estimate from the model, using local decoding methods from the depmixS4 package [@visser_depmixs4_2021], the most likely posterior state of the trustee participants by round given the actions they have taken. Figure \ref{fig:postStatesBestMod}.B shows that participants were more likely to be in a lower return state in the control condition compared to the intervention condition both pre and post defection. For instance, in round 5, state 1 was the most likely posterior state for only $7$% of participants in the intervention condition compared to $24$% in the control condition ($\chi^2(1) = 8.26, p < 0.01$). For the post-defection trial after the intervention (round 14), state 1 was the most likely state for only $22$% of participants in the intervention condition compared to $43$% in the control condition ($\chi^2(1) = 14.70, p < 0.001$). 
 

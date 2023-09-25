@@ -41,7 +41,7 @@ library(ggsignif)
 Participants played a 15-round repeated trust game [@joyce_trust_1995] in the trustee role against a computer-programmed investor. As seen in Figure \ref{fig:trustGameScreenshot} each player was represented with an icon with the participant always on the left of the screen and the opponent on the right. The participants were able to choose the icon that represents them at the start of the experiment. The icon representing the opponent changed at the start of each new game, to simulate a new interaction partner. Participants were not told they were facing computerised opponents. We chose to simulate the behavior of a human interaction partner through allowing for a delay whilst pairing with new opponents as the start of each game as well as programming the agents to respond during each round after a random time lapse (randomly chosen between 5 and 10 seconds). 
 
 
-```{r trustGameScreenshot,fig.cap = "Screenshot of the repeated Trust Game. The game is played in dyads, with one player assigned the role of the investor and the other player that of the trustee. The investor is endowed with 20 units at the start of each round. They need to decide how much of that endowment they want to invest with the trustee. The investment is then multiplied by a factor of 3 and sent to the trustee. The trustee in turn needs to decide how much of the multiplied investment they want to send back to the investor. Shown here is the stage at which the trustee makes a decision of how much to send back the investor", fig.align='center'}
+```{r trustGameScreenshot,fig.cap = "Screenshot of the repeated Trust Game. The game is played in dyads, with one player assigned the role of the investor and the other player that of the trustee. The investor is endowed with 20 units at the start of each round. They need to decide how much of that endowment they want to invest with the trustee. The investment is then multiplied by a factor of 3 and sent to the trustee. The trustee in turn needs to decide how much of the multiplied investment they want to send back to the investor. Shown here is the stage at which the trustee makes a decision of how much to send back the investor", out.width="70%", out.height="70%", fig.align='center'}
 
 knitr::include_graphics("figures/trust_game.png")
 
@@ -49,7 +49,7 @@ knitr::include_graphics("figures/trust_game.png")
 
 
 
-```{r grid,fig.cap = "Screenshot of the two axis grid in the Coaxing condition where participants were asked to report the valence and arousal of their emotional response ", fig.align='center'}
+```{r grid,fig.cap = "Screenshot of the two axis grid in the Coaxing condition where participants were asked to report the valence and arousal of their emotional response ", out.width="70%", out.height="70%", fig.align='center'}
 
 knitr::include_graphics("figures/emotion_grid.png")
 
@@ -63,7 +63,7 @@ On each round of the RTG, before deciding how much to return, participants were 
 
 The other game the participants played is the normal form, double-choice Repeated Prisoner's Dilemma (RPD). Over multiple rounds, participants could choose one of two actions: A cooperative action that would yield a high pay-off if the other person also cooperated, and the lowest possible pay-off if they did not cooperate, or a non-cooperative option that would yield a high pay-off if the other person chooses the cooperative action and a lower pay-off if they also defect. Figure \ref{fig:payoffsRPD} shows the payoff of each combination of actions as presented to the participants. As an opponent in this game, we used an artificial agent that played according to Tit-For-Tat [@axelrod_evolution_1981]. It started by choosing the cooperative action and then it mirrored whatever the other player played in the previous round.
 
-```{r payoffsRPD,fig.cap = "Screenshot of the Repeated Prisoner's Dilemma game. Over multiple rounds, participants could choose one of two actions: A cooperative action that would yield a high pay-off if the other person also cooperated, and the lowest possible pay-off if they did not cooperate. Or a non-cooperative option that would yield a high pay-off if the other person chooses the cooperative action and a lower pay-off if they also defect. Shown here is the table explaining the payoffs of each combination of actions the participant and their opponent choose", fig.align='center'}
+```{r payoffsRPD,fig.cap = "Screenshot of the Repeated Prisoner's Dilemma game. Over multiple rounds, participants could choose one of two actions: A cooperative action that would yield a high pay-off if the other person also cooperated, and the lowest possible pay-off if they did not cooperate. Or a non-cooperative option that would yield a high pay-off if the other person chooses the cooperative action and a lower pay-off if they also defect. Shown here is the table explaining the payoffs of each combination of actions the participant and their opponent choose", out.width="70%", out.height="70%", fig.align='center'}
 
 knitr::include_graphics("figures/screenshot_RPD_payoffs.png")
 
@@ -215,21 +215,21 @@ $$P(S_{t+1} = s' | S_t=s , X_t = x)= \frac{\exp(\beta_{0,s,s'} + \beta_{1,s,s'} 
 
 where $\text{x}$ is a variable representing the investment received, $d$ is a dummy variable to characterise the group that the participant belongs to. We define four contrast codes for these dummy variables: pre-post (comparing pre and post games), post-coax (compares the post-intervention group to all others), post-control (compares the post-control group to all others) and full-contrast (a three level dummy variable: post-intervention compared to post-control and  all pre games).
 
-```{r table-BICs,fig.cap = "BICs for each of the five estimated HMM models assuming the latent number of states is between 2 and 7. ", fig.align='center'}
+```{r table-HMMs,fig.cap = "Table comparing the HMM-full models fit assuming the latent number of states is between 2 and 7. Using BIC, the 6 state model fits best", out.width="70%", out.height="70%", fig.align='center'}
 
-knitr::include_graphics("figures/table_bics.png")
+knitr::include_graphics("figures/table_HMMfull_comp.png")
 
 ```
 
-As seen in Figure \ref{fig:table-BICs},  for a simple model without any contrasts (HMM-inv) and a model with post-control only contrast (HMM-ctrl) we find a 6-state model to be best fitting. If the contrast is between the post-intervention group and all the other groups (HMM-coax), then a 7 state model is best fitting. When the contrast is comparing only pre and post Intervention groups (HMM-prepost), a 5 state model fits best. Finally, when we distinguish between pre-manipulation, post-control and post-intervention (HMM-full), we find that a 5 state model fits best. Since we only fit models between 2 and 7 states, it is possible that for those where we find the 7 state model to be best fitting, models with a higher number of states could fit the data better. We decided to stop at 7 states for computational cost reasons and because the interpretation of models with a higher number of states becomes complex.
+As seen in Figure \ref{fig:table-HMMs}, using the BIC, the 6 state HMM-full model fits best. Since we only fit models between 2 and 7 states, it is possible that models with a higher number of states could fit the data better. We decided to stop at 7 states for computational cost reasons and because the interpretation of models with a higher number of states becomes complex.
 
 
 ## Distribution of returns for each latent state for HMM model of participant’s returns
 
-Focusing on the HMM-full models with 5 latent states (please see main manuscript for a definition) we estimated the investors' policy in each state assuming a discretised Gaussian response function as highlighted in the previous section (Figure \ref{fig:trusteeHMMPlot}). Each latent state was associated with a distribution over trustee actions. The latent states were ordered by the mean of the estimated Gaussian, such as higher numbered latent states reflect higher mean percentage return.
+Focusing on the HMM-full models with 6 latent states (please see main manuscript for a definition) we estimated the investors' policy in each state assuming a discretised Gaussian response function as highlighted in the previous section (Figure \ref{fig:trusteeHMMPlot}). Each latent state was associated with a distribution over trustee actions. The latent states were ordered by the mean of the estimated Gaussian, such as higher numbered latent states reflect higher mean percentage return.
 
 
-```{r trusteeHMMPlot,fig.cap = "Distribution of participants' percentage return for each of the latent states in the 5 state HMM-full model. The latent states are ordered by the mean of the Gaussian that best fits the policy in that state, so higher numbered states are more pro-social", fig.align='center'}
+```{r trusteeHMMPlot,fig.cap = "Distribution of participants' percentage return for each of the latent states in the 6 state HMM-full model. The latent states are ordered by the mean of the Gaussian that best fits the policy in that state, so higher numbered states are more pro-social", fig.align='center'}
 
 knitr::include_graphics("figures/trusteeHMMPlot.png")
 

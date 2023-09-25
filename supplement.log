@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.20)  20 SEP 2023 15:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.20)  25 SEP 2023 15:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -563,12 +563,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: figures/trust_game.png Graphic file (type png)
 <use figures/trust_game.png>
 Package pdftex.def Info: figures/trust_game.png  used on input line 130.
-(pdftex.def)             Requested size: 469.75218pt x 277.96248pt.
+(pdftex.def)             Requested size: 328.82489pt x 194.57277pt.
 <figures/emotion_grid.png, id=55, 912.40875pt x 832.10875pt>
 File: figures/emotion_grid.png Graphic file (type png)
 <use figures/emotion_grid.png>
 Package pdftex.def Info: figures/emotion_grid.png  used on input line 139.
-(pdftex.def)             Requested size: 469.74957pt x 428.40747pt.
+(pdftex.def)             Requested size: 328.81496pt x 299.87634pt.
 [1
 
 {/Users/mbp17/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <./figures/trust_game.png>] [2 <./figures/emotion_grid.png>]
@@ -576,9 +576,9 @@ Package pdftex.def Info: figures/emotion_grid.png  used on input line 139.
 File: figures/screenshot_RPD_payoffs.png Graphic file (type png)
 <use figures/screenshot_RPD_payoffs.png>
 Package pdftex.def Info: figures/screenshot_RPD_payoffs.png  used on input line 155.
-(pdftex.def)             Requested size: 469.75583pt x 268.32207pt.
+(pdftex.def)             Requested size: 328.82346pt x 187.82224pt.
 [3 <./figures/screenshot_RPD_payoffs.png>]
-<figures/intervention_text.png, id=85, 862.22125pt x 479.7925pt>
+<figures/intervention_text.png, id=86, 862.22125pt x 479.7925pt>
 File: figures/intervention_text.png Graphic file (type png)
 <use figures/intervention_text.png>
 Package pdftex.def Info: figures/intervention_text.png  used on input line 169.
@@ -592,39 +592,39 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 LaTeX Warning: Command \textellipsis invalid in math mode on input line 184.
 
-[4 <./figures/intervention_text.png>]
+[4{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} <./figures/intervention_text.png>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 208.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-<figures/modelPre.png, id=109, 692.5875pt x 223.83624pt>
+)
+<figures/modelPre.png, id=98, 692.5875pt x 223.83624pt>
 File: figures/modelPre.png Graphic file (type png)
 <use figures/modelPre.png>
 Package pdftex.def Info: figures/modelPre.png  used on input line 246.
 (pdftex.def)             Requested size: 469.76964pt x 151.8241pt.
-<figures/modelPost.png, id=110, 712.6625pt x 233.87375pt>
+[5{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+<figures/modelPost.png, id=111, 712.6625pt x 233.87375pt>
 File: figures/modelPost.png Graphic file (type png)
 <use figures/modelPost.png>
 Package pdftex.def Info: figures/modelPost.png  used on input line 258.
 (pdftex.def)             Requested size: 469.74974pt x 154.15729pt.
 [6 <./figures/modelPre.png> <./figures/modelPost.png>]
-<figures/table_bics.png, id=122, 776.9025pt x 212.795pt>
-File: figures/table_bics.png Graphic file (type png)
-<use figures/table_bics.png>
-Package pdftex.def Info: figures/table_bics.png  used on input line 276.
-(pdftex.def)             Requested size: 469.76073pt x 128.6683pt.
-[7 <./figures/table_bics.png>]
-<figures/trusteeHMMPlot.png, id=133, 719.68875pt x 432.61626pt>
+<figures/table_HMMfull_comp.png, id=122, 792.9625pt x 310.15875pt>
+File: figures/table_HMMfull_comp.png Graphic file (type png)
+<use figures/table_HMMfull_comp.png>
+Package pdftex.def Info: figures/table_HMMfull_comp.png  used on input line 276.
+(pdftex.def)             Requested size: 328.83131pt x 128.61882pt.
+<figures/trusteeHMMPlot.png, id=125, 782.925pt x 509.905pt>
 File: figures/trusteeHMMPlot.png Graphic file (type png)
 <use figures/trusteeHMMPlot.png>
 Package pdftex.def Info: figures/trusteeHMMPlot.png  used on input line 292.
-(pdftex.def)             Requested size: 469.76883pt x 282.38545pt.
-<figures/trusteeHMMTrans.png, id=135, 746.79pt x 834.11626pt>
+(pdftex.def)             Requested size: 469.75862pt x 305.94536pt.
+<figures/trusteeHMMTrans.png, id=127, 677.53125pt x 757.83125pt>
 File: figures/trusteeHMMTrans.png Graphic file (type png)
 <use figures/trusteeHMMTrans.png>
 Package pdftex.def Info: figures/trusteeHMMTrans.png  used on input line 306.
-(pdftex.def)             Requested size: 469.7509pt x 524.68146pt.
-[8 <./figures/trusteeHMMPlot.png>] [9 <./figures/trusteeHMMTrans.png>] [10] (./supplement.aux)
+(pdftex.def)             Requested size: 469.77148pt x 525.44812pt.
+[7 <./figures/table_HMMfull_comp.png>] [8 <./figures/trusteeHMMPlot.png>] [9 <./figures/trusteeHMMTrans.png>] [10] (./supplement.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -634,14 +634,14 @@ Package rerunfilecheck Info: File `supplement.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  12732 strings out of 476894
- 197882 string characters out of 5808354
- 1930791 words of memory out of 5000000
+ 197970 string characters out of 5808354
+ 1932791 words of memory out of 5000000
  33726 multiletter control sequences out of 15000+600000
  615560 words of font info for 82 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,17n,79p,1512b,501s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,17n,79p,1512b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on supplement.pdf (10 pages, 1810688 bytes).
+Output written on supplement.pdf (10 pages, 2050823 bytes).
 PDF statistics:
  249 PDF objects out of 1000 (max. 8388607)
  191 compressed objects within 2 object streams

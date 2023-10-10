@@ -1,7 +1,7 @@
 ---
 title: "(Re)building cooperation: Effects of a cognitive intervention on cooperative behavior in games"
 author:
-  "Ismail Guennouni^1^, Quentin JM Huys^2^, Samuel Dupret^1^, Maarten Speekenbrink^1^"
+  "Ismail Guennouni^1^, Samuel Dupret^1^, Quentin JM Huys^2^, Maarten Speekenbrink^1^"
   
 keywords:
 - Economic Games 
@@ -332,17 +332,17 @@ avg_pct <- avg_ret_df %>% filter(roundNum < 11 , gameNum.f == "pre") %>% summari
 ```{r gamesPlot, echo=FALSE, fig.cap="Averages and standard errors of the trustee's return as a percentage of the multiplied investment received by Condition, Phase, and game round. The blue line shows the returns pre-manipulation and the green line post-manipulation. We note a different reaction to the pre-programmed one-off low investment between the two conditions: Whilst there is a dip in returns pre-manipulation for both conditions,  post manipulation we see higher returns in the intervention condition compared to the dip in returns seen in the control condition in the right panel",fig.align="center", fig.width=6, fig.height = 4}
 
 
-ggplot(avg_ret_df, aes(x=as.factor(roundNum), y=ret_pct, group=gameNum.f, color = gameNum.f)) +
+ggplot(avg_ret_df, aes(x=as.factor(roundNum), y=ret_pct, group=gameNum.f, color = gameNum.f, fill=gameNum.f)) +
   stat_summary(fun = mean, geom = "line") +
   stat_summary(fun.data = mean_se, geom = "ribbon", aes(ymin=..ymin.., ymax=..ymax..), 
-               alpha = 0.3, fill = "grey", linetype = 0) +
+               alpha = 0.3, linetype = 0) +
   labs(x = "Round",
        y = "Percentage Return",
        color = "Game") +
   theme_bw() +
   theme(legend.position = "bottom") +
   facet_wrap(~condition.f) +
-  scale_color_manual(values = c("darkblue", "green"))
+  scale_color_manual(values = c("darkblue", "darkgreen")) + scale_fill_manual(values = c("darkblue", "darkgreen"))
 
 
 
@@ -877,8 +877,8 @@ avg_ret_df <- avg_ret_df %>%
          investment_bin = cut(investment, breaks = c(-1,2.5,7.5,12.5,17.5,21)),  
          return_pct_bin = cut(ret_pct_0, breaks = c(-.1,.16,.33,.50,.66,0.84,1.1)),  # 0, 1/6, 2/6, 3/6,...
          intervention_ctrst = factor(ifelse(gameNum.f=="pre", 0,ifelse(condition.f=="control",1,2))),
-         ctrl_only_ctrst = factor(ifelse(gameNum.f=="post" && condition.f=="control", 1,0)),
-         coax_only_ctrst = factor(ifelse(gameNum.f=="post" && condition.f=="intervention", 1,0)),
+         ctrl_only_ctrst = factor(ifelse(gameNum.f=="post" & condition.f=="control", 1,0)),
+         coax_only_ctrst = factor(ifelse(gameNum.f=="post" & condition.f=="intervention", 1,0)),
          pre_post_ctrst = factor(ifelse(gameNum.f=="post", 1,0)))  %>% 
   ungroup()
 # We put factor as otherwise R thinks that it's a linear variable. We want the first level to be reference group, 0. Default uses that. 
@@ -1969,7 +1969,7 @@ Focusing on the HMM-full model with 6 latent states, likelihood ratio tests show
 <!--    ORDER THE STATES    -->
 
 ```{r, include=FALSE}
-tr_fdmod_6 <- order_mod_gauss(bestFull[[6]])
+tr_fdmod_6 <- order_mod_vtdgaus(bestFull[[6]])
 ```
 
 ```{r, include=FALSE}

@@ -38,10 +38,10 @@ library(ggsignif)
 # Repeated Trust Game 
 <!-- Participants played two iterations of the standard version of the repeated trust game [@joyce_trust_1995]. The game is played in dyads, with one player assigned the role of the "investor" and the other player that of the "trustee". In the variant of the game we chose, the investor is endowed with 20 units at the start of each round. They need to decide how much of that endowment they want to invest with the trustee. The investment is then multiplied by a factor of 3 and sent to the trustee. As shown in Figure \ref{fig:trustGame}, the trustee in turn needs to decide how much of the (multiplied) investment they want to send back to the investor. If they send back more than a third of what they received, then both the investor and the trustee make a gain. Otherwise, the trustee would benefit but the investor would lose on their investment. If the interaction lasts for only one round, the Nash equilibrium of this game is for the investor to send nothing, as there is no incentive for the trustee to send back any return. In the repeated version, to maximise their rewards over time, both players need to build trust so that they can share the benefits of the bigger pie (the investment multiplied by three). If during the course of the interaction, the investor has been rewarded for taking the risk of sending an investment, then they would be more likely to invest more, and the multiplied investment would give both a bigger pie to share. If however the investor felt that they were not getting a return on their investment, then they would refrain from investing and neither would gain from the interaction. -->
 
-Participants played a 15-round repeated trust game [@joyce_trust_1995] in the trustee role against a computer-programmed investor. As seen in Figure \ref{fig:trustGameScreenshot} each player was represented with an icon with the participant always on the left of the screen and the opponent on the right. The participants were able to choose the icon that represents them at the start of the experiment. The icon representing the opponent changed at the start of each new game, to simulate a new interaction partner. Participants were not told they were facing computerised opponents. We chose to simulate the behavior of a human interaction partner through allowing for a delay whilst pairing with new opponents as the start of each game as well as programming the agents to respond during each round after a random time lapse (randomly chosen between 5 and 10 seconds). 
+Participants played a 15-round repeated trust game [@joyce_trust_1995] in the trustee role against a computer-programmed investor. Each player was represented with an icon with the participant always on the left of the screen and the opponent on the right. The participants were able to choose the icon that represents them at the start of the experiment. The icon representing the opponent changed at the start of each new game, to simulate a new interaction partner. Participants were not told they were facing computerised opponents. We chose to simulate the behavior of a human interaction partner through allowing for a delay whilst pairing with new opponents as the start of each game as well as programming the agents to respond during each round after a random time lapse (randomly chosen between 5 and 10 seconds). 
 
 
-```{r trustGameScreenshot,fig.cap = "Screenshot of the repeated Trust Game. The game is played in dyads, with one player assigned the role of the investor and the other player that of the trustee. The investor is endowed with 20 units at the start of each round. They need to decide how much of that endowment they want to invest with the trustee. The investment is then multiplied by a factor of 3 and sent to the trustee. The trustee in turn needs to decide how much of the multiplied investment they want to send back to the investor. Shown here is the stage at which the trustee makes a decision of how much to send back the investor", out.width="70%", out.height="70%", fig.align='center'}
+```{r trustGameScreenshot, include=F, fig.cap = "Screenshot of the repeated Trust Game. The game is played in dyads, with one player assigned the role of the investor and the other player that of the trustee. The investor is endowed with 20 units at the start of each round. They need to decide how much of that endowment they want to invest with the trustee. The investment is then multiplied by a factor of 3 and sent to the trustee. The trustee in turn needs to decide how much of the multiplied investment they want to send back to the investor. Shown here is the stage at which the trustee makes a decision of how much to send back the investor", out.width="70%", out.height="70%", fig.align='center'}
 
 knitr::include_graphics("figures/trust_game.png")
 
@@ -49,13 +49,13 @@ knitr::include_graphics("figures/trust_game.png")
 
 
 
-```{r grid,fig.cap = "Screenshot of the two axis grid in the Coaxing condition where participants were asked to report the valence and arousal of their emotional response ", out.width="70%", out.height="70%", fig.align='center'}
+```{r grid, include=F, fig.cap = "Screenshot of the two axis grid in the Coaxing condition where participants were asked to report the valence and arousal of their emotional response ", out.width="70%", out.height="70%", fig.align='center'}
 
 knitr::include_graphics("figures/emotion_grid.png")
 
 ```
 
-On each round of the RTG, before deciding how much to return, participants were asked to provide feedback on the investment sent. This feedback consisted of a rating on two dimensions, provided via a two-dimensional field. What the axes of the field represented differed between the conditions. In the intervention condition, participants were asked to rate their emotional reaction to the other player’s choice of investment in terms of valence (positive or negative) and arousal (low or high). In the control condition, participants were asked to rate the choice of investment in terms of speed (slow or fast) and magnitude (low or high). Figure \ref{fig:grid} shows a screenshot of the feedback field in the intervention condition, where participants were asked about their emotional response to the investment. At the beginning of each game, participants were provided with detailed explanations of the meaning of the two axes as well as the opportunity to provide a baseline emotional state through using the field prior to the start of the game. Participants in the control condition were asked to chose any point on the two dimensional grid to show they have understood how to interact with the grid.
+On each round of the RTG, before deciding how much to return, participants were asked to provide feedback on the investment sent. This feedback consisted of a rating on two dimensions, provided via a two-dimensional field. What the axes of the field represented differed between the conditions. In the intervention condition, participants were asked to rate their emotional reaction to the other player’s choice of investment in terms of valence (positive or negative) and arousal (low or high). In the control condition, participants were asked to rate the choice of investment in terms of speed (slow or fast) and magnitude (low or high). At the beginning of each game, participants were provided with detailed explanations of the meaning of the two axes as well as the opportunity to provide a baseline emotional state through using the field prior to the start of the game. Participants in the control condition were asked to chose any point on the two dimensional grid to show they have understood how to interact with the grid.
 
 <!-- Whilst playing the RTG, participants were asked to provide some feedback, in each round of the game, after seeing the amount sent by the investor. This feedback took the form of the answer to a question using a two dimensional field. What the axes of the field represented differed by condition. In the intervention condition, participants were asked to rate their emotional state with regard to the other player's choice of investment, with the x-axis representing the valence of the emotion they felt (positive or negative) and the Y-axis representing the emotional "arousal" they experienced (low or high). In the control condition, players were asked to rate attributes of the investment that were not related to their emotion, with the X-axis rating of how fast the investor is (slow or fast) and the Y-axis the magnitude of the investment (low or high). Figure \ref{fig:grid} shows a screenshot of the field in the intervention condition where participants were asked about their own emotional response to the investment. At the beginning of each game, participants were provided with detailed explanations of the meaning of the two axes as well as the opportunity to provide a baseline emotional state through using the field prior to the start of the game. -->
 
@@ -79,7 +79,7 @@ knitr::include_graphics("figures/intervention_text.png")
 
 ```
 
-# Self report questionnaires 
+# Self-report questionnaires 
 
 Failure to repair a breakdown in trust in the repeated trust game has been associated with trustees with BPD traits [@king-casas_rupture_2008]. Theories of social dysfunction in BPD have focused on dysfunction in the patients' mentalising ability [@allen_handbook_2006-1] as well as difficulties in emotional regulation [@rudge_mechanisms_2020]. The questionnaires we included in the experiment tried to assess borderline traits (PAI-BOR; @morey_personality_1991), emotional regulation capabilities (DERS; @gratz_multidimensional_2004) and mentalising ability (RFQ8; @fonagy_development_2016). As such, we test for any association between scores in these questionnaires and the effect of the intervention. To analyse responses,  we fit a linear mixed effect model to the percentage return of trustees with fixed effects for Condition (intervention or control), Game-number (pre or post manipulation), Investment, and questionnaire score as well as all interactions between the fixed effects. We assume participant-wise random intercepts. We Z-transform the questionnaire scores and Investment as centering would be beneficial to interpreting the main effects more easily.
 <!-- ## Statistical analysis of Behavior -->
@@ -198,7 +198,7 @@ summary_PostTable <- papaja::apa_table(
 
 ```
 
-```{r postDefectionModel,fig.cap = "Summary of results of a Mixed-effects model fitted to participants returns restricted to  post-defection trials", fig.align='center'}
+```{r postDefectionModel,fig.cap = "Summary of results of a Mixed-effects model fitted to participants returns restricted to  post-defection trials", fig.align='center',fig.pos="H"}
 
 #summary_PostTable
 knitr::include_graphics("figures/modelPost.png")
@@ -206,6 +206,9 @@ knitr::include_graphics("figures/modelPost.png")
 ```
 
 <!-- Figure \ref{fig:postDefectionModel} shows the result of fitting a mixed effect model to participants percentage returns in the RTG when we restrict the analysis to post-defection trials.  -->
+
+
+
 
 # Hidden Markov models to analyse participants returns
 
@@ -215,7 +218,7 @@ $$P(S_{t+1} = s' | S_t=s , X_t = x)= \frac{\exp(\beta_{0,s,s'} + \beta_{1,s,s'} 
 
 where $\text{x}$ is a variable representing the investment received, $d$ is a dummy variable to characterise the group that the participant belongs to. We define four contrast codes for these dummy variables: pre-post (comparing pre and post games), post-coax (compares the post-intervention group to all others), post-control (compares the post-control group to all others) and full-contrast (a three level dummy variable: post-intervention compared to post-control and  all pre games).
 
-```{r table-HMMs,fig.cap = "Table comparing the HMM-full models fit assuming the latent number of states is between 2 and 7. Using BIC, the 6 state model fits best", out.width="70%", out.height="70%", fig.align='center'}
+```{r table-HMMs,fig.cap = "Table comparing the HMM-full models fit assuming the latent number of states is between 2 and 7. Using BIC, the 6 state model fits best", out.width="70%", out.height="70%", fig.align='center',fig.pos="H"}
 
 knitr::include_graphics("figures/table_HMMfull_comp.png")
 
@@ -224,12 +227,8 @@ knitr::include_graphics("figures/table_HMMfull_comp.png")
 As seen in Figure \ref{fig:table-HMMs}, using the BIC, the 6 state HMM-full model fits best. Since we only fit models between 2 and 7 states, it is possible that models with a higher number of states could fit the data better. We decided to stop at 7 states for computational cost reasons and because the interpretation of models with a higher number of states becomes complex.
 
 
-## Distribution of returns for each latent state for HMM model of participant’s returns
 
-Focusing on the HMM-full models with 6 latent states (please see main manuscript for a definition) we estimated the investors' policy in each state assuming a discretised Gaussian response function as highlighted in the previous section (Figure \ref{fig:trusteeHMMPlot}). Each latent state was associated with a distribution over trustee actions. The latent states were ordered by the mean of the estimated Gaussian, such as higher numbered latent states reflect higher mean percentage return.
-
-
-```{r trusteeHMMPlot,fig.cap = "Distribution of participants' percentage return for each of the latent states in the 6 state HMM-full model. The latent states are ordered by the mean of the Gaussian that best fits the policy in that state, so higher numbered states are more pro-social", fig.align='center'}
+```{r trusteeHMMPlot, include=F, fig.cap = "Distribution of participants' percentage return for each of the latent states in the 6 state HMM-full model. The latent states are ordered by the mean of the Gaussian that best fits the policy in that state, so higher numbered states are more pro-social", fig.align='center'}
 
 knitr::include_graphics("figures/trusteeHMMPlot.png")
 

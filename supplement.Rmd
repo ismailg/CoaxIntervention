@@ -236,7 +236,7 @@ knitr::include_graphics("figures/trusteeHMMPlot.png")
 
 ## Transition function of HMM model describing participant's returns 
 
-Using the HMM-full 5 state model, we can plot the transition probabilities of the model for pre and post-intervention as well as pre- and post-control manipulation separately Figure \ref{fig:plotTransitionsSupp}). This allows us to see how the transition probabilities between latent states change across Games and Condition. 
+Using the HMM-full 6 state model, we can plot the transition probabilities of the model for pre and post-intervention as well as pre- and post-control manipulation separately Figure \ref{fig:plotTransitionsSupp}). This allows us to see how the transition probabilities between latent states change across Games and Condition. 
 
 
 ```{r plotTransitionsSupp, fig.cap="Transition function for the HMM-full trustee model. Each panel represents the state transitioned from. For instance the upper left panel represents all transition probabilities from state 1.  The colors of the lines within each panel indicate the state transitioned to. For instance, in the upper left panel, the red line represents the transition probability to state 1 as a function of the received investment. In this case this is also the probability of staying in state 1 since we are in the state 1 panel.  Solid lines show estimated transition probabillities post-manipulation while dotted lines show the same probabilities prior to the manipulation",fig.align="center", fig.width=6, fig.height = 7 }

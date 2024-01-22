@@ -1,5 +1,7 @@
 ---
-title: "Supplementary Information"
+title: "(Re)building cooperation: Effects of a cognitive intervention on
+cooperative behavior in games"
+subtitle: "Supplementary Information"
 # author: "Ismail Guennouni"
 #date: "2023-04-28"
 #output: pdf_document
@@ -99,7 +101,7 @@ where $X_t=R_t-I_t$ is the net return to the investor with  $R_t$ the amount ret
 
 The advantages of this approach is that it does not require any a priori assumptions about the model features. The number of states, the policy conditional on the state, and the transition function between states can all determined in a purely data-driven way. These HMMs can in turn be used to simulate a human-like agent playing the trust game. This agent may transition to a new state depending on the other player's actions and adopt a policy reflecting its state, thus simulating changes in emotional dispositions of human players during a repeated game. When the investor gains from the interaction, they become more likely to transition to a state where their policy is more "trusting" with generally higher investments. However, faced with losses, the investor is more likely to transition to a more cautious policy with generally lower investments. The policies and the transitions between states are sufficient to build an agent that reflects this type of adaptive behavior and reacts to the trustee's action choices in a way that mimics a human player.
 
-We estimated a three-state model for investor's behaviour, using maximum likelihood estimation via the Expectation-Maximisation algorithm as implemented in the depmixS4 (Visser & Speekenbrink) package for R. The model was estimated using investments from existing datasets of human dyads playing 10 rounds of the RTG with the same trustee [@king-casas_rupture_2008; **VTC project dataset**]. The dataset consisted of a total of 381 games.
+We estimated a three-state model for investor's behaviour, using maximum likelihood estimation via the Expectation-Maximisation algorithm as implemented in the depmixS4 (Visser & Speekenbrink) package for R. The model was estimated using investments from existing datasets of human dyads playing 10 rounds of the RTG with the same trustee. The dataset consisted of a total of 381 games from two data sources: First, a total of 93 repeated trust games with healthy investors and a mix of healthy trustees and trustees diagnosed with Borderline Personality Disorder (BPD) [@king-casas_rupture_2008]. The second source was from data collected as part of a project investigating social exchanges at the Montague lab at Virginia Tech and consists of 288 games.
 
 # Mixed effects models of participants percentage returns
 

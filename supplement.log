@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  18 DEC 2023 15:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  22 JAN 2024 10:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -461,7 +461,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
 \BKM@id=\count312
 ))
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 120.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 127.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -471,24 +471,24 @@ File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
 ) (./supplement.aux)
 \openout1 = `supplement.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 127.
+LaTeX Font Info:    ... okay on input line 127.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -529,85 +529,84 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 120.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 122.
+Package hyperref Info: Link coloring OFF on input line 127.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 129.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 122.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 129.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 122.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 129.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 122.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 129.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 122.
+(Font)              <12> on input line 129.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 122.
+(Font)              <8> on input line 129.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 122.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 122.
+(Font)              <6> on input line 129.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 129.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 122.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 129.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 <figures/screenshot_RPD_payoffs.png, id=5, 613.29124pt x 350.30875pt>
 File: figures/screenshot_RPD_payoffs.png Graphic file (type png)
 <use figures/screenshot_RPD_payoffs.png>
-Package pdftex.def Info: figures/screenshot_RPD_payoffs.png  used on input line 137.
+Package pdftex.def Info: figures/screenshot_RPD_payoffs.png  used on input line 144.
 (pdftex.def)             Requested size: 328.82346pt x 187.82224pt.
 [1
 
 {/Users/mbp17/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
-<figures/intervention_text.png, id=23, 862.22125pt x 479.7925pt>
+<figures/intervention_text.png, id=24, 862.22125pt x 479.7925pt>
 File: figures/intervention_text.png Graphic file (type png)
 <use figures/intervention_text.png>
-Package pdftex.def Info: figures/intervention_text.png  used on input line 151.
+Package pdftex.def Info: figures/intervention_text.png  used on input line 158.
 (pdftex.def)             Requested size: 375.79997pt x 209.11801pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 166.
+(Font)              <10> on input line 173.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 166.
+(Font)              <7> on input line 173.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 166.
+(Font)              <5> on input line 173.
 
-LaTeX Warning: Command \textellipsis invalid in math mode on input line 166.
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 173.
 
-[2{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc} <./figures/screenshot_RPD_payoffs.png>] [3{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc} <./figures/intervention_text.png>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 190.
+[2 <./figures/screenshot_RPD_payoffs.png>] [3{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc} <./figures/intervention_text.png>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 197.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<figures/modelPre.png, id=49, 692.5875pt x 223.83624pt>
+<figures/modelPre.png, id=48, 692.5875pt x 223.83624pt>
 File: figures/modelPre.png Graphic file (type png)
 <use figures/modelPre.png>
-Package pdftex.def Info: figures/modelPre.png  used on input line 228.
+Package pdftex.def Info: figures/modelPre.png  used on input line 235.
 (pdftex.def)             Requested size: 469.76964pt x 151.8241pt.
-<figures/modelPost.png, id=50, 712.6625pt x 233.87375pt>
+<figures/modelPost.png, id=49, 712.6625pt x 233.87375pt>
 File: figures/modelPost.png Graphic file (type png)
 <use figures/modelPost.png>
-Package pdftex.def Info: figures/modelPost.png  used on input line 240.
+Package pdftex.def Info: figures/modelPost.png  used on input line 247.
 (pdftex.def)             Requested size: 469.74974pt x 154.15729pt.
-[4{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc} <./figures/modelPre.png>]
-<figures/table_HMMfull_comp.png, id=62, 792.9625pt x 310.15875pt>
+[4{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [5 <./figures/modelPre.png> <./figures/modelPost.png>]
+<figures/table_HMMfull_comp.png, id=71, 792.9625pt x 310.15875pt>
 File: figures/table_HMMfull_comp.png Graphic file (type png)
 <use figures/table_HMMfull_comp.png>
-Package pdftex.def Info: figures/table_HMMfull_comp.png  used on input line 258.
+Package pdftex.def Info: figures/table_HMMfull_comp.png  used on input line 265.
 (pdftex.def)             Requested size: 328.83131pt x 128.61882pt.
-[5 <./figures/modelPost.png>]
 <figures/trusteeHMMTrans.png, id=74, 723.70375pt x 845.1575pt>
 File: figures/trusteeHMMTrans.png Graphic file (type png)
 <use figures/trusteeHMMTrans.png>
-Package pdftex.def Info: figures/trusteeHMMTrans.png  used on input line 274.
+Package pdftex.def Info: figures/trusteeHMMTrans.png  used on input line 281.
 (pdftex.def)             Requested size: 469.76138pt x 548.5979pt.
 [6 <./figures/table_HMMfull_comp.png>] [7 <./figures/trusteeHMMTrans.png>] [8] (./supplement.aux)
  ***********
@@ -616,15 +615,15 @@ L3 programming layer <2023-11-09>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12957 strings out of 476233
- 202054 string characters out of 5796262
+ 12956 strings out of 476233
+ 202039 string characters out of 5796262
  1940555 words of memory out of 5000000
  34617 multiletter control sequences out of 15000+600000
- 615560 words of font info for 82 fonts, out of 8000000 for 9000
+ 612565 words of font info for 81 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,17n,93p,1512b,445s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on supplement.pdf (8 pages, 1250784 bytes).
+ 89i,17n,93p,1512b,455s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on supplement.pdf (8 pages, 1252905 bytes).
 PDF statistics:
  223 PDF objects out of 1000 (max. 8388607)
  173 compressed objects within 2 object streams

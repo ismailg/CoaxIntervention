@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  18 DEC 2023 15:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  22 JAN 2024 11:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -565,51 +565,51 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 130.
 [1
 
-{/Users/mbp17/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3]
-<article_files/figure-latex/HMMPanels-1.pdf, id=46, 311.1625pt x 192.72pt>
+{/Users/mbp17/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3] [4]
+<article_files/figure-latex/HMMPanels-1.pdf, id=53, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/HMMPanels-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/HMMPanels-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 184.
+Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 194.
 (pdftex.def)             Requested size: 650.50256pt x 402.89188pt.
 
-LaTeX Warning: Float too large for page by 65.88686pt on input line 189.
+LaTeX Warning: Float too large for page by 65.88686pt on input line 199.
 
-[4 <./article_files/figure-latex/HMMPanels-1.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 214.
+[5 <./article_files/figure-latex/HMMPanels-1.pdf>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 224.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5
+) [6
 
 
 {/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 247.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 257.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [6{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-<article_files/figure-latex/TrustGameResults-1.pdf, id=84, 311.1625pt x 192.72pt>
+) [7{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+<article_files/figure-latex/TrustGameResults-1.pdf, id=92, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/TrustGameResults-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/TrustGameResults-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used on input line 271.
+Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used on input line 281.
 (pdftex.def)             Requested size: 650.50256pt x 402.89188pt.
 
-LaTeX Warning: Float too large for page by 44.38686pt on input line 276.
+LaTeX Warning: Float too large for page by 44.38686pt on input line 286.
 
-[7 <./article_files/figure-latex/TrustGameResults-1.pdf>] [8
+[8 <./article_files/figure-latex/TrustGameResults-1.pdf>] [9
 
 
-] [9]
-<article_files/figure-latex/trusteeHMM-1.pdf, id=118, 147.55125pt x 192.72pt>
+] [10]
+<article_files/figure-latex/trusteeHMM-1.pdf, id=125, 147.55125pt x 192.72pt>
 File: article_files/figure-latex/trusteeHMM-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/trusteeHMM-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 330.
+Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 339.
 (pdftex.def)             Requested size: 398.45444pt x 520.43031pt.
-[10] [11 <./article_files/figure-latex/trusteeHMM-1.pdf>] [12]
-Underfull \hbox (badness 1168) in paragraph at lines 371--373
+[11] [12 <./article_files/figure-latex/trusteeHMM-1.pdf>]
+Underfull \hbox (badness 1168) in paragraph at lines 363--365
 \T1/lmr/m/n/9 Allen, Jon G., and Pe-ter Fon-agy, eds. 2006. \T1/lmr/m/it/9 The Hand-book of Mentalization-Based Treat-ment\T1/lmr/m/n/9 . The
  []
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 371--373
+Underfull \hbox (badness 1448) in paragraph at lines 363--365
 \T1/lmr/m/n/9 Hand-book of Mentalization-Based Treat-ment. Hobo-ken, NJ, US: John Wi-ley & Sons, Inc. []$https :
  []
 
@@ -621,17 +621,17 @@ L3 programming layer <2023-11-09>
  ) 
 Here is how much of TeX's memory you used:
  13019 strings out of 476233
- 202651 string characters out of 5796262
+ 202652 string characters out of 5796262
  1944555 words of memory out of 5000000
  34630 multiletter control sequences out of 15000+600000
  621265 words of font info for 82 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,17n,93p,1840b,505s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,17n,93p,1837b,505s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on article.pdf (14 pages, 2683002 bytes).
+Output written on article.pdf (14 pages, 2679580 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
- 304 compressed objects within 4 object streams
+ 369 PDF objects out of 1000 (max. 8388607)
+ 305 compressed objects within 4 object streams
  91 named destinations out of 1000 (max. 500000)
  160 words of extra memory for PDF output out of 10000 (max. 10000000)
 

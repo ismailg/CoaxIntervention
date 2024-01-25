@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  22 JAN 2024 11:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  25 JAN 2024 10:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -460,7 +460,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
 \BKM@id=\count312
 ))
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 122.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 121.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -470,24 +470,24 @@ File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
 ) (./article.aux)
 \openout1 = `article.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -528,65 +528,66 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 122.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 124.
+Package hyperref Info: Link coloring OFF on input line 121.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 123.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 124.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 123.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 124.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 123.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 124.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 123.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 124.
+(Font)              <12> on input line 123.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 124.
+(Font)              <8> on input line 123.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 124.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
+(Font)              <6> on input line 123.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 123.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 123.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 130.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 130.
-[1
+) [1
 
 {/Users/mbp17/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3] [4]
-<article_files/figure-latex/HMMPanels-1.pdf, id=53, 311.1625pt x 192.72pt>
+<article_files/figure-latex/HMMPanels-1.pdf, id=48, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/HMMPanels-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/HMMPanels-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 194.
+Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 188.
 (pdftex.def)             Requested size: 650.50256pt x 402.89188pt.
 
-LaTeX Warning: Float too large for page by 65.88686pt on input line 199.
+LaTeX Warning: Float too large for page by 65.88686pt on input line 193.
 
 [5 <./article_files/figure-latex/HMMPanels-1.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 224.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 215.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 215.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 215.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 220.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [6
 
 
 {/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 257.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 253.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [7{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-<article_files/figure-latex/TrustGameResults-1.pdf, id=92, 311.1625pt x 192.72pt>
+) [7{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [8]
+<article_files/figure-latex/TrustGameResults-1.pdf, id=91, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/TrustGameResults-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/TrustGameResults-1.pdf>
 Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used on input line 281.
@@ -594,44 +595,34 @@ Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used
 
 LaTeX Warning: Float too large for page by 44.38686pt on input line 286.
 
-[8 <./article_files/figure-latex/TrustGameResults-1.pdf>] [9
+[9 <./article_files/figure-latex/TrustGameResults-1.pdf>] [10
 
 
-] [10]
-<article_files/figure-latex/trusteeHMM-1.pdf, id=125, 147.55125pt x 192.72pt>
+] [11]
+<article_files/figure-latex/trusteeHMM-1.pdf, id=124, 147.55125pt x 192.72pt>
 File: article_files/figure-latex/trusteeHMM-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/trusteeHMM-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 339.
+Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 335.
 (pdftex.def)             Requested size: 398.45444pt x 520.43031pt.
-[11] [12 <./article_files/figure-latex/trusteeHMM-1.pdf>]
-Underfull \hbox (badness 1168) in paragraph at lines 363--365
-\T1/lmr/m/n/9 Allen, Jon G., and Pe-ter Fon-agy, eds. 2006. \T1/lmr/m/it/9 The Hand-book of Mentalization-Based Treat-ment\T1/lmr/m/n/9 . The
- []
-
-
-Underfull \hbox (badness 1448) in paragraph at lines 363--365
-\T1/lmr/m/n/9 Hand-book of Mentalization-Based Treat-ment. Hobo-ken, NJ, US: John Wi-ley & Sons, Inc. []$https :
- []
-
-[13] [14] (./article.aux)
+[12] [13 <./article_files/figure-latex/trusteeHMM-1.pdf>] [14] [15] (./article.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 13019 strings out of 476233
- 202652 string characters out of 5796262
- 1944555 words of memory out of 5000000
- 34630 multiletter control sequences out of 15000+600000
- 621265 words of font info for 82 fonts, out of 8000000 for 9000
+ 13026 strings out of 476233
+ 202745 string characters out of 5796262
+ 1941555 words of memory out of 5000000
+ 34635 multiletter control sequences out of 15000+600000
+ 622289 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,17n,93p,1837b,505s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on article.pdf (14 pages, 2679580 bytes).
+ 89i,17n,93p,1837b,495s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on article.pdf (15 pages, 2639530 bytes).
 PDF statistics:
- 369 PDF objects out of 1000 (max. 8388607)
- 305 compressed objects within 4 object streams
- 91 named destinations out of 1000 (max. 500000)
+ 366 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 92 named destinations out of 1000 (max. 500000)
  160 words of extra memory for PDF output out of 10000 (max. 10000000)
 

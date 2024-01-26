@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  25 JAN 2024 10:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.13)  26 JAN 2024 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -558,71 +558,72 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 123.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 137.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 137.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 137.
+[1
 
 {/Users/mbp17/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}] [2] [3] [4]
-<article_files/figure-latex/HMMPanels-1.pdf, id=48, 311.1625pt x 192.72pt>
+<article_files/figure-latex/HMMPanels-1.pdf, id=53, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/HMMPanels-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/HMMPanels-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 188.
+Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 202.
 (pdftex.def)             Requested size: 650.50256pt x 402.89188pt.
 
-LaTeX Warning: Float too large for page by 65.88686pt on input line 193.
+LaTeX Warning: Float too large for page by 65.88686pt on input line 207.
 
 [5 <./article_files/figure-latex/HMMPanels-1.pdf>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 215.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 215.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 215.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 220.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [6
-
-
-{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+)
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 253.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [7{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [8]
+) [6
+
+
+{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [7]
 <article_files/figure-latex/TrustGameResults-1.pdf, id=91, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/TrustGameResults-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/TrustGameResults-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used on input line 281.
+Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used on input line 297.
 (pdftex.def)             Requested size: 650.50256pt x 402.89188pt.
 
-LaTeX Warning: Float too large for page by 44.38686pt on input line 286.
+LaTeX Warning: Float too large for page by 44.38686pt on input line 302.
 
-[9 <./article_files/figure-latex/TrustGameResults-1.pdf>] [10
-
-
-] [11]
-<article_files/figure-latex/trusteeHMM-1.pdf, id=124, 147.55125pt x 192.72pt>
+[8 <./article_files/figure-latex/TrustGameResults-1.pdf>]
+<article_files/figure-latex/trusteeHMM-1.pdf, id=103, 147.55125pt x 192.72pt>
 File: article_files/figure-latex/trusteeHMM-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/trusteeHMM-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 335.
+Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 327.
 (pdftex.def)             Requested size: 398.45444pt x 520.43031pt.
-[12] [13 <./article_files/figure-latex/trusteeHMM-1.pdf>] [14] [15] (./article.aux)
+[9
+
+
+] [10 <./article_files/figure-latex/trusteeHMM-1.pdf>] [11] [12] [13] [14] (./article.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 13026 strings out of 476233
- 202745 string characters out of 5796262
+ 13025 strings out of 476233
+ 202738 string characters out of 5796262
  1941555 words of memory out of 5000000
  34635 multiletter control sequences out of 15000+600000
  622289 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,17n,93p,1837b,495s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,17n,93p,1837b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on article.pdf (15 pages, 2639530 bytes).
+Output written on article.pdf (14 pages, 2639298 bytes).
 PDF statistics:
- 366 PDF objects out of 1000 (max. 8388607)
- 306 compressed objects within 4 object streams
- 92 named destinations out of 1000 (max. 500000)
+ 363 PDF objects out of 1000 (max. 8388607)
+ 304 compressed objects within 4 object streams
+ 91 named destinations out of 1000 (max. 500000)
  160 words of extra memory for PDF output out of 10000 (max. 10000000)
 

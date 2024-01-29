@@ -64,13 +64,19 @@ options(tinytex.verbose = TRUE)
 ```
 
 
-## Disclosures {.unnumbered}
+## Research Transparency Statement {.unnumbered}
+
+### General Disclosures {.unnumbered}
 
 Conflicts of interest: The author(s) declared that there were no conflicts of interest with respect to the authorship or the publication of this article.
 Funding: Author 1 was supported by the UK Engineering and Physical Sciences Research Council under grant EP/S515255/1. Author 3 acknowledges support by the UCLH NIHR BRC. He has received fees and options for consultancies for Aya Technologies and Alto Neuroscience.
 Ethics: This research received approval from a local ethics board (ID:21029/001).
 Artificial intelligence: No artificial intelligence assisted technologies were used in this research or the creation of this article.
-Reproducibility: The results are fully reproducible, and all data and code for the analyses (including the manuscript in R Markdown format) are available on: https://github.com/ismailg/coax_psych_science. The design and analysis plans were not preregistered.
+Reproducibility: [The authors are applying for a Computational Reproducibility Badge which will be awarded pending checks by the STAR Team.]
+
+### Study Disclosures {.unnumbered}
+
+Preregistration: The hypotheses and methods were not preregistered.The analysis plan was not preregistered. Materials: All study materials are publicly available (https://github.com/ismailg/coax_psych_science). Data: All primary data are publicly available (https://github.com/ismailg/coax_psych_science). Analysis scripts: All analysis scripts are publicly available (https://github.com/ismailg/coax_psych_science). 
 
 <!-- Author Contribution: I. Guennouni, QJM. Huys and M. Speekenbrink designed and developed the study concept. Experiment design was done by S. Dupret and I. Guennouni. Testing and data collection were performed by I. Guennouni. I. Guennouni analysed and interpreted the data under the supervision of QJM. Huys and M. Speekenbrink. M. Speekenbrink and I. Guennouni jointly performed the HMM modelling. All authors jointly wrote and approved the final version of the manuscript for submission. -->
 
@@ -274,6 +280,41 @@ In order to separate any general practice effects from the effect of the interve
 
 At the start of the experiment, participants provided informed consent and were instructed the study would consist of three phases in which they would face a different other player. Participants were told their goal was to maximise the number of points in all phases. They were not told the number of rounds of each phase. Phase one was a 15 round Repeated Trust Game (RTG) in which participants took the role of trustee, facing the same investor over all 15 rounds. On each round, after being informed about the amount sent by the investor, participants were asked to evaluate their emotion (intervention condition) or the investment (control condition). Participants then decided on how much of the tripled investment to return to the investor, before continuing to the next round. After completing 15 rounds of the RTG, participants rated how cooperative, selfish, trustworthy and friendly they perceived the investor to be (all on a scale from 1 to 10). After phase one, participants in the intervention condition completed the intervention, and participants in the control condition solved anagrams. Subsequent phase two was similar to phase one, with participants being told they would face a new player. Phase three consisted of 7 rounds of the Repeated Prisoner's Dilemma game (RPD), with participants informed they would face a third player. Participants then completed questionnaires related to mentalising abilities, emotion regulation, and BPD traits (see the supplement for details). They were then asked about the strategy in the games, as well as whether they thought the other players were human or computer agents. They were then debriefed and thanked for their participation.  
 
+## Statistical analysis
+
+
+To explore whether participants behaved differently in the RTG after the intervention compared to the control group, we model the percentage return (percentage of tripled investment returned to investor) using a linear mixed-effects model as described below:
+
+
+
+\[
+\begin{split}
+R_{ij} = & \beta_0 + \beta_1 \text{ (Condition)}_i + \beta_2 \text{ (Game)}_i + \beta_3 \text{ (Investment)}_i + \\
+& \beta_4 \text{ (Condition × Game)}_i + \beta_5 \text{ (Condition × Investment)}_i + \beta_6 \text{ (Game × Investment)}_i +  \\ 
+& \beta_7 \text{ (Condition × Game × Investment)}_i +b_{0j} + b_{1j} \text{ (Game)}_i + \epsilon_{ij}
+\end{split}
+\]
+
+where:
+
+- \( R_{ij} \): percentage of tripled investment returned to investor for participant \( j \) in observation \( i \)
+- \( \beta_0 \): intercept
+- \( \beta_1 \): effect of Condition (intervention vs. control)
+- \( \beta_2 \): effect of Game (RTG game pre vs. post-intervention)
+- \( \beta_3 \): effect of Investment
+- \( \beta_4 \): interaction effect between Condition and Game
+- \( \beta_5 \): interaction effect between Condition and Investment
+- \( \beta_6 \): interaction effect between Game and Investment
+- \( \beta_7 \): three-way interaction effect between Condition, Game and Investment
+- \( b_{0j} \): participant-wise random intercept for participant \( j \)
+- \( b_{1j} \): participant-wise random slope for Game for participant \( j \)
+- \( \epsilon_{ij} \): error term for participant \( j \) in observation \( i \)
+
+
+The model was estimated using the `afex` package [@singmann_afex_2022] in R [@R_package]. More complex models with additional random effects could not be estimated reliably, and as such the estimated model can be considered to include the optimal random effects structure [@matuschek2017balancing]. A similar process was used to establish the random effects structures of other linear mixed-effects models used throughout the statistical analyses. For the $F$-tests, we used the Kenward-Roger approximation to the degrees of freedom, as implemented in the R package "afex". We Z-transform the Investment variable as centering is beneficial to interpreting the main effects more easily in the presence of interactions.
+
+To model participants' returns in the RTG across games and conditions, we fit various hidden Markov models [@visser2022hidden] to participants' returns using the depmixS4 package [@visser_depmixs4_2021] for R. The transition between latent states is assumed to depend on the investment received and a dummy variable to characterise the group that the participant belongs to. Details on how the models are constructed can be found in the supplement. We fit models with different numbers of hidden states, and use the Bayesian Information Criterion [@schwarz_estimating_1978-1] to select the best model.
+
 \begin{landscape}
 ```{r HMMPanels, fig.cap= "\\small{A: Screenshot of the repeated Trust Game. The game is played in dyads, with one player assigned the role of the investor and the other player that of the trustee. The investor is endowed with 20 units at the start of each round. They need to decide how much of that endowment they want to invest with the trustee. The investment is then multiplied by a factor of 3 and sent to the trustee who needs to decide how much of the multiplied investment they want to send back to the investor. Shown here is the stage at which the trustee decides how much to send back to the investor. Immediately before making this decision, participant are shown a two dimensional grid (Panel C) where they need to report their reaction to the investment. Those in the intervention condition were asked questions about their emotional state and those in the control condition were asked to report features of the investment unrelated to their emotion. Panels B - D: We construct the artificial investor agent by fitting a three-state hidden Markov model to data of human investors engaged in the 10 round Repeated Trust Game against human trustees. From the fitted HMM, we get the distribution of investments by the artificial investor agent conditional on its latent state as shown in Panel C. The fitted HMM also yields the transition probability of the agent to a state on trial t+1 as a function of the net return (difference between the investment sent and the amount received in return) on trial t as shown in Panel D. Each plot in Panel D represents a different starting latent state on trial t, and each line represents the probability of transitioning to a particular state in trial t+1.}",echo=FALSE, message=FALSE, warning=FALSE, out.width='1\\linewidth', out.height='1\\textheight', fig.align='center'}
 
@@ -335,42 +376,7 @@ plot(combined_image)
 
 
 
-## Statistical analysis
 
-
-To explore whether participants behaved differently in the RTG after the intervention compared to the control group, we model the percentage return (percentage of tripled investment returned to investor) using a linear mixed-effects model as described below:
-
-
-
-\[
-\begin{split}
-R_{ij} = & \beta_0 + \beta_1 \text{ (Condition)}_i + \beta_2 \text{ (Game)}_i + \beta_3 \text{ (Investment)}_i + \\
-& \beta_4 \text{ (Condition × Game)}_i + \beta_5 \text{ (Condition × Investment)}_i + \beta_6 \text{ (Game × Investment)}_i +  \\ 
-& \beta_7 \text{ (Condition × Game × Investment)}_i +b_{0j} + b_{1j} \text{ (Game)}_i + \epsilon_{ij}
-\end{split}
-\]
-
-where:
-
-- \( R_{ij} \): percentage of tripled investment returned to investor for participant \( j \) in observation \( i \)
-- \( \beta_0 \): intercept
-- \( \beta_1 \): effect of Condition (intervention vs. control)
-- \( \beta_2 \): effect of Game (RTG game pre vs. post-intervention)
-- \( \beta_3 \): effect of Investment
-- \( \beta_4 \): interaction effect between Condition and Game
-- \( \beta_5 \): interaction effect between Condition and Investment
-- \( \beta_6 \): interaction effect between Game and Investment
-- \( \beta_7 \): three-way interaction effect between Condition, Game and Investment
-- \( b_{0j} \): participant-wise random intercept for participant \( j \)
-- \( b_{1j} \): participant-wise random slope for Game for participant \( j \)
-- \( \epsilon_{ij} \): error term for participant \( j \) in observation \( i \)
-
-
-
-
-The model was estimated using the `afex` package [@singmann_afex_2022] in R [@R_package]. More complex models with additional random effects could not be estimated reliably, and as such the estimated model can be considered to include the optimal random effects structure [@matuschek2017balancing]. A similar process was used to establish the random effects structures of other linear mixed-effects models used throughout the statistical analyses. For the $F$-tests, we used the Kenward-Roger approximation to the degrees of freedom, as implemented in the R package "afex". We Z-transform the Investment variable as centering is beneficial to interpreting the main effects more easily in the presence of interactions.
-
-To model participants' returns in the RTG across games and conditions, we fit various hidden Markov models [@visser2022hidden] to participants' returns using the depmixS4 package [@visser_depmixs4_2021] for R. The transition between latent states is assumed to depend on the investment received and a dummy variable to characterise the group that the participant belongs to. Details on how the models are constructed can be found in the supplement. We fit models with different numbers of hidden states, and use the Bayesian Information Criterion [@schwarz_estimating_1978-1] to select the best model.
 
 # Behavioral results
 
@@ -462,19 +468,22 @@ ggplot(ret_post_int, aes(x = "", y = ret_pct)) +
 
 ```
 
-
+<!-- Linear mixed effects model for all returns  -->
 ```{r modAllReturns, include=FALSE, cache=TRUE}
 
 mod_returns_pct <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| playerId), avg_ret_df, REML= TRUE, method="KR")
 anova(mod_returns_pct)
 summary(mod_returns_pct)
 
+```
 
-#prepost_bycond <- pairs(emmeans::emmeans(mod_returns_pct, c("gameNum.f"), by = "condition.f", pbkrtest.limit = 9400))
-#cond_effect <- pairs(emmeans::emmeans(mod_returns_pct, c("condition.f"), by="gameNum.f"))
+```{r modemmeans, include=F, cache=TRUE }
+prepost_bycond <- pairs(emmeans::emmeans(mod_returns_pct, c("gameNum.f"), by = "condition.f", pbkrtest.limit = 9400))
+cond_effect <- pairs(emmeans::emmeans(mod_returns_pct, c("condition.f"), by="gameNum.f"))
 ```
 
 
+<!-- Secondary analyses for effect size and correlation between repeated measures.  -->
 ```{r, include=F}
 
 library(sjstats)
@@ -533,7 +542,7 @@ such that higher investments were associated with higher percentage returns. An 
 Finally, we find a three way interaction between Game, Condition and Investment, 
 `r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_returns_pct)$full_result$gameNum_f_condition_f_inv_scaled)`, showing that the differentiated effect of the investment on the proportion returned by condition is itself moderated by the Game (pre- vs post intervention).
 
-
+<!-- Linear mixed effects model for Investments -->
 ```{r modInvs, include=FALSE, cache=TRUE}
 mod_invs <- mixed( investment ~ gameNum.f*condition.f  + (1 + gameNum.f| playerId), avg_ret_df, method="KR")
 summary(mod_invs)
@@ -573,8 +582,9 @@ inv_all <- afex_plot(mod_invs, x = "gameNum.f", trace = "condition.f", dodge = 0
 To explore the HMM investors' behavior across games and conditions, we estimate a linear mixed-effects model of investments sent by the computerised HMM agent with Condition and Game and their interaction as fixed effects, and a similar random effects structure to the returns model. This shows a main effect of Condition, `r papaja::apa_print(mod_invs)$full_result$condition_f`<!--$F(1,317) = 8.7$, $p = .003$-->, and Game, `r papaja::apa_print(mod_invs)$full_result$gameNum_f`<!--$F(1,317) = 8.3$, $p = .004$-->. As can be seen in Figure \ref{fig:TrustGameResults}.D, investment was higher in the intervention compared to the control condition across games, and higher in the second game compared to first across conditions.
 
 
+<!-- Linear fixed effects model for returns: ALL ROUNDS BEFORE DEFECTION TRIAL -->
 ```{r, include=FALSE, cache=TRUE}
-# ALL ROUNDS BEFORE DEFECTION TRIAL
+
 pre_int_data <- avg_ret_df %>% filter(roundType=="trust",!is.na(gameNum.f),(roundNum < 12 & gameNum.f =="pre")| (roundNum < 13 & gameNum.f =="post"))
 
 mod_returns_pre <- mixed( ret_pct ~ gameNum.f*condition.f*inv_scaled+ (1 + gameNum.f| playerId), pre_int_data, REML= TRUE, method="KR")
@@ -621,6 +631,7 @@ post_coax_data %>% group_by(gameNum.f, condition.f) %>% summarise(avg_inv = mean
 
 ```
 
+<!-- Linear fixed effects model for returns: ALL ROUNDS AFTER DEFECTION TRIAL -->
 ```{r, include=FALSE, cache=TRUE}
 
 mod_postcoax_trust <- mixed(ret_pct ~ gameNum.f*condition.f*inv_scaled  + ( 1 + gameNum.f|playerId), post_coax_data)
@@ -639,6 +650,7 @@ pairs(emmeans::emmeans(mod_postcoax_trust, c("gameNum.f"), by = "condition.f"))
 ```{r, include=F}
 saveRDS(summary(mod_postcoax_trust), "data/mod_returns_post")
 ```
+
 
 ```{r, include=FALSE}
 
@@ -714,13 +726,6 @@ colors <- c("Arousal" = "forestgreen", "Investment" = "blue", "Valence" = "red")
 # Create a new variable to categorize the rounds
 datCoax$roundGroup <- ifelse(datCoax$roundNum <= 10, "Rounds 1-10", "Rounds 11-15")
 
-# # Define the vertical line data
-# vline_data <- data.frame(
-#   xintercept = c(12, 13),
-#   linetype = c("Pre-manipulation", "Post-manipulation"),  # Names corresponding to the existing scale
-#   roundGroup = c("Rounds 11-15", "Rounds 11-15")
-# )
-
 
 p <- ggplot(datCoax[datCoax$gameNum.f == 'pre', ], aes(x=roundNum)) + 
   stat_summary(fun = "mean", geom = "line", group =1, aes(y=emo_scaled_x, color = "Valence", linetype = "a_Pre")) + 
@@ -754,8 +759,6 @@ geom_vline(data = subset(datCoax, roundGroup == "Rounds 11-15" & roundNum == 12)
 # Print the plot
 print(p)
 
-
-
 ```
 
 
@@ -777,13 +780,6 @@ anova(mod_emo_y)
 modArousal <- emmeans::emmeans(mod_emo_y, ~gameNum.f)
 pairs(modArousal)
 
-# afex_plot(mod_emo_x, x = "gameNum.f", trace = "condition.f", dodge = 0.8, error = "within",
-#             data_geom = geom_violin, 
-#             data_arg = list(width = 0.5))
-# 
-
-# library(GGally)
-# ggpairs(datCoax %>% dplyr::select(emo_scaled_x,emo_scaled_y,inv_scaled))
 
 cor(datCoax %>% dplyr::select(emo_scaled_x,emo_scaled_y,investment))
 cor.test(datCoax$emo_scaled_x, datCoax$emo_scaled_y)
@@ -801,56 +797,6 @@ There was no indication that the effect of the investment on either aspect of em
 `r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_emo_x)$full_result$gameNum_f_scaleinvestment)`, or arousal, 
 `r gsub("(\\d{1,3}),(\\d{3})", "\\1\\2", papaja::apa_print(mod_emo_y)$full_result$gameNum_f_scaleinvestment)`. 
 This indicates that participants in the intervention condition returned higher amounts post-intervention, despite their emotional reaction to investments remaining largely the same (Figure \ref{fig:TrustGameResults}.B). 
-
-
-
-
-\newpage
-\begin{landscape}
-```{r TrustGameResults, fig.cap="\\small{Panel A: Averages and standard errors of the trustee's return as a percentage of the multiplied investment received by Condition, Phase, and game round. We note a different reaction to the pre-programmed one-off low investment (vertical black lines) between the two conditions: Whilst there is a dip in returns pre-manipulation for both conditions,  post manipulation we see higher returns in the intervention condition compared to the dip in returns seen in the control condition in the right panel. B:  Self-reported emotion valence and arousal as well as investment z-scores for each round of the Repeated Trust Game averaged across participants in the intervention condition only. The participants' emotion reaction measured during the investor's pre-programmed one-off low investment round (vertical grey lines) were similar before (round 12) and after (round 13) the intervention. The bottom panels show marginal means and distributions of either investments or percentage returns across participants by Game and Condition. Panel C shows that participants in the Intervention condition returned higher proportions of the multiplied investment received in the second game compared to the first game over all ronds, whilst those in the Control condition sent back lower returns. Investments by the HMM agent (Panel D) were higher in the second game compared to the first game across conditions.}", echo=FALSE, message=FALSE, warning=FALSE, out.width='1\\linewidth', out.height='1\\textheight', fig.align='center'}
-library(magick)
-
-# Read in the images
-image5 <- image_read("figures/resultsTrust.png")
-image6 <- image_read("figures/emotionReaction2.png")
-violin_ret <- image_read("figures/violin_ret.png")
-violin_inv <- image_read("figures/violin_inv.png")
-
-image5 <- image_annotate(image5, text = "A", location = "+20+20", size = 70, color = "black", gravity = "northwest")
-image6 <- image_annotate(image6, text = "B", location = "+20+0", size = 90, color = "black", gravity = "northwest")
-violin_ret<- image_annotate(violin_ret, text = "C", location = "+0+20", size = 70, color = "black", gravity = "northwest")
-violin_inv  <- image_annotate(violin_inv , text = "D", location = "+0+0", size = 70, color = "black", gravity = "northwest")
-
-
-# Assuming a 300 DPI resolution for good print quality
-dpi <- 300
-
-# Spacing of 0.1 inches converted to pixels
-spacing <- 0.05 * dpi
-
-# Calculating the width and height for each image
-width_per_image <- ((12 - 0.1) / 2) * dpi
-height_per_image <- ((7.4 - 0.1) / 2) * dpi
-# The geometry string for each image, including spacing (assuming no borders)
-geometry_string <- paste0(width_per_image, 'x', height_per_image, '+', spacing, '+', spacing)
-
-# Now create the montage with the specified geometry
-combined_image2 <- image_montage(
-  c(image5, image6, violin_ret, violin_inv), 
-  tile = "2x2",
-  geometry = geometry_string
-)
-
-
-
-# Display the combined image
-plot(combined_image2)
-```
-\end{landscape}
-\newpage
-
-
-
 
 
 ## Evaluation of the investor
@@ -954,6 +900,56 @@ summary(ipd_mod_r5)
 
 We next asked whether the intervention had any discernible effect on participants' behavior in a different, Repeated Prisoner's Dilemma game. Predicting the probability of a cooperative action with a logistic mixed-effects regression model, with Condition and Phase (before or after defection trial) as fixed effects and a random intercept for participants, showed a decline in cooperation after defection by the other player, `r papaja::apa_print(ipd_mod)$full_result$phase`, but no evidence for an overall different cooperation rate in the intervention condition compared to the control condition, `r papaja::apa_print(ipd_mod)$full_result$condition_f`, or a different response to defection between the conditions, `r papaja::apa_print(ipd_mod)$full_result$condition_f_phase`. As such, there is no evidence that the intervention affected behavior in this game. 
 
+\newpage
+\begin{landscape}
+```{r TrustGameResults, fig.cap="\\small{Panel A: Averages and standard errors of the trustee's return as a percentage of the multiplied investment received by Condition, Phase, and game round. We note a different reaction to the pre-programmed one-off low investment (vertical black lines) between the two conditions: Whilst there is a dip in returns pre-manipulation for both conditions,  post manipulation we see higher returns in the intervention condition compared to the dip in returns seen in the control condition in the right panel. B:  Self-reported emotion valence and arousal as well as investment z-scores for each round of the Repeated Trust Game averaged across participants in the intervention condition only. The participants' emotion reaction measured during the investor's pre-programmed one-off low investment round (vertical grey lines) were similar before (round 12) and after (round 13) the intervention. The bottom panels show marginal means and distributions of either investments or percentage returns across participants by Game and Condition. Panel C shows that participants in the Intervention condition returned higher proportions of the multiplied investment received in the second game compared to the first game over all ronds, whilst those in the Control condition sent back lower returns. Investments by the HMM agent (Panel D) were higher in the second game compared to the first game across conditions.}", echo=FALSE, message=FALSE, warning=FALSE, out.width='1\\linewidth', out.height='1\\textheight', fig.align='center'}
+library(magick)
+
+# Read in the images
+image5 <- image_read("figures/resultsTrust.png")
+image6 <- image_read("figures/emotionReaction2.png")
+violin_ret <- image_read("figures/violin_ret.png")
+violin_inv <- image_read("figures/violin_inv.png")
+
+image5 <- image_annotate(image5, text = "A", location = "+20+20", size = 70, color = "black", gravity = "northwest")
+image6 <- image_annotate(image6, text = "B", location = "+20+0", size = 90, color = "black", gravity = "northwest")
+violin_ret<- image_annotate(violin_ret, text = "C", location = "+0+20", size = 70, color = "black", gravity = "northwest")
+violin_inv  <- image_annotate(violin_inv , text = "D", location = "+0+0", size = 70, color = "black", gravity = "northwest")
+
+
+# Assuming a 300 DPI resolution for good print quality
+dpi <- 300
+
+# Spacing of 0.1 inches converted to pixels
+spacing <- 0.05 * dpi
+
+# Calculating the width and height for each image
+width_per_image <- ((12 - 0.1) / 2) * dpi
+height_per_image <- ((7.4 - 0.1) / 2) * dpi
+# The geometry string for each image, including spacing (assuming no borders)
+geometry_string <- paste0(width_per_image, 'x', height_per_image, '+', spacing, '+', spacing)
+
+# Now create the montage with the specified geometry
+combined_image2 <- image_montage(
+  c(image5, image6, violin_ret, violin_inv), 
+  tile = "2x2",
+  geometry = geometry_string
+)
+
+
+
+# Display the combined image
+plot(combined_image2)
+```
+\end{landscape}
+\newpage
+
+
+
+
+
+
+
 
 ```{r, include=FALSE}
 ########### HOW DO PBOR SCORES affect returns and intervention effect ?########
@@ -973,25 +969,8 @@ emmeans(mixed_PBOR_pct, pairwise ~ PBOR_scaled * condition.f )
 
 ```
 
-```{r, include=FALSE}
-# Install the 'psych' package
-if (!requireNamespace("psych", quietly = TRUE)) {
-  install.packages("psych")
-}
 
-# Load the 'psych' package
-library(psych)
-
-questionnaires <- avg_ret_df %>% group_by(playerId) %>% dplyr::select(PBOR_score,DERS_score,RFQ_c) %>% unique() %>% ungroup()
-# Perform EFA
-efa_result <- fa(questionnaires %>% dplyr::select(PBOR_score,DERS_score,RFQ_c), nfactors = 2, fm = "minres", rotate = "varimax")
-# Print the EFA result
-print(efa_result)
-
-```
-
-
-
+<!-- Analyse participants response to Turing test -->
 ```{r, include=FALSE}
 turing <- read_csv("data/turing.csv")
 colnames(turing) <- c("responses", "category")
@@ -1119,6 +1098,7 @@ order_mod_vtdgaus <- function(mod) {
 ```
 
 
+<!-- Here we extend the depmixS4 package functionality for analyzing data using hidden Markov models (HMMs). It involves defining new response classes and their associated methods. -->
 
 ```{r,include=F}
 # define a response class which only contains the standard slots, no additional slots
@@ -1407,9 +1387,6 @@ for(i in n_state_min:n_state_max) {
 simple_HMMs <- ctrl_HMMs <- coax_HMMs <- fullCtrst_HMMs <- prePost_HMMs <- list()
 
 for(i in n_state_min:n_state_max) {
-
-  # rModels <- rep(list(list(vtdgaus(y=avg_ret_df$ret_pct_0,yield=3*avg_ret_df$investment))),each=i)
-  
   ###########################################################
   mus <- (1:i)*(1/(i+1))
   sigmas <- rep(1/(i+1), i)

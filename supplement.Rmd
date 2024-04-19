@@ -8,7 +8,8 @@ output:
    toc: false
 
 bibliography: "bib/cogIntervention.bib"
-biblio-style: spphys
+# biblio-style: spphys
+csl: nature-no-superscript.csl
 
 header-includes:
   - \renewcommand{\thefigure}{S\arabic{figure}}
@@ -126,6 +127,7 @@ where:
 
 ## Mixed-effects model results for pre-defection returns
 
+We fit the above linear mixed effects model to all trials prior to the pre-programmed defection by the HMM investor (occurring on round 12 pre-manipulation, and round 13 post). A summary of results can be seen in Figure \ref{fig:preDefectionModel}. 
 
 ```{r, include=F}
 
@@ -153,7 +155,7 @@ summary_Pretable <- papaja::apa_table(
 
 ```
 
-```{r preDefectionModel,fig.cap = "Summary of results of a Mixed-effects model fitted to participants returns restricted to  pre-defection trials", fig.align='center'}
+```{r preDefectionModel, fig.cap = "Summary of results of a Mixed-effects model fitted to participants returns restricted to  pre-defection trials", fig.align='center'}
 
 knitr::include_graphics("figures/modelPre.png")
 
@@ -189,6 +191,10 @@ summary_PostTable <- papaja::apa_table(
 
 
 ```
+
+
+In the same way, we fit the linear mixed effects model to all post-defection trials by the HMM investor, including the round on which the defection occurs. A summary of results is presented in Figure \ref{fig:postDefectionModel}
+
 
 ```{r postDefectionModel,fig.cap = "Summary of results of a Mixed-effects model fitted to participants returns restricted to  post-defection trials", fig.align='center',fig.pos="H"}
 

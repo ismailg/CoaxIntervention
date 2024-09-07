@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.5)  5 JUL 2024 15:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.5)  7 SEP 2024 18:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -280,7 +280,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks30
 \@floatcapt=\box64
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
-Package: colortbl 2024/05/26 v1.0h Color table columns (DPC)
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 \everycr=\toks31
 \minrowclearance=\skip67
 \rownum=\count299
@@ -350,7 +350,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2024-05-23 v7.01i Hypertext links for LaTeX
+Package: hyperref 2024-07-10 v7.01j Hypertext links for LaTeX
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -386,7 +386,7 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 \Hy@linkcounter=\count310
 \Hy@pagecounter=\count311
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2024-05-23 v7.01i Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2024-07-10 v7.01j Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -394,7 +394,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count312
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2024-05-23 v7.01i Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2024-07-10 v7.01j Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -438,7 +438,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2024-05-23 v7.01i Hyperref driver for pdfTeX
+File: hpdftex.def 2024-07-10 v7.01j Hyperref driver for pdfTeX
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -569,25 +569,25 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [2]
 
 [3]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 216.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 227.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 249.
+
+[4]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 260.
 (/Users/mbp17/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
-[4{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-
-[5]
-<article_files/figure-latex/HMMPanels-1.pdf, id=60, 311.1625pt x 192.72pt>
+[5{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+<article_files/figure-latex/HMMPanels-1.pdf, id=58, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/HMMPanels-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/HMMPanels-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 256.
+Package pdftex.def Info: article_files/figure-latex/HMMPanels-1.pdf  used on input line 267.
 (pdftex.def)             Requested size: 650.50256pt x 402.89188pt.
 
-LaTeX Warning: Float too large for page by 65.88686pt on input line 261.
+LaTeX Warning: Float too large for page by 65.88686pt on input line 272.
 
 
 
@@ -599,21 +599,21 @@ LaTeX Warning: Float too large for page by 65.88686pt on input line 261.
 {/Users/mbp17/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
 [8]
-<article_files/figure-latex/TrustGameResults-1.pdf, id=90, 311.1625pt x 192.72pt>
+<article_files/figure-latex/TrustGameResults-1.pdf, id=88, 311.1625pt x 192.72pt>
 File: article_files/figure-latex/TrustGameResults-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/TrustGameResults-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used on input line 321.
+Package pdftex.def Info: article_files/figure-latex/TrustGameResults-1.pdf  used on input line 334.
 (pdftex.def)             Requested size: 650.50256pt x 402.89188pt.
 
-LaTeX Warning: Float too large for page by 44.38686pt on input line 326.
+LaTeX Warning: Float too large for page by 44.38686pt on input line 339.
 
 
 
 [9 <./article_files/figure-latex/TrustGameResults-1.pdf>]
-<article_files/figure-latex/trusteeHMM-1.pdf, id=102, 147.55125pt x 192.72pt>
+<article_files/figure-latex/trusteeHMM-1.pdf, id=100, 147.55125pt x 192.72pt>
 File: article_files/figure-latex/trusteeHMM-1.pdf Graphic file (type pdf)
 <use article_files/figure-latex/trusteeHMM-1.pdf>
-Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 339.
+Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on input line 352.
 (pdftex.def)             Requested size: 398.45444pt x 520.43031pt.
 
 
@@ -627,31 +627,33 @@ Package pdftex.def Info: article_files/figure-latex/trusteeHMM-1.pdf  used on in
 [12]
 
 [13]
-Underfull \hbox (badness 3965) in paragraph at lines 462--462
+Underfull \hbox (badness 3965) in paragraph at lines 481--481
 []|\T1/lmr/m/it/9 The hand-book of mentalization-based treat-ment\T1/lmr/m/n/9 . xxi, 340 (John Wi-ley & Sons, Inc., 2006).
  []
 
 
 
-[14] (./article.aux)
+[14]
+
+[15] (./article.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 13177 strings out of 475544
- 205367 string characters out of 5776852
+ 13182 strings out of 475544
+ 205587 string characters out of 5776852
  1952905 words of memory out of 5000000
- 35486 multiletter control sequences out of 15000+600000
- 628531 words of font info for 84 fonts, out of 8000000 for 9000
+ 35489 multiletter control sequences out of 15000+600000
+ 621265 words of font info for 82 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,17n,93p,1831b,503s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on article.pdf (14 pages, 2698054 bytes).
+ 89i,17n,93p,1839b,503s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></Users/mbp17/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
+Output written on article.pdf (15 pages, 2525117 bytes).
 PDF statistics:
- 390 PDF objects out of 1000 (max. 8388607)
- 322 compressed objects within 4 object streams
- 79 named destinations out of 1000 (max. 500000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 339 compressed objects within 4 object streams
+ 83 named destinations out of 1000 (max. 500000)
  208 words of extra memory for PDF output out of 10000 (max. 10000000)
 
